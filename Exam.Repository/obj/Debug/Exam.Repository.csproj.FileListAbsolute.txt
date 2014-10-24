@@ -17,3 +17,13 @@ C:\Users\Somaye\Documents\GitHub\Exam\Exam.Repository\bin\Debug\EntityFramework.
 C:\Users\Somaye\Documents\GitHub\Exam\Exam.Repository\obj\Debug\Exam.Repository.csprojResolveAssemblyReference.cache
 C:\Users\Somaye\Documents\GitHub\Exam\Exam.Repository\obj\Debug\Exam.Repository.dll
 C:\Users\Somaye\Documents\GitHub\Exam\Exam.Repository\obj\Debug\Exam.Repository.pdb
+C:\Users\v-arkouk\Documents\GitHub\Exam\Exam.Repository\bin\Debug\Exam.Repository.dll.config
+C:\Users\v-arkouk\Documents\GitHub\Exam\Exam.Repository\bin\Debug\Exam.Repository.dll
+C:\Users\v-arkouk\Documents\GitHub\Exam\Exam.Repository\bin\Debug\Exam.Repository.pdb
+C:\Users\v-arkouk\Documents\GitHub\Exam\Exam.Repository\bin\Debug\EntityFramework.dll
+C:\Users\v-arkouk\Documents\GitHub\Exam\Exam.Repository\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\v-arkouk\Documents\GitHub\Exam\Exam.Repository\bin\Debug\EntityFramework.xml
+C:\Users\v-arkouk\Documents\GitHub\Exam\Exam.Repository\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\v-arkouk\Documents\GitHub\Exam\Exam.Repository\obj\Debug\Exam.Repository.csprojResolveAssemblyReference.cache
+C:\Users\v-arkouk\Documents\GitHub\Exam\Exam.Repository\obj\Debug\Exam.Repository.dll
+C:\Users\v-arkouk\Documents\GitHub\Exam\Exam.Repository\obj\Debug\Exam.Repository.pdb

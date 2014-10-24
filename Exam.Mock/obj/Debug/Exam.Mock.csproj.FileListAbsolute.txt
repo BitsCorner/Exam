@@ -16,3 +16,12 @@ C:\Users\Somaye\Documents\GitHub\Exam\Exam.Mock\bin\Debug\EntityFramework.xml
 C:\Users\Somaye\Documents\GitHub\Exam\Exam.Mock\obj\Debug\Exam.Mock.csprojResolveAssemblyReference.cache
 C:\Users\Somaye\Documents\GitHub\Exam\Exam.Mock\obj\Debug\Exam.Mock.dll
 C:\Users\Somaye\Documents\GitHub\Exam\Exam.Mock\obj\Debug\Exam.Mock.pdb
+C:\Users\v-arkouk\Documents\GitHub\Exam\Exam.Mock\bin\Debug\Exam.Mock.dll
+C:\Users\v-arkouk\Documents\GitHub\Exam\Exam.Mock\bin\Debug\Exam.Mock.pdb
+C:\Users\v-arkouk\Documents\GitHub\Exam\Exam.Mock\bin\Debug\Exam.Repository.dll
+C:\Users\v-arkouk\Documents\GitHub\Exam\Exam.Mock\bin\Debug\EntityFramework.dll
+C:\Users\v-arkouk\Documents\GitHub\Exam\Exam.Mock\bin\Debug\Exam.Repository.pdb
+C:\Users\v-arkouk\Documents\GitHub\Exam\Exam.Mock\bin\Debug\EntityFramework.xml
+C:\Users\v-arkouk\Documents\GitHub\Exam\Exam.Mock\obj\Debug\Exam.Mock.csprojResolveAssemblyReference.cache
+C:\Users\v-arkouk\Documents\GitHub\Exam\Exam.Mock\obj\Debug\Exam.Mock.dll
+C:\Users\v-arkouk\Documents\GitHub\Exam\Exam.Mock\obj\Debug\Exam.Mock.pdb

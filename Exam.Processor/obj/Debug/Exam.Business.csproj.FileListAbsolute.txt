@@ -20,3 +20,5 @@ C:\Users\Somaye\Documents\GitHub\Exam\Exam.Processor\bin\Debug\EntityFramework.x
 C:\Users\Somaye\Documents\GitHub\Exam\Exam.Processor\obj\Debug\Exam.Business.csprojResolveAssemblyReference.cache
 C:\Users\Somaye\Documents\GitHub\Exam\Exam.Processor\obj\Debug\Exam.Business.dll
 C:\Users\Somaye\Documents\GitHub\Exam\Exam.Processor\obj\Debug\Exam.Business.pdb
+C:\Users\v-arkouk\Documents\GitHub\Exam\Exam.Processor\obj\Debug\Exam.Business.csprojResolveAssemblyReference.cache
+C:\Users\v-arkouk\Documents\GitHub\Exam\Exam.Processor\obj\Debug\Exam.Business.dll

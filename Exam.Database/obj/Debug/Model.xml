@@ -12,7 +12,7 @@
 		</CustomData>
 		<CustomData Category="Reference" Type="Assembly">
 			<Metadata Name="LogicalName" Value="OnlineExam.Database.dll" />
-			<Metadata Name="FileName" Value="C:\USERS\SOMAYE\DOCUMENTS\GITHUB\EXAM\EXAM.DATABASE\OBJ\DEBUG\ONLINEEXAM.DATABASE.DLL" />
+			<Metadata Name="FileName" Value="C:\USERS\V-ARKOUK\DOCUMENTS\GITHUB\EXAM\EXAM.DATABASE\OBJ\DEBUG\ONLINEEXAM.DATABASE.DLL" />
 			<Metadata Name="AssemblyName" Value="OnlineExam.Database" />
 			<Metadata Name="PermissionSet" Value="SAFE" />
 			<Metadata Name="Owner" Value="" />
@@ -20,7 +20,7 @@
 			<Metadata Name="IsVisible" Value="True" />
 			<Metadata Name="IsModelAware" Value="True" />
 			<Metadata Name="SkipCreationIfEmpty" Value="True" />
-			<Metadata Name="AssemblySymbolsName" Value="C:\Users\Somaye\Documents\GitHub\Exam\Exam.Database\obj\Debug\OnlineExam.Database.pdb" />
+			<Metadata Name="AssemblySymbolsName" Value="C:\Users\v-arkouk\Documents\GitHub\Exam\Exam.Database\obj\Debug\OnlineExam.Database.pdb" />
 		</CustomData>
 		<CustomData Category="SqlCmdVariables" Type="SqlCmdVariable" />
 	</Header>

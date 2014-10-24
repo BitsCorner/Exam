@@ -12,3 +12,12 @@ C:\Users\Somaye\Documents\GitHub\Exam\Exam.Database\obj\Debug\postdeploy.sql
 C:\Users\Somaye\Documents\GitHub\Exam\Exam.Database\obj\Debug\predeploy.sql
 C:\Users\Somaye\Documents\GitHub\Exam\Exam.Database\obj\Debug\OnlineExam.Database.dll
 C:\Users\Somaye\Documents\GitHub\Exam\Exam.Database\obj\Debug\OnlineExam.Database.pdb
+C:\Users\v-arkouk\Documents\GitHub\Exam\Exam.Database\bin\Debug\Exam.Database.dacpac
+C:\Users\v-arkouk\Documents\GitHub\Exam\Exam.Database\bin\Debug\OnlineExam.Database.dll
+C:\Users\v-arkouk\Documents\GitHub\Exam\Exam.Database\bin\Debug\OnlineExam.Database.pdb
+C:\Users\v-arkouk\Documents\GitHub\Exam\Exam.Database\obj\Debug\Model.xml
+C:\Users\v-arkouk\Documents\GitHub\Exam\Exam.Database\obj\Debug\refactor.xml
+C:\Users\v-arkouk\Documents\GitHub\Exam\Exam.Database\obj\Debug\postdeploy.sql
+C:\Users\v-arkouk\Documents\GitHub\Exam\Exam.Database\obj\Debug\predeploy.sql
+C:\Users\v-arkouk\Documents\GitHub\Exam\Exam.Database\obj\Debug\OnlineExam.Database.dll
+C:\Users\v-arkouk\Documents\GitHub\Exam\Exam.Database\obj\Debug\OnlineExam.Database.pdb
