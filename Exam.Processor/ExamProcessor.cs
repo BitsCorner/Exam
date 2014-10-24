@@ -1,13 +1,28 @@
-﻿using System;
+﻿using Exam.Repository;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Exam.Processor
+namespace Exam.Business
 {
-    public class ExamProcessor
+    public partial class ExamProcessor : IExamProcessor
     {
+        private IExamRepository examRepository;
 
+        public ExamProcessor(IExamRepository examRepository)
+        {
+            this.examRepository = examRepository;
+        }
+        public async Task<IEnumerable<Contracts.CertificateResponse>> GetCertificates()
+        {
+            return Map(await this.examRepository.GetAllCertificates());
+        }
+
+        public Task<IEnumerable<Contracts.QuestionsResponse>> GetQuestions()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExamMapper.cs" />
     <Compile Include="ExamProcessor.cs" />
     <Compile Include="IExamProcessor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
