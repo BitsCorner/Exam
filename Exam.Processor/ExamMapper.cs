@@ -24,7 +24,6 @@ namespace Exam.Business
                               CompanyName = item.CompanyName,
                               Skills = Map(item.Skills),
                               Technology = item.Technology
-
                          };
             return result.AsEnumerable();
         }

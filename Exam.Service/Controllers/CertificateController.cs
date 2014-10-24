@@ -1,22 +1,37 @@
-﻿using System;
+﻿using Exam.Business;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 
 namespace Exam.Service.Controllers
 {
     public class CertificateController : ApiController
     {
-        public IEnumerable<string> Get()
+        private IExamProcessor examProcessor;
+        public CertificateController(IExamProcessor examProcessor)
         {
-            return new string[] { "value1", "value2" };
+            this.examProcessor = examProcessor;
+        }
+        public async Task<IHttpActionResult> Get()
+        {
+            var response = await examProcessor.GetCertificates();
+            if (response == null)
+            {
+                return NotFound();
+            }
+            return Ok(response);
         }
 
-        public IEnumerable<string> GetCertificateSkills(int CertificateId)
+        public async Task<IHttpActionResult> GetCertificateSkills(int CertificateId)
         {
-            return new string[] { "value1", "value2" };
+            var response = await examProcessor.GetCertificates();
+            if (response == null)
+            {
+                return NotFound();
+            }
+            return Ok(response);
         }
 
     }
