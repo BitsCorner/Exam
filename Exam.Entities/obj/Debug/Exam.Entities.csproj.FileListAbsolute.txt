@@ -1,0 +1,5 @@
+C:\Users\v-arkouk\Documents\GitHub\Exam\Exam\Exam.Entities\bin\Debug\Exam.Entities.dll
+C:\Users\v-arkouk\Documents\GitHub\Exam\Exam\Exam.Entities\bin\Debug\Exam.Entities.pdb
+C:\Users\v-arkouk\Documents\GitHub\Exam\Exam\Exam.Entities\obj\Debug\Exam.Entities.csprojResolveAssemblyReference.cache
+C:\Users\v-arkouk\Documents\GitHub\Exam\Exam\Exam.Entities\obj\Debug\Exam.Entities.dll
+C:\Users\v-arkouk\Documents\GitHub\Exam\Exam\Exam.Entities\obj\Debug\Exam.Entities.pdb

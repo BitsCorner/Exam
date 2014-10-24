@@ -1,0 +1,221 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ExamModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Answer">
+    <Key>
+      <PropertyRef Name="AnswerId" />
+    </Key>
+    <Property Name="AnswerId" Type="int" Nullable="false" />
+    <Property Name="RowId" Type="int" />
+    <Property Name="QuestionId" Type="bigint" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="IsCorrectAnswer" Type="bit" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Certificate">
+    <Key>
+      <PropertyRef Name="CertificateId" />
+    </Key>
+    <Property Name="CertificateId" Type="int" Nullable="false" />
+    <Property Name="CompanyName" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="CertificateCode" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="CertificateName" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="Technology" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="PublishDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Question">
+    <Key>
+      <PropertyRef Name="QuestionId" />
+    </Key>
+    <Property Name="QuestionId" Type="bigint" Nullable="false" />
+    <Property Name="CertificateId" Type="int" Nullable="false" />
+    <Property Name="SkillId" Type="int" Nullable="false" />
+    <Property Name="SkillDetailId" Type="int" />
+    <Property Name="Title" Type="nvarchar(max)" />
+    <Property Name="IsMultiChoice" Type="bit" />
+    <Property Name="CorrectAnswerCount" Type="int" />
+    <Property Name="AllowShuffleChoices" Type="bit" />
+    <Property Name="CheckNumberOfSelected" Type="bit" />
+    <Property Name="Explanation" Type="nvarchar(max)" />
+    <Property Name="QuestionLevelId" Type="int" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="500" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="QuestionLevel">
+    <Key>
+      <PropertyRef Name="QuestionLevelId" />
+    </Key>
+    <Property Name="QuestionLevelId" Type="int" Nullable="false" />
+    <Property Name="QuestionLevelName" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Skill">
+    <Key>
+      <PropertyRef Name="SkillId" />
+    </Key>
+    <Property Name="SkillId" Type="int" Nullable="false" />
+    <Property Name="SkillName" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="CertificateId" Type="int" Nullable="false" />
+    <Property Name="SkillOrder" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SkillDetail">
+    <Key>
+      <PropertyRef Name="SkillDetailId" />
+    </Key>
+    <Property Name="SkillDetailId" Type="int" Nullable="false" />
+    <Property Name="SkillId" Type="int" Nullable="false" />
+    <Property Name="SkillDetailDescription" Type="nvarchar(max)" />
+    <Property Name="SkillDetailOrder" Type="int" />
+  </EntityType>
+  <EntityType Name="UserProfile">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="500" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <Association Name="FK_Answer_Question">
+    <End Role="Question" Type="Self.Question" Multiplicity="0..1" />
+    <End Role="Answer" Type="Self.Answer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Question">
+        <PropertyRef Name="QuestionId" />
+      </Principal>
+      <Dependent Role="Answer">
+        <PropertyRef Name="QuestionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Question_Certificate">
+    <End Role="Certificate" Type="Self.Certificate" Multiplicity="1" />
+    <End Role="Question" Type="Self.Question" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Certificate">
+        <PropertyRef Name="CertificateId" />
+      </Principal>
+      <Dependent Role="Question">
+        <PropertyRef Name="CertificateId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Question_QuestionLevel">
+    <End Role="QuestionLevel" Type="Self.QuestionLevel" Multiplicity="0..1" />
+    <End Role="Question" Type="Self.Question" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QuestionLevel">
+        <PropertyRef Name="QuestionLevelId" />
+      </Principal>
+      <Dependent Role="Question">
+        <PropertyRef Name="QuestionLevelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Question_Skill">
+    <End Role="Skill" Type="Self.Skill" Multiplicity="1" />
+    <End Role="Question" Type="Self.Question" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Skill">
+        <PropertyRef Name="SkillId" />
+      </Principal>
+      <Dependent Role="Question">
+        <PropertyRef Name="SkillId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Question_SkillDetail">
+    <End Role="SkillDetail" Type="Self.SkillDetail" Multiplicity="0..1" />
+    <End Role="Question" Type="Self.Question" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SkillDetail">
+        <PropertyRef Name="SkillDetailId" />
+      </Principal>
+      <Dependent Role="Question">
+        <PropertyRef Name="SkillDetailId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Question_UserProfile">
+    <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="0..1" />
+    <End Role="Question" Type="Self.Question" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserProfile">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Question">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Skill_Certificate">
+    <End Role="Certificate" Type="Self.Certificate" Multiplicity="1" />
+    <End Role="Skill" Type="Self.Skill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Certificate">
+        <PropertyRef Name="CertificateId" />
+      </Principal>
+      <Dependent Role="Skill">
+        <PropertyRef Name="CertificateId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Skill_SkillDetail">
+    <End Role="Skill" Type="Self.Skill" Multiplicity="1" />
+    <End Role="SkillDetail" Type="Self.SkillDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Skill">
+        <PropertyRef Name="SkillId" />
+      </Principal>
+      <Dependent Role="SkillDetail">
+        <PropertyRef Name="SkillId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ExamModelStoreContainer">
+    <EntitySet Name="Answer" EntityType="Self.Answer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Certificate" EntityType="Self.Certificate" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Question" EntityType="Self.Question" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="QuestionLevel" EntityType="Self.QuestionLevel" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Skill" EntityType="Self.Skill" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SkillDetail" EntityType="Self.SkillDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserProfile" EntityType="Self.UserProfile" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Answer_Question" Association="Self.FK_Answer_Question">
+      <End Role="Question" EntitySet="Question" />
+      <End Role="Answer" EntitySet="Answer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Question_Certificate" Association="Self.FK_Question_Certificate">
+      <End Role="Certificate" EntitySet="Certificate" />
+      <End Role="Question" EntitySet="Question" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Question_QuestionLevel" Association="Self.FK_Question_QuestionLevel">
+      <End Role="QuestionLevel" EntitySet="QuestionLevel" />
+      <End Role="Question" EntitySet="Question" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Question_Skill" Association="Self.FK_Question_Skill">
+      <End Role="Skill" EntitySet="Skill" />
+      <End Role="Question" EntitySet="Question" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Question_SkillDetail" Association="Self.FK_Question_SkillDetail">
+      <End Role="SkillDetail" EntitySet="SkillDetail" />
+      <End Role="Question" EntitySet="Question" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Question_UserProfile" Association="Self.FK_Question_UserProfile">
+      <End Role="UserProfile" EntitySet="UserProfile" />
+      <End Role="Question" EntitySet="Question" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Skill_Certificate" Association="Self.FK_Skill_Certificate">
+      <End Role="Certificate" EntitySet="Certificate" />
+      <End Role="Skill" EntitySet="Skill" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Skill_SkillDetail" Association="Self.FK_Skill_SkillDetail">
+      <End Role="Skill" EntitySet="Skill" />
+      <End Role="SkillDetail" EntitySet="SkillDetail" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

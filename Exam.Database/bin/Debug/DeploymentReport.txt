@@ -1,0 +1,29 @@
+﻿** Highlights
+     Tables that will be rebuilt
+       None
+     Clustered indexes that will be dropped
+       None
+     Clustered indexes that will be created
+       None
+     Possible data issues
+       None
+
+** User actions
+     Create
+       [dbo].[Answer] (Table)
+       [dbo].[Certificate] (Table)
+       [dbo].[Question] (Table)
+       [dbo].[QuestionLevel] (Table)
+       [dbo].[Skill] (Table)
+       [dbo].[SkillDetail] (Table)
+       [dbo].[UserProfile] (Table)
+       [dbo].[FK_Answer_Question] (Foreign Key)
+       [dbo].[FK_Question_Certificate] (Foreign Key)
+       [dbo].[FK_Question_Skill] (Foreign Key)
+       [dbo].[FK_Question_SkillDetail] (Foreign Key)
+       [dbo].[FK_Question_UserProfile] (Foreign Key)
+       [dbo].[FK_Question_QuestionLevel] (Foreign Key)
+       [dbo].[FK_Skill_Certificate] (Foreign Key)
+       [dbo].[FK_Skill_SkillDetail] (Foreign Key)
+
+** Supporting actions

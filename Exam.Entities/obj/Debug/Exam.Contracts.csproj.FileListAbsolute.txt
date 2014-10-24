@@ -1,0 +1,10 @@
+C:\Users\v-arkouk\Documents\GitHub\Exam\Exam\Exam.Entities\bin\Debug\Exam.Contracts.dll
+C:\Users\v-arkouk\Documents\GitHub\Exam\Exam\Exam.Entities\bin\Debug\Exam.Contracts.pdb
+C:\Users\v-arkouk\Documents\GitHub\Exam\Exam\Exam.Entities\obj\Debug\Exam.Contracts.csprojResolveAssemblyReference.cache
+C:\Users\v-arkouk\Documents\GitHub\Exam\Exam\Exam.Entities\obj\Debug\Exam.Contracts.dll
+C:\Users\v-arkouk\Documents\GitHub\Exam\Exam\Exam.Entities\obj\Debug\Exam.Contracts.pdb
+C:\Users\Somaye\Documents\GitHub\Exam\Exam.Entities\bin\Debug\Exam.Contracts.dll
+C:\Users\Somaye\Documents\GitHub\Exam\Exam.Entities\bin\Debug\Exam.Contracts.pdb
+C:\Users\Somaye\Documents\GitHub\Exam\Exam.Entities\obj\Debug\Exam.Contracts.csprojResolveAssemblyReference.cache
+C:\Users\Somaye\Documents\GitHub\Exam\Exam.Entities\obj\Debug\Exam.Contracts.dll
+C:\Users\Somaye\Documents\GitHub\Exam\Exam.Entities\obj\Debug\Exam.Contracts.pdb
