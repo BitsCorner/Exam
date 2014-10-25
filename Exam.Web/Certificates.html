@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="examApp">
+<head>
+    <title></title>
+
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />-->
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css" />-->
+    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>-->
+
+    <link href="app/css/bootstrap-theme.css" rel="stylesheet" />
+    <link href="app/css/bootstrap.css" rel="stylesheet" />
+
+    
+    <script src="app/lib/jquery.min.js"></script>
+    <script src="app/lib/underscore-1.4.4.min.js"></script>
+    <script src="app/lib/angular/angular.js"></script>
+    <script src="app/lib/bootstrap.js"></script>
+    <script src="app/js/app.js"></script>
+    <script src="app/js/controllers/CertificateController.js"></script>
+    <script src="app/js/services/examData.js"></script>
+</head>
+<body>
+    <div class="container-fluid">
+        <div ng-controller="CertificateController">
+            <div class="row" ng-repeat="certificate in certificates">
+                <h2>{{certificate.CertificateName}}</h2>
+                {{certificate.CertificateCode}}
+                {{certificate.CertificateId}},
+                {{certificate.CertificateName}}
+                {{certificate.CompanyName}}
+                {{certificate.PublishDate}}
+
+            </div>
+            
+        </div>
+    </div>
+
+</body>
+</html>

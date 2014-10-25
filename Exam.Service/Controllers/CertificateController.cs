@@ -4,9 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace Exam.Service.Controllers
 {
+    [EnableCors("*","*","*")]
     public class CertificateController : ApiController
     {
         private IExamProcessor examProcessor;
