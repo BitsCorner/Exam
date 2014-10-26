@@ -10,6 +10,6 @@ namespace Exam.Contracts
     {
         public int SkillDetailId { get; set; }
         public string SkillDetailDescription { get; set; }
-        public Nullable<int> SkillDetailOrder { get; set; }
+        public int? SkillDetailOrder { get; set; }
     }
 }
