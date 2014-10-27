@@ -1,0 +1,27 @@
+﻿<div class="col-md-6" ng-repeat="certificate in certificates">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h5>{{certificate.CompanyName}} {{certificate.CertificateCode}} {{certificate.CertificateName}}</h5>
+        </div>
+        <div class="panel-body">
+            <p><small><label>Technology:</label> {{certificate.Technology}}</small></p>
+            <p><label>Skills measured:</label></p>
+            <div class="list-group">
+                <accordion close-others="oneAtATime">
+                    <accordion-group ng-repeat="skill in certificate.Skills" is-open="skill.status.open">
+                        <accordion-heading>
+                            {{skill.SkillName}}
+                            <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': skill.status.open, 'glyphicon-chevron-right': !skill.status.open}"></i>
+                        </accordion-heading>
+                        <ul>
+                            <li ng-repeat="skillDetail in skill.SkillDetails">{{skillDetail.SkillDetailDescription}}</li>
+                        </ul>
+                    </accordion-group>
+                </accordion>
+            </div>
+
+            <a class="btn btn-primary btn-sm" role="button">Cert Preparation</a>
+            <a class="btn btn-secondary btn-sm" role="button">Dump a question</a>
+        </div>
+    </div>
+</div>

@@ -157,8 +157,9 @@
     <Content Include="app\lib\bootstrap.js" />
     <Content Include="app\lib\bootstrap.min.js" />
     <Content Include="app\lib\jquery.min.js" />
+    <Content Include="app\lib\ui-bootstrap-0.11.2.js" />
     <Content Include="app\lib\underscore-1.4.4.min.js" />
-    <Content Include="Certificates.html" />
+    <Content Include="templates\Certificates.html" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
@@ -173,7 +174,13 @@
     <Content Include="app\fonts\glyphicons-halflings-regular.woff" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\lib\ui-bootstrap-tpls.js" />
+    <Content Include="app\lib\ui-bootstrap-tpls.min.js" />
+    <Content Include="app\lib\ui-bootstrap.js" />
+    <Content Include="app\lib\ui-bootstrap.min.js" />
+    <Content Include="Index.html" />
     <Content Include="web.config" />
+    <Content Include="packages.config" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
