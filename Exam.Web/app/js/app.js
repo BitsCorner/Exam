@@ -1,3 +1,3 @@
 'use strict';
 
-var examApp = angular.module('examApp', []);
+var examApp = angular.module('examApp', ['ngResource']);

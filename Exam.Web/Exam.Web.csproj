@@ -135,8 +135,12 @@
     <Content Include="app\css\bootstrap.min.css" />
     <Content Include="app\favicon.ico" />
     <Content Include="app\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="app\img\facebook-logo.png" />
     <Content Include="app\img\glyphicons-halflings-white.png" />
     <Content Include="app\img\glyphicons-halflings.png" />
+    <Content Include="app\img\linkedin-logo.png" />
+    <Content Include="app\img\rss-logo.png" />
+    <Content Include="app\img\twitter-logo.png" />
     <Content Include="app\js\app.js" />
     <Content Include="app\js\controllers\CertificateController.js" />
     <Content Include="app\js\controllers\EventListController.js" />
