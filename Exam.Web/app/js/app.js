@@ -10,9 +10,15 @@ var examApp = angular.module('examApp', ['ngResource', 'ui.bootstrap', 'ngRoute'
         $routeProvider.when('/DumpQuestion/:certificateId',
             {
                 templateUrl: 'templates/DumpQuestion.html',
-                controller: 'QuestionController'
+                controller: 'DumpQuestionController'
             });
-        $routeProvider.otherwise({ redirectTo: '/Certificates' });
+        $routeProvider.when('/CertPrep/:certificateId',
+            {
+                templateUrl: 'templates/CertPrep.html',
+                controller: 'CertPrepController'
+            });
 
-        $locationProvider.html5Mode(true);
+        $routeProvider.otherwise({ redirectTo: 'Certificates' });
+        //TODO: this doesn't work for some reason?! to be able to take # out of the Href attr from the Index.html
+        //$locationProvider.html5Mode(true);
     });
