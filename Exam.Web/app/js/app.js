@@ -1,7 +1,7 @@
 'use strict';
 
 var examApp = angular.module('examApp', ['ngResource', 'ui.bootstrap', 'ngRoute'])
-    .config(function ($routeProvider) {
+    .config(function ($routeProvider, $locationProvider) {
         $routeProvider.when('/Certificates',
             {
                 templateUrl: 'templates/Certificates.html',
@@ -14,4 +14,5 @@ var examApp = angular.module('examApp', ['ngResource', 'ui.bootstrap', 'ngRoute'
             });
         $routeProvider.otherwise({ redirectTo: '/Certificates' });
 
+        $locationProvider.html5Mode(true);
     });
