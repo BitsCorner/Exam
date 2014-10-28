@@ -7,6 +7,10 @@ examApp.factory('examData', function ($resource) {
             return $resource(baseUrl + "Certificate", null).query();
         },
 
+        getCertificate: function (id) {
+            return $resource(baseUrl + "Certificate/:id", { id: '@id' }).get({ id: id });
+        },
+
         getSkills: function () {
             return $resource(baseUrl + "Skill/id", {id:'@id'}).query(id);
         }

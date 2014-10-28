@@ -26,6 +26,17 @@ namespace Exam.Service.Controllers
             return Ok(response);
         }
 
+        public async Task<IHttpActionResult> Get(int id)
+        {
+            var response = await examProcessor.GetCertificates();
+            if (response == null)
+            {
+                return NotFound();
+            }
+            return Ok(response.FirstOrDefault(m=>m.CertificateId == id));
+        }
+
+
         public async Task<IHttpActionResult> GetCertificateSkills(int CertificateId)
         {
             var response = await examProcessor.GetCertificates();
