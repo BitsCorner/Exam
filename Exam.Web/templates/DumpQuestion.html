@@ -8,7 +8,7 @@
     <div class="col-md-12">
         <div class="form-group">
             <label for="Question">Question</label>
-            <textarea class="form-control" rows="3" placeholder="Enter question"></textarea>
+            <textarea ng-model="question.Title" class="form-control" rows="3" placeholder="Enter question"></textarea>
         </div>
     </div>
     <div class="col-md-12">
@@ -98,7 +98,7 @@
         </div>
     </div>
     <div class="col-md-12">
-        <button type="submit" class="btn btn-primary" ng-click="saveQuestion()>Submit</button>
+        <button type="submit" class="btn btn-primary" ng-click="saveQuestion()">Submit</button>
         <button type="submit" class="btn btn-default">Cancel</button>
     </div>
 </form>

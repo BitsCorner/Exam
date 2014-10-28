@@ -13,6 +13,9 @@ examApp.factory('examData', function ($resource) {
 
         getSkills: function () {
             return $resource(baseUrl + "Skill/id", {id:'@id'}).query(id);
+        },
+        saveQuestion: function (question) {
+            alert(question.Title);
         }
     };
 });

@@ -15,12 +15,10 @@ examApp.controller('DumpQuestionController',
             if (newVal) $scope.skillDetails = newVal.SkillDetails;
         });
 
-        $scope.saveEntry = function ($scope.question) {
-            polls.save($scope.poll);
-        }
-
-        saveQuestion
-
+        $scope.saveQuestion = function () {
+            alert('save');
+            examData.saveQuestion($scope.question);
+        };
 
     }
 );
