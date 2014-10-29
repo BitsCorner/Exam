@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Exam.Contracts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -24,11 +25,11 @@ namespace Exam.Service.Controllers
             return new string[] { "value1", "value2" };
         }
 
-        public void Post([FromBody]string value)
+        public void Post([FromBody]QuestionRequest question)
         {
         }
 
-        public void Put(int id, [FromBody]string value)
+        public void Put(int id, [FromBody]QuestionRequest question)
         {
         }
 

@@ -41,6 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Requests\AnswerRequest.cs" />
+    <Compile Include="Requests\QuestionRequest.cs" />
     <Compile Include="Responses\AnswerResponse.cs" />
     <Compile Include="Responses\QuestionLevelResponse.cs" />
     <Compile Include="Responses\UserResponse.cs" />
@@ -49,9 +51,7 @@
     <Compile Include="Responses\SkillResponse.cs" />
     <Compile Include="Responses\CertificateResponse.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Requests\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="app.config" />
   </ItemGroup>
