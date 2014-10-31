@@ -133,6 +133,7 @@
     <Content Include="app\css\bootstrap-theme.min.css" />
     <Content Include="app\css\bootstrap.css" />
     <Content Include="app\css\bootstrap.min.css" />
+    <Content Include="app\css\toaster.css" />
     <Content Include="app\favicon.ico" />
     <Content Include="app\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="app\img\facebook-logo.png" />
@@ -159,6 +160,7 @@
     <Content Include="app\lib\bootstrap.js" />
     <Content Include="app\lib\bootstrap.min.js" />
     <Content Include="app\lib\jquery.min.js" />
+    <Content Include="app\lib\toaster.js" />
     <Content Include="app\lib\ui-bootstrap-0.11.2.js" />
     <Content Include="app\lib\underscore-1.4.4.min.js" />
     <Content Include="fav.ico" />
