@@ -25,9 +25,10 @@ namespace Exam.Business
             throw new NotImplementedException();
         }
 
-        public Task<bool> SaveQuestion(Contracts.QuestionRequest quesion)
+        public async Task<bool> SaveQuestion(Contracts.QuestionRequest question)
         {
-            throw new NotImplementedException();
+            var mappedQuestion = Map(question);
+            return await this.examRepository.SaveQuestion(mappedQuestion);
         }
     }
 }

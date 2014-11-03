@@ -139,7 +139,7 @@ namespace Exam.Repository
             return result.Where(m => m.SkillId == SkillId).ToList().AsEnumerable();
         }
 
-        public Task<Question> SaveQuestion(Question question, IEnumerable<Answer> answers)
+        public Task<bool> SaveQuestion(Question question)
         {
             throw new NotImplementedException();
         }

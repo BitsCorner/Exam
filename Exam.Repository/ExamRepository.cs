@@ -38,8 +38,9 @@ namespace Exam.Repository
             throw new NotImplementedException();
         }
 
-        public Task<Question> SaveQuestion(Question question, IEnumerable<Answer> answers)
+        public Task<bool> SaveQuestion(Question question)
         {
+
             throw new NotImplementedException();
         }
 

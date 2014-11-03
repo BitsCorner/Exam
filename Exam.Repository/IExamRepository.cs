@@ -27,7 +27,7 @@ namespace Exam.Repository
         #endregion
 
         #region Question
-        Task<Question> SaveQuestion(Question question, IEnumerable<Answer> answers);
+        Task<bool> SaveQuestion(Question question);
         Task<bool> DeleteQuestion(int QuestionId);
         Task<IEnumerable<Question>> GetAllQuestions(int CertificateId);
         Task<IEnumerable<Question>> GetAllQuestionsBySkill(int SkillId);
@@ -37,5 +37,6 @@ namespace Exam.Repository
         #region Answer
         Task<IEnumerable<Answer>> GetAllAnswer(int QuestionId);
         #endregion
+
     }
 }

@@ -59,5 +59,24 @@ namespace Exam.Business
             return result.AsEnumerable();   
         }
 
+        internal Question Map(Contracts.QuestionRequest question)
+        {
+            if (question == null)
+                return null;
+
+            return new Question {
+                             CertificateId = question.CertificateId,
+                             Answers = Map(question.Answers),
+                             QuestionLevelId = question.DifficultyLevel.QuestionLevelId,
+                             SkillId = question.Skill.SkillId,
+                             SkillDetailId = question.SkillDetail.SkillDetailId
+                         };
+        }
+
+        private ICollection<Answer> Map(IEnumerable<Contracts.AnswerRequest> enumerable)
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }
