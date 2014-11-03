@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
-MinimumVisualStudioVersion = 10.0.40219.1
+# Visual Studio 2012
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Exam.Database", "Exam.Database\Exam.Database.sqlproj", "{A6A99189-1896-4210-813A-388552C1AE81}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exam.Contracts", "Exam.Entities\Exam.Contracts.csproj", "{2250EAF0-BBAD-40BA-BE09-85239A4439FB}"
@@ -14,6 +12,13 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exam.Business", "Exam.Processor\Exam.Business.csproj", "{D9D5FCC7-09B6-4D2A-B2A7-0D795101FA01}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exam.Web", "Exam.Web\Exam.Web.csproj", "{451DA2B8-919C-4030-966F-58D7E3B30DB4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{F93C45C8-A032-4661-9FB8-A03FF2A06DA9}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

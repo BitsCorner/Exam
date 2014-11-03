@@ -8,9 +8,9 @@ namespace Exam.Contracts
 {
     public class AnswerRequest
     {
-        public int AnswerId { get; set; }
-        public Nullable<int> RowId { get; set; }
         public string Description { get; set; }
-        public Nullable<bool> IsCorrectAnswer { get; set; }
+        public string AnswerImage { get; set; }
+        public bool IsCorrectAnswer { get; set; }
+        public FileRequest File { get; set; }
     }
 }

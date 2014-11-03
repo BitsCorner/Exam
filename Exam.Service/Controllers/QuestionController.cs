@@ -1,41 +1,46 @@
-﻿using Exam.Contracts;
+﻿using Exam.Business;
+using Exam.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace Exam.Service.Controllers
 {
+    [EnableCors("*","*","*")]
     public class QuestionController : ApiController
     {
-        public IEnumerable<string> Get(int CertificateId)
+        private IExamProcessor examProcessor;
+        public QuestionController(IExamProcessor examProcessor)
         {
-            return new string[] { "value1", "value2" };
+            this.examProcessor = examProcessor;
+        }
+        public async Task<IHttpActionResult> Get()
+        {
+            var response = await examProcessor.GetCertificates();
+            if (response == null)
+            {
+                return NotFound();
+            }
+            return Ok(response);
         }
 
-        public IEnumerable<string> GetBySkill(int CertificateId, int SkillId)
+        public async Task<IHttpActionResult> Post([FromBody]QuestionRequest question)
         {
-            return new string[] { "value1", "value2" };
+            if(question == null)
+                return InternalServerError();
+
+            var response = await examProcessor.SaveQuestion(question);
+            if (response == false)
+            {
+                return InternalServerError();
+            }
+            return Ok(response);
         }
 
-        public IEnumerable<string> GetById(int QuestionId)
-        {
-            return new string[] { "value1", "value2" };
-        }
-
-        public void Post([FromBody]QuestionRequest question)
-        {
-        }
-
-        public void Put(int id, [FromBody]QuestionRequest question)
-        {
-        }
-
-        // DELETE api/values/5
-        public void Delete(int id)
-        {
-        }
     }
 }

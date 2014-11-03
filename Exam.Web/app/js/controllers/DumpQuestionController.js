@@ -1,7 +1,8 @@
 ﻿'use strict'
 
 examApp.controller('DumpQuestionController',
-    function DumpQuestionController($scope, examData, toaster) {
+    function DumpQuestionController($scope, examData, toaster, $upload) {
+        $scope.upload = [];
 
         $scope.questionLevels = [
                                     { QuestionLevelId: 1, QuestionLevelName : 'Junior' },
@@ -25,7 +26,7 @@ examApp.controller('DumpQuestionController',
 
         $scope.addChoice = function () {
             $scope.question.ChoiceQuantity = $scope.question.ChoiceQuantity + 1;
-            $scope.question.Answers.push({ name: '', email: '' });
+            $scope.question.Answers.push({ });
         };
 
         $scope.removeChoice = function () {
@@ -33,17 +34,53 @@ examApp.controller('DumpQuestionController',
             $scope.question.Answers.pop();
         };
 
-        var question = { Title: '' };
-        $scope.question = question;
+        $scope.question = {
+            CertificateId: $scope.certificate,
+            UserId: 'aramkoukia@gmail.com',
+            ChoiceQuantity: 4
+        };;
 
-        var answers = [];
-        $scope.question.ChoiceQuantity = 4;
-
+      var answers = [];
       for (var i = 0; i < $scope.question.ChoiceQuantity; i++) {
-          answers.push({ name: '', email: '' });
+          answers.push({ });
       }
 
       $scope.question.Answers = answers;
+
+      $scope.onFileSelect = function ($files, answer) {
+          var baseUrl = "http://localhost/ExamSvc/api/";
+          //$files: an array of files selected, each file has name, size, and type.
+          for (var i = 0; i < $files.length; i++) {
+              var $file = $files[i];
+              (function (index) {
+                  $scope.upload[index] = $upload.upload({
+                      url: baseUrl + "files/upload", // webapi url
+                      method: "POST",
+                      data: { fileUploadObj: $scope.fileUploadObj },
+                      file: $file
+                  }).progress(function (evt) {
+                      // get upload percentage
+
+                      console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
+                      if (answer == null)
+                          $scope.question.fileUploadProgress = parseInt(100.0 * evt.loaded / evt.total);
+                      else
+                          answer.fileUploadProgress = parseInt(100.0 * evt.loaded / evt.total);
+
+                  }).success(function (data, status, headers, config) {
+                      if (answer == null)
+                      // file is uploaded successfully
+                          $scope.question.File = data;
+                      else
+                          answer.File = data;
+
+                  }).error(function (data, status, headers, config) {
+                      // file failed to upload
+                      console.log(data);
+                  });
+              })(i);
+          }
+      }
 
     }
 );

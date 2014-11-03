@@ -12,5 +12,7 @@ namespace Exam.Business
         Task<IEnumerable<CertificateResponse>> GetCertificates();
 
         Task<IEnumerable<QuestionsResponse>> GetQuestions();
+
+        Task<bool> SaveQuestion(QuestionRequest quesion);
     }
 }

@@ -24,5 +24,10 @@ namespace Exam.Business
         {
             throw new NotImplementedException();
         }
+
+        public Task<bool> SaveQuestion(Contracts.QuestionRequest quesion)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

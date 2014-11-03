@@ -3,23 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Exam.Contracts.Requests;
 
 namespace Exam.Contracts
 {
     public class QuestionRequest
     {
-        public int QuestionId { get; set; }
-        public int CertificateId { get; set; }
-        public int SkillId { get; set; }
-        public int SkillDetailId { get; set; }
         public string Title { get; set; }
-        public bool IsMultiChoice { get; set; }
-        public int CorrectAnswerCount { get; set; }
-        public bool AllowShuffleChoices { get; set; }
+        public IEnumerable<AnswerRequest> Answers { get; set; }
         public string Explanation { get; set; }
-        public bool CheckNumberOfSelected { get; set; }
-        public int QuestionLevelId { get; set; }
+        public SkillRequest Skill { get; set; }
+        public SkillDetailRequest SkillDetail { get; set; }
+        public DifficultyLevelRequest DifficultyLevel { get; set; }
+        public FileRequest File { get; set; }
+        public string QuestionImage { get; set; }
         public string UserId { get; set; }
-
+        public int CertificateId { get; set; }
     }
 }

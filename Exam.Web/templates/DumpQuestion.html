@@ -3,7 +3,6 @@
         <label>Certificate:</label> {{certificate.CompanyName}} {{certificate.CertificateCode}} {{certificate.CertificateName}} <label>Technology:</label> {{certificate.Technology}}        
     </div>
 </div>
-
 <form role="form">
     <div class="col-md-12">
         <div class="form-group">
@@ -22,8 +21,17 @@
         </div>
         <div class="col-md-6">
             <div class="col-md-6">
-                <div class="form-group">
-                    <input ng-model="question.QuestionImage" type="file">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <input ng-model="question.QuestionImage" type="file" ng-file-select="onFileSelect($files)" accept="image/*">
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="progress">
+                      <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="{{question.fileUploadProgress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{question.fileUploadProgress}}%">
+                        <span class="sr-only">{{question.fileUploadProgress}}% Complete</span>
+                      </div>
+                    </div>
                 </div>
             </div>
             <div class="col-md-6">
@@ -38,7 +46,18 @@
             <label for="Choice4">Choice {{$index + 1}}</label>
             <textarea ng-model="answer.Description" class="form-control" rows="3" placeholder="Enter Choice {{$index + 1}}"></textarea>
             <div class="col-md-6 checkbox">
-                <input type="file" ng-model="answer.AnswerImage">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <input type="file" ng-model="answer.AnswerImage" ng-file-select="onFileSelect($files, answer)" accept="image/*">
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="progress">
+                      <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="{{answer.fileUploadProgress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{answer.fileUploadProgress}}%">
+                        <span class="sr-only">{{answer.fileUploadProgress}}% Complete</span>
+                      </div>
+                    </div>
+                </div>
             </div>
             <div class="col-md-6">
                 <div class="checkbox" ng-model="answer.IsCorrectAnswer"><label><input type="checkbox">Correct Answer</label></div>
