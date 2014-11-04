@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Exam.Repository
 {
-    public class MockExamRepository : IExamRepository
+    public class MockExamRepository : IRepository<ExamEntities>
     {
         public Task<IEnumerable<UserProfile>> GetAllUserProfiles()
         {
@@ -170,5 +170,39 @@ namespace Exam.Repository
         }
 
 
+        public Task<int> AddAsync(ExamEntities t)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<int> RemoveAsync(ExamEntities t)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<List<ExamEntities>> GetAllAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<int> UpdateAsync(ExamEntities t)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<int> CountAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<ExamEntities> FindAsync(System.Linq.Expressions.Expression<Func<ExamEntities, bool>> match)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<List<ExamEntities>> FindAllAsync(System.Linq.Expressions.Expression<Func<ExamEntities, bool>> match)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

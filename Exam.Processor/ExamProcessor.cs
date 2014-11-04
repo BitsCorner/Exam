@@ -9,26 +9,29 @@ namespace Exam.Business
 {
     public partial class ExamProcessor : IExamProcessor
     {
-        private IExamRepository examRepository;
+        private IRepository<Certificate> certificateRepository;
+        private IRepository<Question> questionRepository;
 
-        public ExamProcessor(IExamRepository examRepository)
+        public ExamProcessor(IRepository<Certificate> certificateRepository, IRepository<Question> questionRepository)
         {
-            this.examRepository = examRepository;
+            this.certificateRepository = certificateRepository;
+            this.questionRepository = questionRepository;
         }
         public async Task<IEnumerable<Contracts.CertificateResponse>> GetCertificates()
         {
-            return Map(await this.examRepository.GetAllCertificates());
+            return Map(await this.certificateRepository.GetAllAsync());
         }
 
-        public Task<IEnumerable<Contracts.QuestionsResponse>> GetQuestions()
+        public async Task<IEnumerable<Contracts.QuestionsResponse>> GetQuestions()
         {
-            throw new NotImplementedException();
+            var questions = await this.questionRepository.GetAllAsync();
+            return Map(questions);
         }
 
-        public async Task<bool> SaveQuestion(Contracts.QuestionRequest question)
+        public async Task<int> SaveQuestion(Contracts.QuestionRequest question)
         {
             var mappedQuestion = Map(question);
-            return await this.examRepository.SaveQuestion(mappedQuestion);
+            return await this.questionRepository.AddAsync(mappedQuestion);
         }
     }
 }

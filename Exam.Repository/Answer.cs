@@ -18,6 +18,8 @@ namespace Exam.Repository
         public Nullable<int> RowId { get; set; }
         public Nullable<long> QuestionId { get; set; }
         public string Description { get; set; }
+        public string FileName { get; set; }
+        public string OriginalFileName { get; set; }
         public Nullable<bool> IsCorrectAnswer { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public string CreatedBy { get; set; }

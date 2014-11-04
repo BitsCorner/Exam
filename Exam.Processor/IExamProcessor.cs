@@ -13,6 +13,6 @@ namespace Exam.Business
 
         Task<IEnumerable<QuestionsResponse>> GetQuestions();
 
-        Task<bool> SaveQuestion(QuestionRequest quesion);
+        Task<int> SaveQuestion(QuestionRequest quesion);
     }
 }

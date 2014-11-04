@@ -27,7 +27,6 @@ namespace Exam.Business
                          };
             return result.AsEnumerable();
         }
-
         internal IEnumerable<Contracts.SkillResponse> Map(ICollection<Skill> skills)
         {
             if (skills == null)
@@ -43,7 +42,6 @@ namespace Exam.Business
                          };
             return result.AsEnumerable();            
         }
-
         internal IEnumerable<Contracts.SkillDetailResponse> Map(ICollection<SkillDetail> skillDetails)
         {
             if (skillDetails == null)
@@ -58,7 +56,6 @@ namespace Exam.Business
                          };
             return result.AsEnumerable();   
         }
-
         internal Question Map(Contracts.QuestionRequest question)
         {
             if (question == null)
@@ -72,11 +69,13 @@ namespace Exam.Business
                              SkillDetailId = question.SkillDetail.SkillDetailId
                          };
         }
-
-        private ICollection<Answer> Map(IEnumerable<Contracts.AnswerRequest> enumerable)
+        internal ICollection<Answer> Map(IEnumerable<Contracts.AnswerRequest> enumerable)
         {
             throw new NotImplementedException();
         }
-
+        internal IEnumerable<Contracts.QuestionsResponse> Map(List<Question> questions)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

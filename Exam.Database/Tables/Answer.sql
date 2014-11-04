@@ -4,6 +4,8 @@
     [RowId] INT NULL, 
     [QuestionId] BIGINT NULL, 
     [Description] NVARCHAR(MAX) NULL, 
+    [FileName] NVARCHAR(MAX) NULL, 
+	[OriginalFileName] NVARCHAR(MAX) NULL, 
     [IsCorrectAnswer] BIT NULL,
     [CreatedDate] DATETIME NULL, 
     [CreatedBy] NVARCHAR(50) NULL, 

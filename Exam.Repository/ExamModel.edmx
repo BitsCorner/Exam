@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ExamModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="ExamModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Answer">
           <Key>
             <PropertyRef Name="AnswerId" />
@@ -13,6 +13,8 @@
           <Property Name="RowId" Type="int" />
           <Property Name="QuestionId" Type="bigint" />
           <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="FileName" Type="nvarchar(max)" />
+          <Property Name="OriginalFileName" Type="nvarchar(max)" />
           <Property Name="IsCorrectAnswer" Type="bit" />
           <Property Name="CreatedDate" Type="datetime" />
           <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
@@ -39,6 +41,8 @@
           <Property Name="SkillId" Type="int" Nullable="false" />
           <Property Name="SkillDetailId" Type="int" />
           <Property Name="Title" Type="nvarchar(max)" />
+          <Property Name="FileName" Type="nvarchar(max)" />
+          <Property Name="OriginalFileName" Type="nvarchar(max)" />
           <Property Name="IsMultiChoice" Type="bit" />
           <Property Name="CorrectAnswerCount" Type="int" />
           <Property Name="AllowShuffleChoices" Type="bit" />
@@ -236,6 +240,8 @@
           <Property Name="RowId" Type="Int32" />
           <Property Name="QuestionId" Type="Int64" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FileName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OriginalFileName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="IsCorrectAnswer" Type="Boolean" />
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -265,6 +271,8 @@
           <Property Name="SkillId" Type="Int32" Nullable="false" />
           <Property Name="SkillDetailId" Type="Int32" />
           <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FileName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OriginalFileName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="IsMultiChoice" Type="Boolean" />
           <Property Name="CorrectAnswerCount" Type="Int32" />
           <Property Name="AllowShuffleChoices" Type="Boolean" />
@@ -475,6 +483,8 @@
                 <ScalarProperty Name="RowId" ColumnName="RowId" />
                 <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="OriginalFileName" ColumnName="OriginalFileName" />
                 <ScalarProperty Name="IsCorrectAnswer" ColumnName="IsCorrectAnswer" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
@@ -503,6 +513,8 @@
                 <ScalarProperty Name="SkillId" ColumnName="SkillId" />
                 <ScalarProperty Name="SkillDetailId" ColumnName="SkillDetailId" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="OriginalFileName" ColumnName="OriginalFileName" />
                 <ScalarProperty Name="IsMultiChoice" ColumnName="IsMultiChoice" />
                 <ScalarProperty Name="CorrectAnswerCount" ColumnName="CorrectAnswerCount" />
                 <ScalarProperty Name="AllowShuffleChoices" ColumnName="AllowShuffleChoices" />

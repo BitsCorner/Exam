@@ -24,6 +24,8 @@ namespace Exam.Repository
         public int SkillId { get; set; }
         public Nullable<int> SkillDetailId { get; set; }
         public string Title { get; set; }
+        public string FileName { get; set; }
+        public string OriginalFileName { get; set; }
         public Nullable<bool> IsMultiChoice { get; set; }
         public Nullable<int> CorrectAnswerCount { get; set; }
         public Nullable<bool> AllowShuffleChoices { get; set; }

@@ -35,7 +35,7 @@ namespace Exam.Service.Controllers
                 return InternalServerError();
 
             var response = await examProcessor.SaveQuestion(question);
-            if (response == false)
+            if (response != 0)
             {
                 return InternalServerError();
             }

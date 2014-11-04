@@ -5,6 +5,8 @@
 	[SkillId] INT NOT NULL, 
 	[SkillDetailId] INT NULL, 
     [Title] NVARCHAR(MAX) NULL, 
+    [FileName] NVARCHAR(MAX) NULL, 
+	[OriginalFileName] NVARCHAR(MAX) NULL, 
     [IsMultiChoice] BIT NULL, 
     [CorrectAnswerCount] INT NULL, 
     [AllowShuffleChoices] BIT NULL, 
