@@ -135,8 +135,12 @@
     <Content Include="app\css\bootstrap-theme.min.css" />
     <Content Include="app\css\bootstrap.css" />
     <Content Include="app\css\bootstrap.min.css" />
+    <Content Include="app\css\font-awesome.css" />
+    <Content Include="app\css\font-awesome.min.css" />
+    <Content Include="app\css\summernote.css" />
     <Content Include="app\css\toaster.css" />
     <Content Include="app\favicon.ico" />
+    <Content Include="app\fonts\fontawesome-webfont.svg" />
     <Content Include="app\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="app\img\facebook-logo.png" />
     <Content Include="app\img\glyphicons-halflings-white.png" />
@@ -148,6 +152,7 @@
     <Content Include="app\js\controllers\CertificateController.js" />
     <Content Include="app\js\controllers\CertPrepController.js" />
     <Content Include="app\js\controllers\DumpQuestionController.js" />
+    <Content Include="app\js\controllers\SignInController.js" />
     <Content Include="app\js\controllers\EventListController.js" />
     <Content Include="app\js\directives.js" />
     <Content Include="app\js\filters.js" />
@@ -156,7 +161,7 @@
     <Content Include="app\js\services\examData.js" />
     <Content Include="app\js\services\eventData.js" />
     <Content Include="app\js\services\eventResource.js" />
-    <Content Include="app\lib\angular-summernote.js" />
+    <Content Include="app\lib\angular-summernote.min.js" />
     <Content Include="app\lib\angular\angular-file-upload-html5-shim.js" />
     <Content Include="app\lib\angular\angular-file-upload-html5-shim.min.js" />
     <Content Include="app\lib\angular\angular-file-upload-shim.js" />
@@ -169,8 +174,7 @@
     <Content Include="app\lib\bootstrap.js" />
     <Content Include="app\lib\bootstrap.min.js" />
     <Content Include="app\lib\jquery.min.js" />
-    <Content Include="app\lib\require.js" />
-    <Content Include="app\lib\summernote.js" />
+    <Content Include="app\lib\summernote.min.js" />
     <Content Include="app\lib\toaster.js" />
     <Content Include="app\lib\ui-bootstrap-0.11.2.js" />
     <Content Include="app\lib\underscore-1.4.4.min.js" />
@@ -199,6 +203,10 @@
     <Content Include="templates\DumpQuestion.html" />
     <Content Include="web.config" />
     <Content Include="packages.config" />
+    <Content Include="app\fonts\fontawesome-webfont.ttf" />
+    <Content Include="app\fonts\fontawesome-webfont.woff" />
+    <Content Include="app\fonts\fontawesome-webfont.eot" />
+    <Content Include="app\fonts\FontAwesome.otf" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>

@@ -4,6 +4,17 @@ examApp.controller('DumpQuestionController',
     function DumpQuestionController($scope, examData, toaster, $upload, $routeParams, $filter) {
         $scope.upload = [];
 
+        $scope.options = {
+            height: 150,
+            toolbar: [
+              ['style', ['bold', 'italic', 'underline', 'clear']],
+              ['fontsize', ['fontsize']],
+              ['color', ['color']],
+              ['para', ['ul', 'ol', 'paragraph']],
+              ['height', ['height']]
+            ]
+        };
+
         $scope.questionLevels = [
                                     { QuestionLevelId: 1, QuestionLevelName : 'Junior' },
                                     { QuestionLevelId: 2, QuestionLevelName: 'Intermediate' },
@@ -43,9 +54,13 @@ examApp.controller('DumpQuestionController',
             $scope.question.Answers.pop();
         };
 
+        var email;
+        if ($scope.userInfo != null)
+            email = $scope.userInfo.emails[0].value;
+            
         $scope.question = {
             CertificateId: $routeParams.certificateId,
-            UserId: 'aramkoukia@gmail.com',
+            UserId: email,
             ChoiceQuantity: 4,
         };
         var answers = [];
