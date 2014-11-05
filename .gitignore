@@ -12,3 +12,4 @@ packages
 *.ssdl
 *.csdl
 *.msl
+Exam.Service/Configs/connectionStrings.config

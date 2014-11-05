@@ -77,10 +77,10 @@
                         <li><a href="http://www.koukia.ca">Bits Corner Blog</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li>
+                        <li ng-hide="!isSignedIn()">
                             <a href="#"><small>{{userInfo.displayName}}</small></a>
                         </li>
-                        <li>
+                        <li ng-hide="!isSignedIn()">
                             <img src="{{userInfo.image.url}}" style="width:40px;height:40px;border-radius:20px; margin-top:5px" />
                         </li>
                         <li style="padding-top:10px;">

@@ -1,6 +1,7 @@
 'use strict';
 
-function SignInController($scope) {
+function SignInController($scope, $rootScope) {
+
     // This flag we use to show or hide the button in our HTML.
     $scope.signedIn = false;
 
@@ -38,8 +39,18 @@ function SignInController($scope) {
                 // as their explanation is available in Google+ API Documentation.
                 'scope': 'https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/userinfo.email',
                 'cookiepolicy': 'single_host_origin'
-            }
-        );
+            });
+
+        gapi.signin.render('pageSignInButton',
+        {
+            'callback': $scope.signInCallback, // Function handling the callback.
+            'clientid': '987664110534-f6vlfupponhqfnkfo8eocmfjlla7fjpo.apps.googleusercontent.com', // CLIENT_ID from developer console which has been explained earlier.
+            'requestvisibleactions': 'http://schemas.google.com/AddActivity', // Visible actions, scope and cookie policy wont be described now,
+            // as their explanation is available in Google+ API Documentation.
+            'scope': 'https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/userinfo.email',
+            'cookiepolicy': 'single_host_origin'
+        });
+
     }
 
     // Process user info.
@@ -52,6 +63,7 @@ function SignInController($scope) {
 
         // Or use his email address to send e-mails to his primary e-mail address.
         $scope.userInfo = userInfo;
+        $rootScope.user = userInfo;
         //sendEMail(userInfo['emails'][0]['value']);
     }
 
