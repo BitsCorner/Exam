@@ -8,6 +8,6 @@ namespace Exam.Contracts
 {
     public class FileRequest
     {
-        public string returnedData { get; set; }
+        public string returnData { get; set; }
     }
 }

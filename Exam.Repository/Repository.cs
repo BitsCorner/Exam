@@ -19,8 +19,16 @@ namespace Exam.Repository
 
         public async Task<int> AddAsync(T t)
         {
-            _dbContext.Set<T>().Add(t);
-            return await _dbContext.SaveChangesAsync();
+            try
+            {
+                _dbContext.Set<T>().Add(t);
+                return await _dbContext.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                return 0; 
+                throw;
+            }
         }
 
         public async Task<int> RemoveAsync(T t)

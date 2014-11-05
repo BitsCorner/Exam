@@ -1,7 +1,7 @@
 ﻿'use strict'
 
 examApp.controller('DumpQuestionController',
-    function DumpQuestionController($scope, examData, toaster, $upload) {
+    function DumpQuestionController($scope, examData, toaster, $upload, $routeParams) {
         $scope.upload = [];
 
         $scope.questionLevels = [
@@ -10,7 +10,7 @@ examApp.controller('DumpQuestionController',
                                     { QuestionLevelId: 3, QuestionLevelName: 'Senior' }
         ];
 
-        $scope.certificate = examData.getCertificate(1);
+        $scope.certificate = examData.getCertificate($routeParams.certificateId);
 
         $scope.$watch('skill', function (newVal) {
             if (newVal) $scope.skillDetails = newVal.SkillDetails;
@@ -35,14 +35,14 @@ examApp.controller('DumpQuestionController',
         };
 
         $scope.question = {
-            CertificateId: $scope.certificate,
+            CertificateId: $routeParams.certificateId,
             UserId: 'aramkoukia@gmail.com',
             ChoiceQuantity: 4
         };;
 
       var answers = [];
       for (var i = 0; i < $scope.question.ChoiceQuantity; i++) {
-          answers.push({ });
+          answers.push({ IsCorrectAnswer: false });
       }
 
       $scope.question.Answers = answers;

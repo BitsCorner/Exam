@@ -58,20 +58,51 @@ namespace Exam.Business
         }
         internal Question Map(Contracts.QuestionRequest question)
         {
-            if (question == null)
+            try
+            {
+                if (question == null)
+                    return null;
+
+                var answers = Map(question.Answers);
+                return new Question
+                {
+                    CertificateId = question.CertificateId,
+                    Answers = answers,
+                    QuestionLevelId = question.DifficultyLevel.QuestionLevelId,
+                    SkillId = question.Skill.SkillId,
+                    SkillDetailId = question.SkillDetail != null ? (int?)question.SkillDetail.SkillDetailId : null,
+                    Explanation = question.Explanation,
+                    OriginalFileName = (question.File == null ? "" : question.QuestionImage),
+                    FileName = (question.File == null ? "" : question.File.returnData),
+                    CreatedBy = question.UserId,
+                    ModifiedBy = question.UserId,
+                    UserId = question.UserId,
+                    CreatedDate = DateTime.UtcNow,
+                    ModifiedDate = DateTime.UtcNow,
+                    IsMultiChoice = answers.Where(m=>m.IsCorrectAnswer == true).Count() > 1 ? true : false,
+                    CorrectAnswerCount = answers.Where(m=>m.IsCorrectAnswer == true).Count(),
+                    Title = question.Title
+                };
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+        internal IList<Answer> Map(IEnumerable<Contracts.AnswerRequest> answers)
+        {
+            if (answers == null)
                 return null;
 
-            return new Question {
-                             CertificateId = question.CertificateId,
-                             Answers = Map(question.Answers),
-                             QuestionLevelId = question.DifficultyLevel.QuestionLevelId,
-                             SkillId = question.Skill.SkillId,
-                             SkillDetailId = question.SkillDetail.SkillDetailId
+            var result = from answer in answers
+                         select new Answer
+                         {
+                              Description = answer.Description,
+                              OriginalFileName = (answer.File == null ? "" : answer.AnswerImage),
+                              FileName = (answer.File == null ? "" : answer.File.returnData),
+                              IsCorrectAnswer = answer.IsCorrectAnswer
                          };
-        }
-        internal ICollection<Answer> Map(IEnumerable<Contracts.AnswerRequest> enumerable)
-        {
-            throw new NotImplementedException();
+            return result.ToList();
         }
         internal IEnumerable<Contracts.QuestionsResponse> Map(List<Question> questions)
         {

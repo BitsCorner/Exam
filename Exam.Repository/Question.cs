@@ -38,11 +38,11 @@ namespace Exam.Repository
         public Nullable<System.DateTime> ModifiedDate { get; set; }
         public string ModifiedBy { get; set; }
     
-        public virtual ICollection<Answer> Answers { get; set; }
         public virtual Certificate Certificate { get; set; }
         public virtual QuestionLevel QuestionLevel { get; set; }
         public virtual Skill Skill { get; set; }
         public virtual SkillDetail SkillDetail { get; set; }
         public virtual UserProfile UserProfile { get; set; }
+        public virtual ICollection<Answer> Answers { get; set; }
     }
 }

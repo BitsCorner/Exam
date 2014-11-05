@@ -15,16 +15,11 @@ namespace Exam.Repository
     public partial class Answer
     {
         public int AnswerId { get; set; }
-        public Nullable<int> RowId { get; set; }
         public Nullable<long> QuestionId { get; set; }
         public string Description { get; set; }
         public string FileName { get; set; }
         public string OriginalFileName { get; set; }
         public Nullable<bool> IsCorrectAnswer { get; set; }
-        public Nullable<System.DateTime> CreatedDate { get; set; }
-        public string CreatedBy { get; set; }
-        public Nullable<System.DateTime> ModifiedDate { get; set; }
-        public string ModifiedBy { get; set; }
     
         public virtual Question Question { get; set; }
     }
