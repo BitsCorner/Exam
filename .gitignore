@@ -6,3 +6,9 @@ _ReSharper.*
 bin
 obj
 packages
+*.xml
+*.txt
+*.cache
+*.ssdl
+*.csdl
+*.msl
