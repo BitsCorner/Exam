@@ -62,10 +62,14 @@ examApp.controller('DumpQuestionController',
             CertificateId: $routeParams.certificateId,
             UserId: email,
             ChoiceQuantity: 4,
+            Title: '',
+            Explanation: ''
         };
+
+
         var answers = [];
         for (var i = 0; i < $scope.question.ChoiceQuantity; i++) {
-            answers.push({ IsCorrectAnswer: false });
+            answers.push({ IsCorrectAnswer: false, Description: '' });
         }
         $scope.question.Answers = answers;
 

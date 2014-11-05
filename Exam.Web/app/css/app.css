@@ -16,3 +16,8 @@ html {
     cursor:pointer;
     font-size: 13px;
 }
+
+
+.layoutContainer {
+    margin-bottom:80px;
+}

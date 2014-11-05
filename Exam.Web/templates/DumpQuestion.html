@@ -8,7 +8,7 @@
     <div class="col-md-12">
         <div class="form-group" ng-class="{ 'has-error' : questionForm.Title.$invalid && !questionForm.Title.$pristine }">
             <label for="Title">Question</label>
-            <summernote class="form-control" ng-model="question.Title" height="200" name="Title" placeholder="Enter question" required></summernote>
+            <summernote class="form-control" ng-model="question.Title" code="question.Title" height="200" name="Title" required></summernote>
         </div>
     </div>
     <div class="col-md-12">
@@ -46,7 +46,7 @@
         <div class="form-group">
             <label for="Choice4">Choice {{$index + 1}}</label>
             <!--<textarea ng-model="answer.Description" class="form-control" rows="3" placeholder="Enter Choice {{$index + 1}}" required></textarea>-->
-            <summernote config="options" ng-model="answer.Description" class="form-control" required></summernote>
+            <summernote config="options" ng-model="answer.Description" code="answer.Description" class="form-control" required></summernote>
 
             <div class="col-md-6 checkbox">
                 <div class="col-md-12">
@@ -71,7 +71,7 @@
     <div class="col-md-12">
         <div class="form-group">
             <label for="Explanation">Explanation</label>
-            <textarea ng-model="question.Explanation" class="form-control" rows="3" placeholder="Enter explanation and references"></textarea>
+            <summernote class="form-control" ng-model="question.Explanation" code="question.Explanation" height="100" name="Explanation" placeholder="Enter explanation and references"></summernote>
         </div>
     </div>
     <div class="col-md-6">
