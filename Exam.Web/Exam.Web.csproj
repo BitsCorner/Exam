@@ -156,6 +156,7 @@
     <Content Include="app\js\services\examData.js" />
     <Content Include="app\js\services\eventData.js" />
     <Content Include="app\js\services\eventResource.js" />
+    <Content Include="app\lib\angular-summernote.js" />
     <Content Include="app\lib\angular\angular-file-upload-html5-shim.js" />
     <Content Include="app\lib\angular\angular-file-upload-html5-shim.min.js" />
     <Content Include="app\lib\angular\angular-file-upload-shim.js" />
@@ -168,6 +169,8 @@
     <Content Include="app\lib\bootstrap.js" />
     <Content Include="app\lib\bootstrap.min.js" />
     <Content Include="app\lib\jquery.min.js" />
+    <Content Include="app\lib\require.js" />
+    <Content Include="app\lib\summernote.js" />
     <Content Include="app\lib\toaster.js" />
     <Content Include="app\lib\ui-bootstrap-0.11.2.js" />
     <Content Include="app\lib\underscore-1.4.4.min.js" />

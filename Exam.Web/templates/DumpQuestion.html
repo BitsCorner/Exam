@@ -3,11 +3,16 @@
         <label>Certificate:</label> {{certificate.CompanyName}} {{certificate.CertificateCode}} {{certificate.CertificateName}} <label>Technology:</label> {{certificate.Technology}}        
     </div>
 </div>
-<form role="form">
+
+
+<form role="form" name="questionForm">
+
+    <summernote height="300"></summernote>
+
     <div class="col-md-12">
-        <div class="form-group">
-            <label for="Question">Question</label>
-            <textarea ng-model="question.Title" class="form-control" rows="3" placeholder="Enter question"></textarea>
+        <div class="form-group" ng-class="{ 'has-error' : questionForm.Title.$invalid && !questionForm.Title.$pristine }">
+            <label for="Title">Question</label>
+            <textarea ng-model="question.Title" class="form-control" rows="3" name="Title" placeholder="Enter question" required></textarea>
         </div>
     </div>
     <div class="col-md-12">
@@ -28,9 +33,9 @@
                 </div>
                 <div class="col-md-12">
                     <div class="progress">
-                      <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="{{question.fileUploadProgress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{question.fileUploadProgress}}%">
-                        <span class="sr-only">{{question.fileUploadProgress}}% Complete</span>
-                      </div>
+                        <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="{{question.fileUploadProgress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{question.fileUploadProgress}}%">
+                            <span class="sr-only">{{question.fileUploadProgress}}% Complete</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -44,7 +49,7 @@
     <div class="col-md-6" ng-repeat="answer in question.Answers">
         <div class="form-group">
             <label for="Choice4">Choice {{$index + 1}}</label>
-            <textarea ng-model="answer.Description" class="form-control" rows="3" placeholder="Enter Choice {{$index + 1}}"></textarea>
+            <textarea ng-model="answer.Description" class="form-control" rows="3" placeholder="Enter Choice {{$index + 1}}" required></textarea>
             <div class="col-md-6 checkbox">
                 <div class="col-md-12">
                     <div class="form-group">
@@ -53,9 +58,9 @@
                 </div>
                 <div class="col-md-12">
                     <div class="progress">
-                      <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="{{answer.fileUploadProgress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{answer.fileUploadProgress}}%">
-                        <span class="sr-only">{{answer.fileUploadProgress}}% Complete</span>
-                      </div>
+                        <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="{{answer.fileUploadProgress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{answer.fileUploadProgress}}%">
+                            <span class="sr-only">{{answer.fileUploadProgress}}% Complete</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -74,7 +79,7 @@
     <div class="col-md-6">
         <div class="form-group">
             <label for="Question">Skill</label>
-            <select ng-model="question.Skill" class="form-control" ng-model="skill" ng-options="skill.SkillName for skill in certificate.Skills">
+            <select id="skill" ng-model="question.Skill" class="form-control" ng-model="skill" ng-options="skill.SkillName for skill in certificate.Skills" required>
                 <option value=''>Select</option>
             </select>
         </div>
@@ -82,14 +87,14 @@
     <div class="col-md-6">
         <div class="form-group">
             <label for="Question">Skill Detail</label>
-            <select ng-model="question.SkillDetail" class="form-control" ng-disabled="!skillDetails" ng-model="skillDetail" ng-options="skillDetail.SkillDetailDescription for skillDetail in skillDetails">
+            <select id="skillDetail" ng-model="question.SkillDetail" class="form-control" ng-disabled="!skillDetails" ng-model="skillDetail" ng-options="skillDetail.SkillDetailDescription for skillDetail in skillDetails">
                 <option value=''>Select</option>
             </select>
         </div>
     </div>
     <div class="col-md-12">
-        <button type="submit" class="btn btn-primary" ng-click="saveQuestion()">Submit and Add nother</button>
-        <button type="submit" class="btn btn-primary" ng-click="saveQuestion()">Submit and preview</button>
+        <button type="submit" ng-disabled="!form.$invalid && noCorrectAnswers(question)" class=" btn btn-primary" ng-click="saveQuestion()">Submit and Add nother</button>
+        <button type="submit" ng-disabled="!form.$invalid && noCorrectAnswers(question)" class="btn btn-primary" ng-click="saveQuestion()">Submit and preview</button>
         <button type="submit" class="btn btn-default">Cancel</button>
     </div>
 </form>

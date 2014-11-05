@@ -1,7 +1,7 @@
 ﻿'use strict'
 
 examApp.controller('DumpQuestionController',
-    function DumpQuestionController($scope, examData, toaster, $upload, $routeParams) {
+    function DumpQuestionController($scope, examData, toaster, $upload, $routeParams, $filter) {
         $scope.upload = [];
 
         $scope.questionLevels = [
@@ -12,7 +12,16 @@ examApp.controller('DumpQuestionController',
 
         $scope.certificate = examData.getCertificate($routeParams.certificateId);
 
-        $scope.$watch('skill', function (newVal) {
+        $scope.noCorrectAnswers = function (question) {
+            var correctAnswers = $filter("filter")(question.Answers, { IsCorrectAnswer: true}).length;
+            if (correctAnswers > 0)
+                return false;
+            else
+                return true;
+        };
+
+
+        $scope.$watch('question.Skill', function (newVal) {
             if (newVal) $scope.skillDetails = newVal.SkillDetails;
         });
 
@@ -37,16 +46,15 @@ examApp.controller('DumpQuestionController',
         $scope.question = {
             CertificateId: $routeParams.certificateId,
             UserId: 'aramkoukia@gmail.com',
-            ChoiceQuantity: 4
-        };;
+            ChoiceQuantity: 4,
+        };
+        var answers = [];
+        for (var i = 0; i < $scope.question.ChoiceQuantity; i++) {
+            answers.push({ IsCorrectAnswer: false });
+        }
+        $scope.question.Answers = answers;
 
-      var answers = [];
-      for (var i = 0; i < $scope.question.ChoiceQuantity; i++) {
-          answers.push({ IsCorrectAnswer: false });
-      }
-
-      $scope.question.Answers = answers;
-
+          
       $scope.onFileSelect = function ($files, answer) {
           var baseUrl = "http://localhost/ExamSvc/api/";
           //$files: an array of files selected, each file has name, size, and type.
