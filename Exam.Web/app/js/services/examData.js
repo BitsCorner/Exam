@@ -16,6 +16,13 @@ examApp.factory('examData', function ($resource) {
         },
         saveQuestion: function (question) {
             return $resource(baseUrl + "Question", null).save(question);
+        },
+
+        getQuestions: function (id, skip, take) {
+            return $resource(baseUrl + "Question/:id", { id: '@id' }).query(id);
         }
+
+
+
     };
 });
