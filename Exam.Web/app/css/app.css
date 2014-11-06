@@ -21,3 +21,7 @@ html {
 .layoutContainer {
     margin-bottom:80px;
 }
+
+.answerChoice:hover {
+    background-color:#f5f5f5;
+}

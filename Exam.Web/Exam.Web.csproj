@@ -199,6 +199,7 @@
     <Content Include="app\lib\ui-bootstrap.js" />
     <Content Include="app\lib\ui-bootstrap.min.js" />
     <Content Include="Index.html" />
+    <Content Include="templates\Login.html" />
     <Content Include="templates\CertPrep.html" />
     <Content Include="templates\DumpQuestion.html" />
     <Content Include="web.config" />
