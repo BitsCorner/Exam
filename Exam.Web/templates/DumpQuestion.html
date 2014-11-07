@@ -1,10 +1,10 @@
-﻿<div class="panel panel-info">
+﻿<div class="panel panel-info ng-cloak">
     <div class="panel-heading">
-        <label>Certificate:</label> {{certificate.CompanyName}} {{certificate.CertificateCode}} {{certificate.CertificateName}} <label>Technology:</label> {{certificate.Technology}}        
+        <label>Certificate:</label> {{certificate.CompanyName}} {{certificate.CertificateCode}} {{certificate.CertificateName}} <label>Technology:</label> {{certificate.Technology}}
     </div>
 </div>
 
-<form role="form" name="questionForm">
+<form role="form" name="questionForm" class="ng-cloak">
     <div class="col-md-12">
         <div class="form-group" ng-class="{ 'has-error' : questionForm.Title.$invalid && !questionForm.Title.$pristine }">
             <label for="Title">Question</label>

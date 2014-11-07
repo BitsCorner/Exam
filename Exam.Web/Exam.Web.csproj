@@ -150,6 +150,7 @@
     <Content Include="app\img\twitter-logo.png" />
     <Content Include="app\js\app.js" />
     <Content Include="app\js\controllers\CertificateController.js" />
+    <Content Include="app\js\controllers\CertPrepStartController.js" />
     <Content Include="app\js\controllers\CertPrepController.js" />
     <Content Include="app\js\controllers\DumpQuestionController.js" />
     <Content Include="app\js\controllers\SignInController.js" />

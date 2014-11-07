@@ -29,6 +29,12 @@ BEGIN
 	SELECT 3 , 'Microsoft', '70-487', 'Developing Microsoft Azure and Web Services', 'Microsoft Visual Studio 2013, Microsoft Azure', 'October 17, 2012'
 END
 
+IF NOT EXISTS (SELECT * FROM [Certificate] WHERE CertificateId = 4)
+BEGIN
+	INSERT INTO [Certificate]
+	SELECT 4 , 'Microsoft', '70-461', 'Querying Microsoft SQL Server 2012', 'Microsoft SQL Server 2012', 'June 11, 2012'
+END
+
 /* Add some seed Skill rows */
 IF NOT EXISTS (SELECT * FROM [Skill] WHERE SkillId = 1)
 BEGIN
@@ -53,6 +59,32 @@ BEGIN
 	INSERT INTO [Skill]
 	SELECT 4 , 'Use CSS3 in applications', 1, 4
 END
+
+
+IF NOT EXISTS (SELECT * FROM [Skill] WHERE SkillId = 5)
+BEGIN
+	INSERT INTO [Skill]
+	SELECT 5 , 'Create  database objects', 4, 1
+END
+
+IF NOT EXISTS (SELECT * FROM [Skill] WHERE SkillId = 6)
+BEGIN
+	INSERT INTO [Skill]
+	SELECT 6 , 'Working with data', 4, 2
+END
+
+IF NOT EXISTS (SELECT * FROM [Skill] WHERE SkillId = 7)
+BEGIN
+	INSERT INTO [Skill]
+	SELECT 7 , 'Modify data', 4, 3
+END
+
+IF NOT EXISTS (SELECT * FROM [Skill] WHERE SkillId = 8)
+BEGIN
+	INSERT INTO [Skill]
+	SELECT 8 , 'Troubleshoot and Optimize', 4, 4
+END
+
 
 /* Add some seed SkillDetails rows */
 IF NOT EXISTS (SELECT * FROM [SkillDetail] WHERE SkillDetailId = 1)
