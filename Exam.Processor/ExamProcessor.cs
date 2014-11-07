@@ -22,16 +22,23 @@ namespace Exam.Business
             return Map(await this.certificateRepository.GetAllAsync());
         }
 
-        public async Task<IEnumerable<Contracts.QuestionsResponse>> GetQuestions()
-        {
-            var questions = await this.questionRepository.GetAllAsync();
-            return Map(questions);
-        }
-
         public async Task<int> SaveQuestion(Contracts.QuestionRequest question)
         {
             var mappedQuestion = Map(question);
             return await this.questionRepository.AddAsync(mappedQuestion);
         }
+
+        public async Task<IEnumerable<Contracts.QuestionIdsResponse>> GetQuestionIds(int certificateId)
+        {
+            var questions = await this.questionRepository.FindAllAsync(m=>m.CertificateId== certificateId);
+            return Map(questions);
+        }
+
+        public async Task<Contracts.QuestionsResponse> GetQuestion(long questionId)
+        { 
+            var question = await this.questionRepository.FindAsync(m=>m.QuestionId== questionId);
+            return Map(question);
+        }
+
     }
 }

@@ -36,6 +36,16 @@ namespace Exam.Service.Controllers
             return Ok(response.FirstOrDefault(m=>m.CertificateId == id));
         }
 
+        [Route("api/Certificate/{certificateId}/Questions")]
+        public async Task<IHttpActionResult> GetCertificateQuestionIds(int certificateId)
+        {
+            var response = await examProcessor.GetQuestionIds(certificateId);
+            if (response == null)
+            {
+                return NotFound();
+            }
+            return Ok(response);
+        }
 
         public async Task<IHttpActionResult> GetCertificateSkills(int CertificateId)
         {

@@ -14,10 +14,8 @@
     <div class="panel-body">
         <div class="row">
             <div class="col-md-12">
-                <h3>Q 1</h3>
-                Check me outas dfasd fsadf sadf asdf asdfa dfasdf asdf sdf sadf asdf adf asdf sdf adfadfsd fsad fsdf sdfas dfasd fsadf sadf asdf asdfa dfasdf asdf sdf sadf asdf adf asdf sdf adfadfsd fsad fsdf sdf
-                Check me outas dfasd fsadf sadf asdf asdfa dfasdf asdf sdf sadf asdf adf asdf sdf adfadfsd fsad fsdf sdfas dfasd fsadf sadf asdf asdfa dfasdf asdf sdf sadf asdf adf asdf sdf adfadfsd fsad fsdf sdf
-                Check me outas dfasd fsadf sadf asdf asdfa dfasdf asdf sdf sadf asdf adf asdf sdf adfadfsd fsad fsdf sdfas dfasd fsadf sadf asdf asdfa dfasdf asdf sdf sadf asdf adf asdf sdf adfadfsd fsad fsdf sdf
+                <h3>Q {{question.QuestionId}}</h3>
+                <div ng-bind-html="question.Title"></div>
             </div>
 
             <div class="col-md-12">
@@ -25,58 +23,39 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-6">
-                <div class="checkbox answerChoice">
-                    <label>
-                        <input type="checkbox"> Check me outas dfasd fsadf sadf asdf asdfa dfasdf asdf sdf sadf asdf adf asdf sdf adfadfsd fsad fsdf sdfas dfasd fsadf sadf asdf asdfa dfasdf asdf sdf sadf asdf adf asdf sdf adfadfsd fsad fsdf sdf
-                    </label>
+            <div class="col-md-6" ng-repeat="answer in question.Answers">
+                    <div class="checkbox answerChoice">
+                        <label>
+                            <input type="checkbox"><div ng-bind-html="answer.Description"></div>
+                        </label>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-6">
-                <div class="checkbox answerChoice">
-                    <label>
-                        <input type="checkbox"> Check me outas dfasd fsadf sadf asdf asdfa dfasdf asdf sdf sadf asdf adf asdf sdf adfadfsd fsad fsdf sdfas dfasd fsadf sadf asdf asdfa dfasdf asdf sdf sadf asdf adf asdf sdf adfadfsd fsad fsdf sdf
-                    </label>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="checkbox answerChoice">
-                    <label>
-                        <input type="checkbox"> Check me outas dfasd fsadf sadf asdf asdfa dfasdf asdf sdf sadf asdf adf asdf sdf adfadfsd fsad fsdf sdfas dfasd fsadf sadf asdf asdfa dfasdf asdf sdf sadf asdf adf asdf sdf adfadfsd fsad fsdf sdf
-                    </label>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="checkbox answerChoice">
-                    <label>
-                        <input type="checkbox"> Check me outas dfasd fsadf sadf asdf asdfa dfasdf asdf sdf sadf asdf adf asdf sdf adfadfsd fsad fsdf sdfas dfasd fsadf sadf asdf asdfa dfasdf asdf sdf sadf asdf adf asdf sdf adfadfsd fsad fsdf sdf
-                    </label>
-                </div>
-            </div>
-        </div>
-   </div>
-</div>
-<div class="row">
-    <div class="col-md-12">
-        <button type="submit" class=" btn btn-primary" ng-click="prevQuestion()">
-            <span class="glyphicon glyphicon-chevron-left"></span> Previous
-        </button>
-        <button type="submit" class=" btn btn-primary" ng-click="nextQuestion()">
-            Next <span class="glyphicon glyphicon-chevron-right"></span>
-        </button>
-        <button type="submit" class="btn btn-info">
-            <span class="glyphicon glyphicon-ok"></span>&nbsp;check answer
-        </button>
-        <button type="submit" class="btn btn-info">
-            <span class="glyphicon glyphicon-comment"></span>&nbsp;Show comments
-        </button>
+           </div>
     </div>
 </div>
 <div class="row">
     <div class="col-md-12">
-        <h2>
-            <span class="label label-success">You got it right!</span>
-            <span class="label label-danger">You got it wrong!</span>
-        </h2>
+        <div class="col-md-6">
+            <a ng-disabled="prevQuestionId==0" href="#/CertPrep/{{certificate.CertificateId}}/Question/{{prevQuestionId}}" type="button" class=" btn btn-primary">
+                <span class="glyphicon glyphicon-chevron-left"></span> Previous
+            </a>
+            <a ng-disabled="nextQuestionId==0" href="#/CertPrep/{{certificate.CertificateId}}/Question/{{nextQuestionId}}" type="button" class=" btn btn-primary">
+                Next <span class="glyphicon glyphicon-chevron-right"></span>
+            </a>
+            <button type="button" class="btn btn-info">
+                <span class="glyphicon glyphicon-comment"></span>&nbsp;Show comments
+            </button>
+            <button type="button" class="btn btn-info" ng-click="checkAnswer(question)">
+                <span class="glyphicon glyphicon-ok"></span>&nbsp;check answer
+            </button>
+        </div>
+        <div class="col-md-6" ng-hide="!showAnswer">
+            <button ng-hide="!gotItRight" type="button" class="btn btn-success">
+                <span class="glyphicon glyphicon-ok"></span>&nbsp;You got it right!
+            </button>
+            <button ng-hide="gotItRight" type="button" class="btn btn-danger">
+                <span class="glyphicon glyphicon-remove"></span>&nbsp;You got it wrong!
+            </button>
+        </div>
     </div>
 </div>

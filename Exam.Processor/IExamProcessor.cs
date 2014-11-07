@@ -11,7 +11,9 @@ namespace Exam.Business
     {
         Task<IEnumerable<CertificateResponse>> GetCertificates();
 
-        Task<IEnumerable<QuestionsResponse>> GetQuestions();
+        Task<IEnumerable<QuestionIdsResponse>> GetQuestionIds(int certificateId);
+
+        Task<QuestionsResponse> GetQuestion(long questionId);
 
         Task<int> SaveQuestion(QuestionRequest quesion);
     }

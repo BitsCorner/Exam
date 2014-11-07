@@ -104,9 +104,50 @@ namespace Exam.Business
                          };
             return result.ToList();
         }
-        internal IEnumerable<Contracts.QuestionsResponse> Map(List<Question> questions)
+        internal IEnumerable<Contracts.QuestionIdsResponse> Map(List<Question> questions)
         {
-            throw new NotImplementedException();
+            if (questions == null)
+                return null;
+
+            var result = from item in questions
+                         select new Contracts.QuestionIdsResponse
+                         {
+                              CertificateId = item.CertificateId,
+                              QuestionId = item.QuestionId
+                         };
+            return result.AsEnumerable(); 
+        }
+
+        private Contracts.QuestionsResponse Map(Question question)
+        {
+            if (question == null)
+                return null;
+
+            var answers = Map(question.Answers);
+            return new Contracts.QuestionsResponse
+            {
+                Title = question.Title,
+                Answers = answers,
+                QuestionId = question.QuestionId,
+                CorrectAnswerCount = question.CorrectAnswerCount,
+                Explanation = question.Explanation,
+                IsMultiChoice = question.IsMultiChoice,
+                //QuestionLevel = new Question question.QuestionLevel.QuestionLevelName
+            };
+        }
+
+        private IEnumerable<Contracts.AnswerResponse> Map(ICollection<Answer> answers)
+        {
+            if (answers == null)
+                return null;
+
+            var result = from answer in answers
+                         select new Contracts.AnswerResponse
+                         {
+                             Description = answer.Description,
+                             IsCorrectAnswer = answer.IsCorrectAnswer
+                         };
+            return result.AsEnumerable();
         }
     }
 }

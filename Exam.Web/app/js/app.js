@@ -1,6 +1,6 @@
 'use strict';
 
-var examApp = angular.module('examApp', ['ngResource', 'ui.bootstrap', 'ngRoute', 'toaster', 'angularFileUpload', 'summernote'])
+var examApp = angular.module('examApp', ['ngResource', 'ui.bootstrap', 'ngRoute', 'toaster', 'angularFileUpload', 'summernote', 'ngSanitize'])
     .config(function ($routeProvider, $locationProvider) {
         $routeProvider.when('/Certificates',
             {
@@ -20,7 +20,13 @@ var examApp = angular.module('examApp', ['ngResource', 'ui.bootstrap', 'ngRoute'
                 templateUrl: 'templates/Login.html',
                 controller: 'SignInController'
             });
-        $routeProvider.when('/CertPrep/:certificateId',
+        $routeProvider.when('/CertPrepStart/:certificateId',
+            {
+                templateUrl: 'templates/CertPrepStart.html',
+                controller: 'CertPrepStartController'
+            });
+
+        $routeProvider.when('/CertPrep/:certificateId/Question/:questionId',
             {
                 templateUrl: 'templates/CertPrep.html',
                 controller: 'CertPrepController'

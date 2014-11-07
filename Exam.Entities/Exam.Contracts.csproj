@@ -49,6 +49,7 @@
     <Compile Include="Requests\SkillRequest.cs" />
     <Compile Include="Responses\AnswerResponse.cs" />
     <Compile Include="Responses\QuestionLevelResponse.cs" />
+    <Compile Include="Responses\QuestionIdsResponse.cs" />
     <Compile Include="Responses\UserResponse.cs" />
     <Compile Include="Responses\SkillDetailResponse.cs" />
     <Compile Include="Responses\QuestionsResponse.cs" />

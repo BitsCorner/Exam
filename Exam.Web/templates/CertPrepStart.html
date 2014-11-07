@@ -1,0 +1,27 @@
+﻿<div class="panel panel-info">
+    <div class="panel-heading">
+        <label>Certificate:</label> {{certificate.CompanyName}} {{certificate.CertificateCode}} {{certificate.CertificateName}} <label>Technology:</label> {{certificate.Technology}}
+    </div>
+</div>
+
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            <span class="glyphicon glyphicon-lock"></span>
+            Setup the your preperation options
+        </h3>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-12">
+                Show me the latest posted questions
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <a href="#/CertPrep/{{certificate.CertificateId}}/Question/{{firstQuestionId}}" class="btn btn-primary btn-sm" role="button">Cert Preparation</a>
+            </div>
+        </div>
+     </div>
+</div>

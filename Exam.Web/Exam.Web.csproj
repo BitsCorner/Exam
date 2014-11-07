@@ -170,6 +170,7 @@
     <Content Include="app\lib\angular\angular-file-upload.min.js" />
     <Content Include="app\lib\angular\angular-resource.min.js" />
     <Content Include="app\lib\angular\angular-route.min.js" />
+    <Content Include="app\lib\angular\angular-sanitize.min.js" />
     <Content Include="app\lib\angular\angular.js" />
     <Content Include="app\lib\bootstrap.js" />
     <Content Include="app\lib\bootstrap.min.js" />
@@ -199,6 +200,7 @@
     <Content Include="app\lib\ui-bootstrap.js" />
     <Content Include="app\lib\ui-bootstrap.min.js" />
     <Content Include="Index.html" />
+    <Content Include="templates\CertPrepStart.html" />
     <Content Include="templates\Login.html" />
     <Content Include="templates\CertPrep.html" />
     <Content Include="templates\DumpQuestion.html" />

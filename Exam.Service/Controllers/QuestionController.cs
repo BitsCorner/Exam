@@ -19,15 +19,17 @@ namespace Exam.Service.Controllers
         {
             this.examProcessor = examProcessor;
         }
-        public async Task<IHttpActionResult> Get()
+
+        public async Task<IHttpActionResult> Get(int id)
         {
-            var response = await examProcessor.GetCertificates();
+            var response = await examProcessor.GetQuestion(id);
             if (response == null)
             {
                 return NotFound();
             }
             return Ok(response);
         }
+
 
         public async Task<IHttpActionResult> Post([FromBody]QuestionRequest question)
         {
