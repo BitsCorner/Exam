@@ -12,16 +12,63 @@
         </h3>
     </div>
     <div class="panel-body">
-        <div class="row">
-            <div class="col-md-12">
-                Show me the latest posted questions
-            </div>
-        </div>
 
-        <div class="row">
-            <div class="col-md-12">
-                <a href="#/CertPrep/{{certificate.CertificateId}}/Question/{{firstQuestionId}}" class="btn btn-primary btn-sm" role="button">Cert Preparation</a>
+        <form role="form">
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">Number of questions:</label>
+                <div class="col-sm-1">
+                    <input type="text" class="form-control text-center" value="50" maxlength="2" >
+                </div>
             </div>
-        </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <div class="radio-inline">
+                        <label>
+                            <input type="radio" value="true" checked="checked" name="prepOption"> Give me random questions
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-offset-2 col-sm-10">
+                    <div class="radio-inline">
+                        <label>
+                            <input type="radio" name="prepOption"> Give me the most recent questions
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-offset-2 col-sm-10">
+                    <div class="radio-inline">
+                        <label>
+                            <input type="radio" name="prepOption"> Give me the most attempted questions
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-offset-2 col-sm-10">
+                    <div class="radio-inline">
+                        <label>
+                            <input type="radio" name="prepOption"> Give me the most voted questions
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-offset-2 col-sm-10">
+                    <div class="checkbox-inline">
+                        <label>
+                            <input type="checkbox" > Start a timer
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Prep minutes:</label>
+                    <div class="col-sm-1">
+                        <input type="text" class="form-control text-center" value="120" maxlength="3">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10 text-right">
+                    <a href="#/CertPrep/{{certificate.CertificateId}}/Question/{{firstQuestionId}}" class="btn btn-primary btn-sm" role="button">Start Preparation</a>
+                </div>
+            </div>
+        </form>
+
     </div>
 </div>

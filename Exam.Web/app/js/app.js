@@ -1,6 +1,6 @@
 'use strict';
 
-var examApp = angular.module('examApp', ['ngResource', 'ui.bootstrap', 'ngRoute', 'toaster', 'angularFileUpload', 'summernote', 'ngSanitize'])
+var examApp = angular.module('examApp', ['ngResource', 'ui.bootstrap', 'ngRoute', 'toaster', 'angularFileUpload', 'summernote', 'ngSanitize', 'timer'])
     .config(function ($routeProvider, $locationProvider, $httpProvider) {
         $routeProvider.when('/Certificates',
             {

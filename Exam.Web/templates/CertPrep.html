@@ -13,32 +13,120 @@
             <a ng-disabled="nextQuestionId==0" href="#/CertPrep/{{certificate.CertificateId}}/Question/{{nextQuestionId}}" type="button" class=" btn btn-primary">
                 Next <span class="glyphicon glyphicon-chevron-right"></span>
             </a>
-            <button type="button" class="btn btn-info">
+            <button type="button" class="btn btn-info" ng-click="showComments(question)">
                 <span class="glyphicon glyphicon-comment"></span>&nbsp;Show comments
             </button>
             <button type="button" class="btn btn-info" ng-click="checkAnswer(question)">
-                <span class="glyphicon glyphicon-ok"></span>&nbsp;check answer
+                <span class="glyphicon glyphicon-ok"></span>&nbsp;Check answer
             </button>
         </div>
         <div class="col-md-6">
-            <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+
+            <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">
+                <div style="vertical-align:text-top">
+                    <div style="display:inline-block; width:40%;vertical-align:text-top">
+                        <strong>
+                            {{alert.msg}}
+                        </strong>
+                    </div>
+                    <div class="text-right" style="display:inline-block; width:30%">
+                        <small>
+                            <strong>
+                                Correct answers: <br />
+                                Incorrect answers:
+                            </strong>
+                        </small>
+                    </div>
+                    <div style="display:inline-block; width:20%">
+                        <small>
+                            54%	(511) <br />
+                            46%	(433)
+                        </small>
+                    </div>
+                </div>
+                <!--<div class="col-md-4">
+                </div>-->
+                <!--<div class="col-md-4 text-right">
+
+                </div>
+                <div class="col-md-3">
+                    <small>
+                        54%	(511) <br />
+                        46%	(433)
+                    </small>
+                </div>-->
+            </alert>
+
         </div>
     </div>
 </div>
 
 <div class="panel panel-info ng-cloak">
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-3">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default glyphicon glyphicon-thumbs-up" title="Good question!"></button>
+                        <button type="button" style="margin-top:1px" class="btn btn-default disabled">18</button>
+                        <button type="button" class="btn btn-default glyphicon glyphicon-thumbs-down" title="Not a good question!"></button>
+                    </div>
+                </div>
+                <div class="col-md-2 text-right">
+                    <small>
+                        <strong>
+                            Total attempts:<br />
+                            Avg response time:
+                        </strong>
+                    </small>
+                </div>
+                <div class="col-md-1" style="padding-left:0">
+                    <small>
+                        120<br />
+                        0:01:20
+                    </small>
+                </div>
+                <div class="col-md-2 text-right">
+                    <small>
+                        <strong>
+                            This question time:<br />
+                            Total time:
+                        </strong>
+                    </small>
+                </div>
+                <div class="col-md-1" style="padding-left:0">
+                    <small>
+                        <timer interval="1000">{{hours}}:{{mminutes}}:{{sseconds}}</timer>
+                        <br />
+                        {{prepTotalTime}}
+                    </small>
+                </div>
+                <div class="col-md-1 text-right">
+                    <small>
+                        <strong>
+                            By:<br />
+                            On:
+                        </strong>
+                    </small>
+                </div>
+                <div class="col-md-2" style="padding-left:0">
+                    <small>
+                        Aram Koukia <br />
+                        10/11/2014
+                    </small>
+                </div>
+
+            </div>
+        </div>
+    </div>
     <div class="panel-body">
         <div class="row">
-            <div class="col-md-12" style="margin-bottom:15px;">
-                <div ng-init="x = 5"><rating ng-model="x" max="15" state-on="'glyphicon-ok-sign'" state-off="'glyphicon-ok-circle'"></rating> <b>(<i>Rate:</i> {{x}})</b></div>
-                <h3>Q {{question.QuestionId}}</h3>
-                <!--<div ng-init="y = 2"><rating ng-model="y" rating-states="ratingStates"></rating> <b>(<i>Rate:</i> {{y}})</b></div>-->
-
+            <div class="col-md-12">
                 <div class="questionTitle" ng-bind-html="question.Title"></div>
             </div>
             <div class="col-md-12" ng-if="question.CorrectAnswerCount != 1">
-                <h5 class="text-success">
-                    <u>Pick all that applies</u>
+                <h5 class="text-info">
+                    <span class="glyphicon glyphicon-info-sign"></span> &nbsp; Pick all that applies
                 </h5>
             </div>
         </div>
@@ -55,3 +143,38 @@
         </div>
     </div>
 </div>
+<div class="panel panel-default ng-cloak" ng-if="showCorrectAnswer">
+    <div class="panel-heading">
+        <span class="text-info">
+            Explanation
+        </span>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-12">
+                <div ng-bind-html="question.Explanation"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="panel panel-default ng-cloak" ng-if="displayComments">
+    <div class="panel-heading text-info">
+        <span class="text-info">
+            <strong>0 Comments </strong>
+        </span>
+        <button type="button" class="close" ng-click="close()">
+            <span aria-hidden="true">×</span>
+            <span class="sr-only">Close</span>
+        </button>
+    </div>
+    <div class="panel-body">
+        <div class="form-group">
+            <textarea class="form-control" name="Comment" placeholder="Join the discussion..." required="required" rows="5"></textarea>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-info">Submit</button>
+        </div>
+    </div>
+</div>
+

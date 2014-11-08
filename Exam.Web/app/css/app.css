@@ -25,6 +25,7 @@ html {
 
 .questionTitle {
     padding:5px;
+    cursor:default;
 }
 
 .questionTitle:hover {

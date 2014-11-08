@@ -3,6 +3,8 @@
 examApp.controller('CertPrepStartController',
     function CertPrepStartController($rootScope, $scope, examData, toaster, $upload, $routeParams, $filter, $location) {
 
+        $rootScope.totalTime = 0;
+
         $scope.certificate = examData.getCertificate($routeParams.certificateId);
 
         //TODO: Add a Cert Prep Option view so that the user can decide how to get the questions

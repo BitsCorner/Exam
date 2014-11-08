@@ -44,6 +44,23 @@ examApp.factory('examData', function ($resource, $http, $q) {
             return $resource(baseUrl + "Question/:id", { id: '@id' }).get({ id: id });
         },
 
+        getComments: function (id) {
+            var deferred = $q.defer();
+            $http({
+                method: 'get',
+                url: baseUrl + 'Question/' + id + '/Comments',
+                //data: location
+            })
+                .success(function (data) {
+                    deferred.resolve(data);
+                })
+                .error(function (error) {
+                    deferred.reject(error);
+                });
+
+            return deferred.promise;
+        },
+
         //storeQuestionIds: function (qIds) {
         //    questionIds = qIds;
         //},

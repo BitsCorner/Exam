@@ -84,11 +84,40 @@ examApp.controller('CertPrepController',
                 $scope.alerts.push({ type: 'success', msg: 'Well done! you got it right.' });
             else
                 $scope.alerts.push({ type: 'danger', msg: 'Opps! you got it wrong.' });
+
+            $scope.$broadcast('timer-stop');
+            $scope.timerRunning = false;
+
         };
 
         $scope.closeAlert = function (index) {
             $scope.alerts.splice(index, 1);
             $scope.showCorrectAnswer = false;
         };
+
+        $scope.showComments = function (question) {
+
+            examData.getComments(question.QuestionId)
+                                    .then(function (data) {
+                                        $scope.question.Comments = data;
+                                        $scope.displayComments = true;
+                                    });
+        };
+
+        $scope.timerRunning = true;
+
+        $scope.startTimer = function () {
+            $scope.$broadcast('timer-start');
+            $scope.timerRunning = true;
+        };
+
+        $scope.$on('timer-stopped', function (event, data) {
+            console.log('Timer Stopped - data = ', data);
+        });
+
+        $scope.$on('timer-tick', function (event, args) {
+            $rootScope.totalTime += (args.millis / 1000);
+            $scope.prepTotalTime = $rootScope.totalTime
+        });
 
  });
