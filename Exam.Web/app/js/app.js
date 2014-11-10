@@ -23,13 +23,19 @@ var examApp = angular.module('examApp', ['ngResource', 'ui.bootstrap', 'ngRoute'
         $routeProvider.when('/CertPrepStart/:certificateId',
             {
                 templateUrl: 'templates/CertPrepStart.html',
-                controller: 'CertPrepStartController'
+                controller: 'CertPrepStartController',
+                auth: function (user) {
+                    return user;
+                }
             });
 
         $routeProvider.when('/CertPrep/:certificateId/Question/:questionId',
             {
                 templateUrl: 'templates/CertPrep.html',
-                controller: 'CertPrepController'
+                controller: 'CertPrepController',
+                auth: function (user) {
+                    return user;
+                }
             });
 
         $routeProvider.otherwise({ redirectTo: 'Certificates' });

@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[Question]
 (
-	[QuestionId] BIGINT NOT NULL PRIMARY KEY, 
+	[QuestionId] BIGINT NOT NULL PRIMARY KEY IDENTITY, 
     [CertificateId] INT NOT NULL, 
 	[SkillId] INT NOT NULL, 
 	[SkillDetailId] INT NULL, 

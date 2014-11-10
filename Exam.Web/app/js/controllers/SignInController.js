@@ -1,6 +1,6 @@
 'use strict';
 
-function SignInController($scope, $rootScope) {
+function SignInController($scope, $rootScope, examData) {
 
     // This flag we use to show or hide the button in our HTML.
     $scope.signedIn = false;
@@ -13,6 +13,7 @@ function SignInController($scope, $rootScope) {
             // Successful sign in.
             $scope.signedIn = true;
             $scope.getUserInfo();
+
 
         } else if (authResult['error']) {
             // Error while signing in.
@@ -64,6 +65,13 @@ function SignInController($scope, $rootScope) {
         // Or use his email address to send e-mails to his primary e-mail address.
         $scope.userInfo = userInfo;
         $rootScope.user = userInfo;
+        var user = {
+            UserId: userInfo.emails[0].value,
+            Email: userInfo.emails[0].value,
+            FullName: userInfo.displayName
+        };
+
+        examData.saveUser(user);
         //sendEMail(userInfo['emails'][0]['value']);
     }
 

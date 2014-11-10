@@ -55,8 +55,12 @@ namespace Exam.Business
 
         public async Task<int> SaveUser(Contracts.UserRequest user)
         {
+            var found = await this.userRepository.FindAsync(m => m.UserId == user.UserId);
             var mappedUser = Map(user);
-            return await this.userRepository.AddAsync(mappedUser);
+            if (found == null)
+                return await this.userRepository.AddAsync(mappedUser);
+            else
+                return await this.userRepository.UpdateAsync(mappedUser);
         }
 
         public async Task<int> SaveQuestionComment(Contracts.QuestionCommentRequest questionComment)

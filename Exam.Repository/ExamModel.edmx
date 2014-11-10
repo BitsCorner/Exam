@@ -9,7 +9,7 @@
           <Key>
             <PropertyRef Name="AnswerId" />
           </Key>
-          <Property Name="AnswerId" Type="int" Nullable="false" />
+          <Property Name="AnswerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="QuestionId" Type="bigint" />
           <Property Name="Description" Type="nvarchar(max)" />
           <Property Name="FileName" Type="nvarchar(max)" />
@@ -31,7 +31,7 @@
           <Key>
             <PropertyRef Name="QuestionId" />
           </Key>
-          <Property Name="QuestionId" Type="bigint" Nullable="false" />
+          <Property Name="QuestionId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CertificateId" Type="int" Nullable="false" />
           <Property Name="SkillId" Type="int" Nullable="false" />
           <Property Name="SkillDetailId" Type="int" />
@@ -376,6 +376,7 @@
           <EntitySet Name="Skills" EntityType="ExamModel.Skill" />
           <EntitySet Name="SkillDetails" EntityType="ExamModel.SkillDetail" />
           <EntitySet Name="UserAttempts" EntityType="ExamModel.UserAttempt" />
+          <EntitySet Name="UserProfiles" EntityType="ExamModel.UserProfile" />
           <AssociationSet Name="FK_Answer_Question" Association="ExamModel.FK_Answer_Question">
             <End Role="Question" EntitySet="Questions" />
             <End Role="Answer" EntitySet="Answers" />
@@ -404,6 +405,10 @@
             <End Role="SkillDetail" EntitySet="SkillDetails" />
             <End Role="Question" EntitySet="Questions" />
           </AssociationSet>
+          <AssociationSet Name="FK_Question_UserProfile" Association="ExamModel.FK_Question_UserProfile">
+            <End Role="UserProfile" EntitySet="UserProfiles" />
+            <End Role="Question" EntitySet="Questions" />
+          </AssociationSet>
           <AssociationSet Name="FK_QuestionVote_Question" Association="ExamModel.FK_QuestionVote_Question">
             <End Role="Question" EntitySet="Questions" />
             <End Role="QuestionVote" EntitySet="QuestionVotes" />
@@ -412,15 +417,6 @@
             <End Role="Question" EntitySet="Questions" />
             <End Role="UserAttempt" EntitySet="UserAttempts" />
           </AssociationSet>
-          <AssociationSet Name="FK_Skill_SkillDetail" Association="ExamModel.FK_Skill_SkillDetail">
-            <End Role="Skill" EntitySet="Skills" />
-            <End Role="SkillDetail" EntitySet="SkillDetails" />
-          </AssociationSet>
-          <EntitySet Name="UserProfiles" EntityType="ExamModel.UserProfile" />
-          <AssociationSet Name="FK_Question_UserProfile" Association="ExamModel.FK_Question_UserProfile">
-            <End Role="UserProfile" EntitySet="UserProfiles" />
-            <End Role="Question" EntitySet="Questions" />
-          </AssociationSet>
           <AssociationSet Name="FK_QuestionComment_User" Association="ExamModel.FK_QuestionComment_User">
             <End Role="UserProfile" EntitySet="UserProfiles" />
             <End Role="QuestionComment" EntitySet="QuestionComments" />
@@ -428,6 +424,10 @@
           <AssociationSet Name="FK_Question_User" Association="ExamModel.FK_Question_User">
             <End Role="UserProfile" EntitySet="UserProfiles" />
             <End Role="QuestionVote" EntitySet="QuestionVotes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Skill_SkillDetail" Association="ExamModel.FK_Skill_SkillDetail">
+            <End Role="Skill" EntitySet="Skills" />
+            <End Role="SkillDetail" EntitySet="SkillDetails" />
           </AssociationSet>
           <AssociationSet Name="FK_UserAttempt_User" Association="ExamModel.FK_UserAttempt_User">
             <End Role="UserProfile" EntitySet="UserProfiles" />
@@ -438,7 +438,7 @@
           <Key>
             <PropertyRef Name="AnswerId" />
           </Key>
-          <Property Name="AnswerId" Type="Int32" Nullable="false" />
+          <Property Name="AnswerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="QuestionId" Type="Int64" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="FileName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -464,7 +464,7 @@
           <Key>
             <PropertyRef Name="QuestionId" />
           </Key>
-          <Property Name="QuestionId" Type="Int64" Nullable="false" />
+          <Property Name="QuestionId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CertificateId" Type="Int32" Nullable="false" />
           <Property Name="SkillId" Type="Int32" Nullable="false" />
           <Property Name="SkillDetailId" Type="Int32" />
@@ -491,9 +491,9 @@
           <NavigationProperty Name="QuestionLevel" Relationship="ExamModel.FK_Question_QuestionLevel" FromRole="Question" ToRole="QuestionLevel" />
           <NavigationProperty Name="Skill" Relationship="ExamModel.FK_Question_Skill" FromRole="Question" ToRole="Skill" />
           <NavigationProperty Name="SkillDetail" Relationship="ExamModel.FK_Question_SkillDetail" FromRole="Question" ToRole="SkillDetail" />
+          <NavigationProperty Name="UserProfile" Relationship="ExamModel.FK_Question_UserProfile" FromRole="Question" ToRole="UserProfile" />
           <NavigationProperty Name="QuestionVotes" Relationship="ExamModel.FK_QuestionVote_Question" FromRole="Question" ToRole="QuestionVote" />
           <NavigationProperty Name="UserAttempts" Relationship="ExamModel.FK_UserAttempt_Question" FromRole="Question" ToRole="UserAttempt" />
-          <NavigationProperty Name="UserProfile" Relationship="ExamModel.FK_Question_UserProfile" FromRole="Question" ToRole="UserProfile" />
         </EntityType>
         <EntityType Name="QuestionComment">
           <Key>
@@ -502,6 +502,7 @@
           <Property Name="QuestionCommentId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="QuestionId" Type="Int32" Nullable="false" />
           <Property Name="UserId" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Comment" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CommentDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Email" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="FullName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
@@ -510,7 +511,6 @@
           <Property Name="ConfirmedBy" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="ConfirmDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Certificate" Relationship="ExamModel.FK_QuestionComment_Question" FromRole="QuestionComment" ToRole="Certificate" />
-          <Property Name="Comment" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="UserProfile" Relationship="ExamModel.FK_QuestionComment_User" FromRole="QuestionComment" ToRole="UserProfile" />
         </EntityType>
         <EntityType Name="QuestionLevel">
@@ -569,6 +569,19 @@
           <Property Name="Answers" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Question" Relationship="ExamModel.FK_UserAttempt_Question" FromRole="UserAttempt" ToRole="Question" />
           <NavigationProperty Name="UserProfile" Relationship="ExamModel.FK_UserAttempt_User" FromRole="UserAttempt" ToRole="UserProfile" />
+        </EntityType>
+        <EntityType Name="UserProfile">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="FullName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Questions" Relationship="ExamModel.FK_Question_UserProfile" FromRole="UserProfile" ToRole="Question" />
+          <NavigationProperty Name="QuestionComments" Relationship="ExamModel.FK_QuestionComment_User" FromRole="UserProfile" ToRole="QuestionComment" />
+          <NavigationProperty Name="QuestionVotes" Relationship="ExamModel.FK_Question_User" FromRole="UserProfile" ToRole="QuestionVote" />
+          <NavigationProperty Name="UserAttempts" Relationship="ExamModel.FK_UserAttempt_User" FromRole="UserProfile" ToRole="UserAttempt" />
         </EntityType>
         <Association Name="FK_Answer_Question">
           <End Type="ExamModel.Question" Role="Question" Multiplicity="0..1" />
@@ -654,6 +667,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Question_UserProfile">
+          <End Type="ExamModel.UserProfile" Role="UserProfile" Multiplicity="0..1" />
+          <End Type="ExamModel.Question" Role="Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_QuestionVote_Question">
           <End Type="ExamModel.Question" Role="Question" Multiplicity="1" />
           <End Type="ExamModel.QuestionVote" Role="QuestionVote" Multiplicity="*" />
@@ -675,43 +700,6 @@
             </Principal>
             <Dependent Role="UserAttempt">
               <PropertyRef Name="QuestionId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Skill_SkillDetail">
-          <End Type="ExamModel.Skill" Role="Skill" Multiplicity="1" />
-          <End Type="ExamModel.SkillDetail" Role="SkillDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Skill">
-              <PropertyRef Name="SkillId" />
-            </Principal>
-            <Dependent Role="SkillDetail">
-              <PropertyRef Name="SkillId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="UserProfile">
-          <Key>
-            <PropertyRef Name="UserId" />
-          </Key>
-          <Property Name="UserId" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="Email" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="FullName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Questions" Relationship="ExamModel.FK_Question_UserProfile" FromRole="UserProfile" ToRole="Question" />
-          <NavigationProperty Name="QuestionComments" Relationship="ExamModel.FK_QuestionComment_User" FromRole="UserProfile" ToRole="QuestionComment" />
-          <NavigationProperty Name="QuestionVotes" Relationship="ExamModel.FK_Question_User" FromRole="UserProfile" ToRole="QuestionVote" />
-          <NavigationProperty Name="UserAttempts" Relationship="ExamModel.FK_UserAttempt_User" FromRole="UserProfile" ToRole="UserAttempt" />
-        </EntityType>
-        <Association Name="FK_Question_UserProfile">
-          <End Type="ExamModel.UserProfile" Role="UserProfile" Multiplicity="0..1" />
-          <End Type="ExamModel.Question" Role="Question" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UserProfile">
-              <PropertyRef Name="UserId" />
-            </Principal>
-            <Dependent Role="Question">
-              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -739,6 +727,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Skill_SkillDetail">
+          <End Type="ExamModel.Skill" Role="Skill" Multiplicity="1" />
+          <End Type="ExamModel.SkillDetail" Role="SkillDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Skill">
+              <PropertyRef Name="SkillId" />
+            </Principal>
+            <Dependent Role="SkillDetail">
+              <PropertyRef Name="SkillId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_UserAttempt_User">
           <End Type="ExamModel.UserProfile" Role="UserProfile" Multiplicity="1" />
           <End Type="ExamModel.UserAttempt" Role="UserAttempt" Multiplicity="*" />
@@ -751,7 +751,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -812,7 +812,6 @@
           <EntitySetMapping Name="QuestionComments">
             <EntityTypeMapping TypeName="ExamModel.QuestionComment">
               <MappingFragment StoreEntitySet="QuestionComment">
-                <ScalarProperty Name="Comment" ColumnName="Comment" />
                 <ScalarProperty Name="ConfirmDate" ColumnName="ConfirmDate" />
                 <ScalarProperty Name="ConfirmedBy" ColumnName="ConfirmedBy" />
                 <ScalarProperty Name="Confirmed" ColumnName="Confirmed" />
@@ -820,6 +819,7 @@
                 <ScalarProperty Name="FullName" ColumnName="FullName" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="CommentDate" ColumnName="CommentDate" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
                 <ScalarProperty Name="QuestionCommentId" ColumnName="QuestionCommentId" />

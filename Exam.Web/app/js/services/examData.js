@@ -61,6 +61,9 @@ examApp.factory('examData', function ($resource, $http, $q) {
             return deferred.promise;
         },
 
+        saveUser: function (user) {
+            return $resource(baseUrl + "User", null).save(user);
+        },
         //storeQuestionIds: function (qIds) {
         //    questionIds = qIds;
         //},

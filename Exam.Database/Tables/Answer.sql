@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[Answer]
 (
-	[AnswerId] INT NOT NULL PRIMARY KEY, 
+	[AnswerId] INT NOT NULL PRIMARY KEY IDENTITY, 
     [QuestionId] BIGINT NULL, 
     [Description] NVARCHAR(MAX) NULL, 
     [FileName] NVARCHAR(MAX) NULL, 

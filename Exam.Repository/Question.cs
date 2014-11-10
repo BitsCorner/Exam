@@ -49,8 +49,8 @@ namespace Exam.Repository
         public virtual QuestionLevel QuestionLevel { get; set; }
         public virtual Skill Skill { get; set; }
         public virtual SkillDetail SkillDetail { get; set; }
+        public virtual UserProfile UserProfile { get; set; }
         public virtual ICollection<QuestionVote> QuestionVotes { get; set; }
         public virtual ICollection<UserAttempt> UserAttempts { get; set; }
-        public virtual UserProfile UserProfile { get; set; }
     }
 }

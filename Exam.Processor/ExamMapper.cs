@@ -81,7 +81,9 @@ namespace Exam.Business
                     ModifiedDate = DateTime.UtcNow,
                     IsMultiChoice = answers.Where(m=>m.IsCorrectAnswer == true).Count() > 1 ? true : false,
                     CorrectAnswerCount = answers.Where(m=>m.IsCorrectAnswer == true).Count(),
-                    Title = question.Title
+                    Title = question.Title,
+                    Confirmed = false,
+                    Vote = 0,
                 };
             }
             catch (Exception ex)

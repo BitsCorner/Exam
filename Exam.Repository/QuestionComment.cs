@@ -17,6 +17,7 @@ namespace Exam.Repository
         public long QuestionCommentId { get; set; }
         public int QuestionId { get; set; }
         public string UserId { get; set; }
+        public string Comment { get; set; }
         public System.DateTime CommentDate { get; set; }
         public string Email { get; set; }
         public string FullName { get; set; }
@@ -24,7 +25,6 @@ namespace Exam.Repository
         public Nullable<bool> Confirmed { get; set; }
         public string ConfirmedBy { get; set; }
         public Nullable<System.DateTime> ConfirmDate { get; set; }
-        public string Comment { get; set; }
     
         public virtual Certificate Certificate { get; set; }
         public virtual UserProfile UserProfile { get; set; }
