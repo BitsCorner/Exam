@@ -73,6 +73,10 @@ examApp.factory('examData', function ($resource, $http, $q) {
             return $resource(baseUrl + "Question/Vote", null).save(questionVote);
         },
 
+        saveQuestionComment: function (questionComment) {
+            return $resource(baseUrl + "Question/Comment", null).save(questionComment);
+        },
+
         //storeQuestionIds: function (qIds) {
         //    questionIds = qIds;
         //},

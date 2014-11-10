@@ -13,3 +13,4 @@ packages
 *.csdl
 *.msl
 Exam.Service/Configs/connectionStrings.config
+*.user
