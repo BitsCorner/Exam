@@ -157,6 +157,7 @@
     <Content Include="app\js\controllers\EventListController.js" />
     <Content Include="app\js\directives.js" />
     <Content Include="app\js\filters.js" />
+    <Content Include="app\js\httpLoader.js" />
     <Content Include="app\js\services\authentication.js" />
     <Content Include="app\js\services\examResource.js" />
     <Content Include="app\js\services\examData.js" />
@@ -172,6 +173,8 @@
     <Content Include="app\lib\angular\angular-resource.min.js" />
     <Content Include="app\lib\angular\angular-route.min.js" />
     <Content Include="app\lib\angular\angular-sanitize.min.js" />
+    <Content Include="app\lib\angular\angular-timer.js" />
+    <Content Include="app\lib\angular\angular-timer.min.js" />
     <Content Include="app\lib\angular\angular.js" />
     <Content Include="app\lib\bootstrap.js" />
     <Content Include="app\lib\bootstrap.min.js" />

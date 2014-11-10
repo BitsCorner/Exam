@@ -30,19 +30,52 @@ namespace Exam.Service.Controllers
             return Ok(response);
         }
 
-
         public async Task<IHttpActionResult> Post([FromBody]QuestionRequest question)
         {
             if(question == null)
                 return InternalServerError();
 
             var response = await examProcessor.SaveQuestion(question);
-            if (response != 0)
+            if (response == 0)
             {
                 return InternalServerError();
             }
             return Ok(response);
         }
+
+        [Route("api/Question/Comment")]
+        public async Task<IHttpActionResult> PostQuestionComment([FromBody]QuestionCommentRequest questionComment)
+        {
+            var response = await examProcessor.SaveQuestionComment(questionComment);
+            if (response == 0)
+            {
+                return InternalServerError();
+            }
+            return Ok(response);
+        }
+
+        [Route("api/Question/Attempt")]
+        public async Task<IHttpActionResult> PostUserAttempt([FromBody]UserAttemptRequest userAttempt)
+        {
+            var response = await examProcessor.SaveUserAttempt(userAttempt);
+            if (response == 0)
+            {
+                return InternalServerError();
+            }
+            return Ok(response);
+        }
+
+        [Route("api/Question/Vote")]
+        public async Task<IHttpActionResult> PostUserAttempt([FromBody]QuestionVoteRequest questionVote)
+        {
+            var response = await examProcessor.SaveQuestionVote(questionVote);
+            if (response == 0)
+            {
+                return InternalServerError();
+            }
+            return Ok(response);
+        }
+
 
     }
 }

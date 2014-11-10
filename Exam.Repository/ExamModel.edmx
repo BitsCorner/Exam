@@ -9,7 +9,7 @@
           <Key>
             <PropertyRef Name="AnswerId" />
           </Key>
-          <Property Name="AnswerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AnswerId" Type="int" Nullable="false" />
           <Property Name="QuestionId" Type="bigint" />
           <Property Name="Description" Type="nvarchar(max)" />
           <Property Name="FileName" Type="nvarchar(max)" />
@@ -31,7 +31,7 @@
           <Key>
             <PropertyRef Name="QuestionId" />
           </Key>
-          <Property Name="QuestionId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="QuestionId" Type="bigint" Nullable="false" />
           <Property Name="CertificateId" Type="int" Nullable="false" />
           <Property Name="SkillId" Type="int" Nullable="false" />
           <Property Name="SkillDetailId" Type="int" />
@@ -49,6 +49,26 @@
           <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
           <Property Name="ModifiedDate" Type="datetime" />
           <Property Name="ModifiedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="Vote" Type="int" />
+          <Property Name="Confirmed" Type="bit" />
+          <Property Name="ConfirmedBy" Type="nvarchar" MaxLength="500" />
+          <Property Name="CinfirmDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="QuestionComment">
+          <Key>
+            <PropertyRef Name="QuestionCommentId" />
+          </Key>
+          <Property Name="QuestionCommentId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="QuestionId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="500" />
+          <Property Name="Comment" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CommentDate" Type="datetime" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="500" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="500" />
+          <Property Name="ParrentCommentId" Type="bigint" />
+          <Property Name="Confirmed" Type="bit" />
+          <Property Name="ConfirmedBy" Type="nvarchar" MaxLength="500" />
+          <Property Name="ConfirmDate" Type="datetime" />
         </EntityType>
         <EntityType Name="QuestionLevel">
           <Key>
@@ -56,6 +76,16 @@
           </Key>
           <Property Name="QuestionLevelId" Type="int" Nullable="false" />
           <Property Name="QuestionLevelName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="QuestionVote">
+          <Key>
+            <PropertyRef Name="QuestionVoteId" />
+          </Key>
+          <Property Name="QuestionVoteId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="QuestionId" Type="bigint" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="500" />
+          <Property Name="Vote" Type="int" Nullable="false" />
+          <Property Name="VoteDate" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Skill">
           <Key>
@@ -75,14 +105,25 @@
           <Property Name="SkillDetailDescription" Type="nvarchar(max)" />
           <Property Name="SkillDetailOrder" Type="int" />
         </EntityType>
+        <EntityType Name="UserAttempt">
+          <Key>
+            <PropertyRef Name="AttemptId" />
+          </Key>
+          <Property Name="AttemptId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="QuestionId" Type="bigint" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="AttemptDate" Type="datetime" />
+          <Property Name="TimeSpent" Type="nvarchar" MaxLength="50" />
+          <Property Name="GotItRight" Type="bit" />
+          <Property Name="Answers" Type="nvarchar" MaxLength="500" />
+        </EntityType>
         <EntityType Name="UserProfile">
           <Key>
             <PropertyRef Name="UserId" />
           </Key>
           <Property Name="UserId" Type="nvarchar" MaxLength="500" Nullable="false" />
           <Property Name="Email" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="FirstName" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="LastName" Type="nvarchar" MaxLength="500" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="500" />
           <Property Name="CreatedDate" Type="datetime" />
         </EntityType>
         <Association Name="FK_Answer_Question">
@@ -145,6 +186,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Question_User">
+          <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="0..1" />
+          <End Role="QuestionVote" Type="Self.QuestionVote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="QuestionVote">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Question_UserProfile">
           <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="0..1" />
           <End Role="Question" Type="Self.Question" Multiplicity="*" />
@@ -154,6 +207,42 @@
             </Principal>
             <Dependent Role="Question">
               <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuestionComment_Question">
+          <End Role="Certificate" Type="Self.Certificate" Multiplicity="1" />
+          <End Role="QuestionComment" Type="Self.QuestionComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Certificate">
+              <PropertyRef Name="CertificateId" />
+            </Principal>
+            <Dependent Role="QuestionComment">
+              <PropertyRef Name="QuestionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuestionComment_User">
+          <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="0..1" />
+          <End Role="QuestionComment" Type="Self.QuestionComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="QuestionComment">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuestionVote_Question">
+          <End Role="Question" Type="Self.Question" Multiplicity="1" />
+          <End Role="QuestionVote" Type="Self.QuestionVote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="QuestionId" />
+            </Principal>
+            <Dependent Role="QuestionVote">
+              <PropertyRef Name="QuestionId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -181,13 +270,40 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_UserAttempt_Question">
+          <End Role="Question" Type="Self.Question" Multiplicity="1" />
+          <End Role="UserAttempt" Type="Self.UserAttempt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="QuestionId" />
+            </Principal>
+            <Dependent Role="UserAttempt">
+              <PropertyRef Name="QuestionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserAttempt_User">
+          <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="1" />
+          <End Role="UserAttempt" Type="Self.UserAttempt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="UserAttempt">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="ExamModelStoreContainer">
           <EntitySet Name="Answer" EntityType="Self.Answer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Certificate" EntityType="Self.Certificate" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Question" EntityType="Self.Question" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QuestionComment" EntityType="Self.QuestionComment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QuestionLevel" EntityType="Self.QuestionLevel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QuestionVote" EntityType="Self.QuestionVote" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Skill" EntityType="Self.Skill" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SkillDetail" EntityType="Self.SkillDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserAttempt" EntityType="Self.UserAttempt" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserProfile" EntityType="Self.UserProfile" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Answer_Question" Association="Self.FK_Answer_Question">
             <End Role="Question" EntitySet="Question" />
@@ -209,9 +325,25 @@
             <End Role="SkillDetail" EntitySet="SkillDetail" />
             <End Role="Question" EntitySet="Question" />
           </AssociationSet>
+          <AssociationSet Name="FK_Question_User" Association="Self.FK_Question_User">
+            <End Role="UserProfile" EntitySet="UserProfile" />
+            <End Role="QuestionVote" EntitySet="QuestionVote" />
+          </AssociationSet>
           <AssociationSet Name="FK_Question_UserProfile" Association="Self.FK_Question_UserProfile">
             <End Role="UserProfile" EntitySet="UserProfile" />
             <End Role="Question" EntitySet="Question" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuestionComment_Question" Association="Self.FK_QuestionComment_Question">
+            <End Role="Certificate" EntitySet="Certificate" />
+            <End Role="QuestionComment" EntitySet="QuestionComment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuestionComment_User" Association="Self.FK_QuestionComment_User">
+            <End Role="UserProfile" EntitySet="UserProfile" />
+            <End Role="QuestionComment" EntitySet="QuestionComment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuestionVote_Question" Association="Self.FK_QuestionVote_Question">
+            <End Role="Question" EntitySet="Question" />
+            <End Role="QuestionVote" EntitySet="QuestionVote" />
           </AssociationSet>
           <AssociationSet Name="FK_Skill_Certificate" Association="Self.FK_Skill_Certificate">
             <End Role="Certificate" EntitySet="Certificate" />
@@ -221,23 +353,112 @@
             <End Role="Skill" EntitySet="Skill" />
             <End Role="SkillDetail" EntitySet="SkillDetail" />
           </AssociationSet>
+          <AssociationSet Name="FK_UserAttempt_Question" Association="Self.FK_UserAttempt_Question">
+            <End Role="Question" EntitySet="Question" />
+            <End Role="UserAttempt" EntitySet="UserAttempt" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserAttempt_User" Association="Self.FK_UserAttempt_User">
+            <End Role="UserProfile" EntitySet="UserProfile" />
+            <End Role="UserAttempt" EntitySet="UserAttempt" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ExamModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="ExamEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Answers" EntityType="ExamModel.Answer" />
+          <EntitySet Name="Certificates" EntityType="ExamModel.Certificate" />
+          <EntitySet Name="Questions" EntityType="ExamModel.Question" />
+          <EntitySet Name="QuestionComments" EntityType="ExamModel.QuestionComment" />
+          <EntitySet Name="QuestionLevels" EntityType="ExamModel.QuestionLevel" />
+          <EntitySet Name="QuestionVotes" EntityType="ExamModel.QuestionVote" />
+          <EntitySet Name="Skills" EntityType="ExamModel.Skill" />
+          <EntitySet Name="SkillDetails" EntityType="ExamModel.SkillDetail" />
+          <EntitySet Name="UserAttempts" EntityType="ExamModel.UserAttempt" />
+          <AssociationSet Name="FK_Answer_Question" Association="ExamModel.FK_Answer_Question">
+            <End Role="Question" EntitySet="Questions" />
+            <End Role="Answer" EntitySet="Answers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Question_Certificate" Association="ExamModel.FK_Question_Certificate">
+            <End Role="Certificate" EntitySet="Certificates" />
+            <End Role="Question" EntitySet="Questions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuestionComment_Question" Association="ExamModel.FK_QuestionComment_Question">
+            <End Role="Certificate" EntitySet="Certificates" />
+            <End Role="QuestionComment" EntitySet="QuestionComments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Skill_Certificate" Association="ExamModel.FK_Skill_Certificate">
+            <End Role="Certificate" EntitySet="Certificates" />
+            <End Role="Skill" EntitySet="Skills" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Question_QuestionLevel" Association="ExamModel.FK_Question_QuestionLevel">
+            <End Role="QuestionLevel" EntitySet="QuestionLevels" />
+            <End Role="Question" EntitySet="Questions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Question_Skill" Association="ExamModel.FK_Question_Skill">
+            <End Role="Skill" EntitySet="Skills" />
+            <End Role="Question" EntitySet="Questions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Question_SkillDetail" Association="ExamModel.FK_Question_SkillDetail">
+            <End Role="SkillDetail" EntitySet="SkillDetails" />
+            <End Role="Question" EntitySet="Questions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuestionVote_Question" Association="ExamModel.FK_QuestionVote_Question">
+            <End Role="Question" EntitySet="Questions" />
+            <End Role="QuestionVote" EntitySet="QuestionVotes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserAttempt_Question" Association="ExamModel.FK_UserAttempt_Question">
+            <End Role="Question" EntitySet="Questions" />
+            <End Role="UserAttempt" EntitySet="UserAttempts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Skill_SkillDetail" Association="ExamModel.FK_Skill_SkillDetail">
+            <End Role="Skill" EntitySet="Skills" />
+            <End Role="SkillDetail" EntitySet="SkillDetails" />
+          </AssociationSet>
+          <EntitySet Name="UserProfiles" EntityType="ExamModel.UserProfile" />
+          <AssociationSet Name="FK_Question_UserProfile" Association="ExamModel.FK_Question_UserProfile">
+            <End Role="UserProfile" EntitySet="UserProfiles" />
+            <End Role="Question" EntitySet="Questions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuestionComment_User" Association="ExamModel.FK_QuestionComment_User">
+            <End Role="UserProfile" EntitySet="UserProfiles" />
+            <End Role="QuestionComment" EntitySet="QuestionComments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Question_User" Association="ExamModel.FK_Question_User">
+            <End Role="UserProfile" EntitySet="UserProfiles" />
+            <End Role="QuestionVote" EntitySet="QuestionVotes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserAttempt_User" Association="ExamModel.FK_UserAttempt_User">
+            <End Role="UserProfile" EntitySet="UserProfiles" />
+            <End Role="UserAttempt" EntitySet="UserAttempts" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Answer">
+          <Key>
+            <PropertyRef Name="AnswerId" />
+          </Key>
+          <Property Name="AnswerId" Type="Int32" Nullable="false" />
+          <Property Name="QuestionId" Type="Int64" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FileName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OriginalFileName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsCorrectAnswer" Type="Boolean" />
+          <NavigationProperty Name="Question" Relationship="ExamModel.FK_Answer_Question" FromRole="Answer" ToRole="Question" />
+        </EntityType>
         <EntityType Name="Certificate">
           <Key>
             <PropertyRef Name="CertificateId" />
           </Key>
           <Property Name="CertificateId" Type="Int32" Nullable="false" />
-          <Property Name="CompanyName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="CertificateCode" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="CertificateName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Technology" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CompanyName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CertificateCode" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CertificateName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Technology" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="PublishDate" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Questions" Relationship="Self.FK_Question_Certificate" FromRole="Certificate" ToRole="Question" />
-          <NavigationProperty Name="Skills" Relationship="Self.FK_Skill_Certificate" FromRole="Certificate" ToRole="Skill" />
+          <NavigationProperty Name="Questions" Relationship="ExamModel.FK_Question_Certificate" FromRole="Certificate" ToRole="Question" />
+          <NavigationProperty Name="QuestionComments" Relationship="ExamModel.FK_QuestionComment_Question" FromRole="Certificate" ToRole="QuestionComment" />
+          <NavigationProperty Name="Skills" Relationship="ExamModel.FK_Skill_Certificate" FromRole="Certificate" ToRole="Skill" />
         </EntityType>
         <EntityType Name="Question">
           <Key>
@@ -261,32 +482,68 @@
           <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
           <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Certificate" Relationship="Self.FK_Question_Certificate" FromRole="Question" ToRole="Certificate" />
-          <NavigationProperty Name="QuestionLevel" Relationship="Self.FK_Question_QuestionLevel" FromRole="Question" ToRole="QuestionLevel" />
-          <NavigationProperty Name="Skill" Relationship="Self.FK_Question_Skill" FromRole="Question" ToRole="Skill" />
-          <NavigationProperty Name="SkillDetail" Relationship="Self.FK_Question_SkillDetail" FromRole="Question" ToRole="SkillDetail" />
-          <NavigationProperty Name="UserProfile" Relationship="Self.FK_Question_UserProfile" FromRole="Question" ToRole="UserProfile" />
+          <Property Name="Vote" Type="Int32" />
+          <Property Name="Confirmed" Type="Boolean" />
+          <Property Name="ConfirmedBy" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CinfirmDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Answers" Relationship="ExamModel.FK_Answer_Question" FromRole="Question" ToRole="Answer" />
+          <NavigationProperty Name="Certificate" Relationship="ExamModel.FK_Question_Certificate" FromRole="Question" ToRole="Certificate" />
+          <NavigationProperty Name="QuestionLevel" Relationship="ExamModel.FK_Question_QuestionLevel" FromRole="Question" ToRole="QuestionLevel" />
+          <NavigationProperty Name="Skill" Relationship="ExamModel.FK_Question_Skill" FromRole="Question" ToRole="Skill" />
+          <NavigationProperty Name="SkillDetail" Relationship="ExamModel.FK_Question_SkillDetail" FromRole="Question" ToRole="SkillDetail" />
+          <NavigationProperty Name="QuestionVotes" Relationship="ExamModel.FK_QuestionVote_Question" FromRole="Question" ToRole="QuestionVote" />
+          <NavigationProperty Name="UserAttempts" Relationship="ExamModel.FK_UserAttempt_Question" FromRole="Question" ToRole="UserAttempt" />
+          <NavigationProperty Name="UserProfile" Relationship="ExamModel.FK_Question_UserProfile" FromRole="Question" ToRole="UserProfile" />
+        </EntityType>
+        <EntityType Name="QuestionComment">
+          <Key>
+            <PropertyRef Name="QuestionCommentId" />
+          </Key>
+          <Property Name="QuestionCommentId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="QuestionId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CommentDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Email" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="FullName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ParrentCommentId" Type="Int64" />
+          <Property Name="Confirmed" Type="Boolean" />
+          <Property Name="ConfirmedBy" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ConfirmDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Certificate" Relationship="ExamModel.FK_QuestionComment_Question" FromRole="QuestionComment" ToRole="Certificate" />
+          <Property Name="Comment" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="UserProfile" Relationship="ExamModel.FK_QuestionComment_User" FromRole="QuestionComment" ToRole="UserProfile" />
         </EntityType>
         <EntityType Name="QuestionLevel">
           <Key>
             <PropertyRef Name="QuestionLevelId" />
           </Key>
           <Property Name="QuestionLevelId" Type="Int32" Nullable="false" />
-          <Property Name="QuestionLevelName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Questions" Relationship="Self.FK_Question_QuestionLevel" FromRole="QuestionLevel" ToRole="Question" />
+          <Property Name="QuestionLevelName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Questions" Relationship="ExamModel.FK_Question_QuestionLevel" FromRole="QuestionLevel" ToRole="Question" />
+        </EntityType>
+        <EntityType Name="QuestionVote">
+          <Key>
+            <PropertyRef Name="QuestionVoteId" />
+          </Key>
+          <Property Name="QuestionVoteId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="QuestionId" Type="Int64" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Vote" Type="Int32" Nullable="false" />
+          <Property Name="VoteDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Question" Relationship="ExamModel.FK_QuestionVote_Question" FromRole="QuestionVote" ToRole="Question" />
+          <NavigationProperty Name="UserProfile" Relationship="ExamModel.FK_Question_User" FromRole="QuestionVote" ToRole="UserProfile" />
         </EntityType>
         <EntityType Name="Skill">
           <Key>
             <PropertyRef Name="SkillId" />
           </Key>
           <Property Name="SkillId" Type="Int32" Nullable="false" />
-          <Property Name="SkillName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SkillName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="CertificateId" Type="Int32" Nullable="false" />
           <Property Name="SkillOrder" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Certificate" Relationship="Self.FK_Skill_Certificate" FromRole="Skill" ToRole="Certificate" />
-          <NavigationProperty Name="Questions" Relationship="Self.FK_Question_Skill" FromRole="Skill" ToRole="Question" />
-          <NavigationProperty Name="SkillDetails" Relationship="Self.FK_Skill_SkillDetail" FromRole="Skill" ToRole="SkillDetail" />
+          <NavigationProperty Name="Certificate" Relationship="ExamModel.FK_Skill_Certificate" FromRole="Skill" ToRole="Certificate" />
+          <NavigationProperty Name="Questions" Relationship="ExamModel.FK_Question_Skill" FromRole="Skill" ToRole="Question" />
+          <NavigationProperty Name="SkillDetails" Relationship="ExamModel.FK_Skill_SkillDetail" FromRole="Skill" ToRole="SkillDetail" />
         </EntityType>
         <EntityType Name="SkillDetail">
           <Key>
@@ -296,156 +553,22 @@
           <Property Name="SkillId" Type="Int32" Nullable="false" />
           <Property Name="SkillDetailDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="SkillDetailOrder" Type="Int32" />
-          <NavigationProperty Name="Questions" Relationship="Self.FK_Question_SkillDetail" FromRole="SkillDetail" ToRole="Question" />
-          <NavigationProperty Name="Skill" Relationship="Self.FK_Skill_SkillDetail" FromRole="SkillDetail" ToRole="Skill" />
+          <NavigationProperty Name="Questions" Relationship="ExamModel.FK_Question_SkillDetail" FromRole="SkillDetail" ToRole="Question" />
+          <NavigationProperty Name="Skill" Relationship="ExamModel.FK_Skill_SkillDetail" FromRole="SkillDetail" ToRole="Skill" />
         </EntityType>
-        <EntityType Name="UserProfile">
+        <EntityType Name="UserAttempt">
           <Key>
-            <PropertyRef Name="UserId" />
+            <PropertyRef Name="AttemptId" />
           </Key>
-          <Property Name="UserId" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Email" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="FirstName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="LastName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Questions" Relationship="Self.FK_Question_UserProfile" FromRole="UserProfile" ToRole="Question" />
-        </EntityType>
-        <Association Name="FK_Question_Certificate">
-          <End Role="Certificate" Type="Self.Certificate" Multiplicity="1" />
-          <End Role="Question" Type="Self.Question" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Certificate">
-              <PropertyRef Name="CertificateId" />
-            </Principal>
-            <Dependent Role="Question">
-              <PropertyRef Name="CertificateId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Skill_Certificate">
-          <End Role="Certificate" Type="Self.Certificate" Multiplicity="1" />
-          <End Role="Skill" Type="Self.Skill" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Certificate">
-              <PropertyRef Name="CertificateId" />
-            </Principal>
-            <Dependent Role="Skill">
-              <PropertyRef Name="CertificateId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Question_QuestionLevel">
-          <End Role="QuestionLevel" Type="Self.QuestionLevel" Multiplicity="0..1" />
-          <End Role="Question" Type="Self.Question" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="QuestionLevel">
-              <PropertyRef Name="QuestionLevelId" />
-            </Principal>
-            <Dependent Role="Question">
-              <PropertyRef Name="QuestionLevelId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Question_Skill">
-          <End Role="Skill" Type="Self.Skill" Multiplicity="1" />
-          <End Role="Question" Type="Self.Question" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Skill">
-              <PropertyRef Name="SkillId" />
-            </Principal>
-            <Dependent Role="Question">
-              <PropertyRef Name="SkillId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Question_SkillDetail">
-          <End Role="SkillDetail" Type="Self.SkillDetail" Multiplicity="0..1" />
-          <End Role="Question" Type="Self.Question" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SkillDetail">
-              <PropertyRef Name="SkillDetailId" />
-            </Principal>
-            <Dependent Role="Question">
-              <PropertyRef Name="SkillDetailId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Question_UserProfile">
-          <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="0..1" />
-          <End Role="Question" Type="Self.Question" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UserProfile">
-              <PropertyRef Name="UserId" />
-            </Principal>
-            <Dependent Role="Question">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Skill_SkillDetail">
-          <End Role="Skill" Type="Self.Skill" Multiplicity="1" />
-          <End Role="SkillDetail" Type="Self.SkillDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Skill">
-              <PropertyRef Name="SkillId" />
-            </Principal>
-            <Dependent Role="SkillDetail">
-              <PropertyRef Name="SkillId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="ExamEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Certificates" EntityType="Self.Certificate" />
-          <EntitySet Name="Questions" EntityType="Self.Question" />
-          <EntitySet Name="QuestionLevels" EntityType="Self.QuestionLevel" />
-          <EntitySet Name="Skills" EntityType="Self.Skill" />
-          <EntitySet Name="SkillDetails" EntityType="Self.SkillDetail" />
-          <EntitySet Name="UserProfiles" EntityType="Self.UserProfile" />
-          <AssociationSet Name="FK_Question_Certificate" Association="Self.FK_Question_Certificate">
-            <End Role="Certificate" EntitySet="Certificates" />
-            <End Role="Question" EntitySet="Questions" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Skill_Certificate" Association="Self.FK_Skill_Certificate">
-            <End Role="Certificate" EntitySet="Certificates" />
-            <End Role="Skill" EntitySet="Skills" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Question_QuestionLevel" Association="Self.FK_Question_QuestionLevel">
-            <End Role="QuestionLevel" EntitySet="QuestionLevels" />
-            <End Role="Question" EntitySet="Questions" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Question_Skill" Association="Self.FK_Question_Skill">
-            <End Role="Skill" EntitySet="Skills" />
-            <End Role="Question" EntitySet="Questions" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Question_SkillDetail" Association="Self.FK_Question_SkillDetail">
-            <End Role="SkillDetail" EntitySet="SkillDetails" />
-            <End Role="Question" EntitySet="Questions" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Question_UserProfile" Association="Self.FK_Question_UserProfile">
-            <End Role="UserProfile" EntitySet="UserProfiles" />
-            <End Role="Question" EntitySet="Questions" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Skill_SkillDetail" Association="Self.FK_Skill_SkillDetail">
-            <End Role="Skill" EntitySet="Skills" />
-            <End Role="SkillDetail" EntitySet="SkillDetails" />
-          </AssociationSet>
-          <EntitySet Name="Answers" EntityType="ExamModel.Answer" />
-          <AssociationSet Name="FK_Answer_Question" Association="ExamModel.FK_Answer_Question">
-            <End Role="Question" EntitySet="Questions" />
-            <End Role="Answer" EntitySet="Answers" />
-          </AssociationSet>
-        </EntityContainer>
-        <EntityType Name="Answer">
-          <Key>
-            <PropertyRef Name="AnswerId" />
-          </Key>
-          <Property Name="AnswerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="QuestionId" Type="Int64" />
-          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="FileName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="OriginalFileName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="IsCorrectAnswer" Type="Boolean" />
-          <NavigationProperty Name="Question" Relationship="ExamModel.FK_Answer_Question" FromRole="Answer" ToRole="Question" />
+          <Property Name="AttemptId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="QuestionId" Type="Int64" Nullable="false" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="AttemptDate" Type="DateTime" Precision="3" />
+          <Property Name="TimeSpent" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GotItRight" Type="Boolean" />
+          <Property Name="Answers" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Question" Relationship="ExamModel.FK_UserAttempt_Question" FromRole="UserAttempt" ToRole="Question" />
+          <NavigationProperty Name="UserProfile" Relationship="ExamModel.FK_UserAttempt_User" FromRole="UserAttempt" ToRole="UserProfile" />
         </EntityType>
         <Association Name="FK_Answer_Question">
           <End Type="ExamModel.Question" Role="Question" Multiplicity="0..1" />
@@ -459,87 +582,181 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Question_Certificate">
+          <End Type="ExamModel.Certificate" Role="Certificate" Multiplicity="1" />
+          <End Type="ExamModel.Question" Role="Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Certificate">
+              <PropertyRef Name="CertificateId" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="CertificateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuestionComment_Question">
+          <End Type="ExamModel.Certificate" Role="Certificate" Multiplicity="1" />
+          <End Type="ExamModel.QuestionComment" Role="QuestionComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Certificate">
+              <PropertyRef Name="CertificateId" />
+            </Principal>
+            <Dependent Role="QuestionComment">
+              <PropertyRef Name="QuestionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Skill_Certificate">
+          <End Type="ExamModel.Certificate" Role="Certificate" Multiplicity="1" />
+          <End Type="ExamModel.Skill" Role="Skill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Certificate">
+              <PropertyRef Name="CertificateId" />
+            </Principal>
+            <Dependent Role="Skill">
+              <PropertyRef Name="CertificateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Question_QuestionLevel">
+          <End Type="ExamModel.QuestionLevel" Role="QuestionLevel" Multiplicity="0..1" />
+          <End Type="ExamModel.Question" Role="Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuestionLevel">
+              <PropertyRef Name="QuestionLevelId" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="QuestionLevelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Question_Skill">
+          <End Type="ExamModel.Skill" Role="Skill" Multiplicity="1" />
+          <End Type="ExamModel.Question" Role="Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Skill">
+              <PropertyRef Name="SkillId" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="SkillId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Question_SkillDetail">
+          <End Type="ExamModel.SkillDetail" Role="SkillDetail" Multiplicity="0..1" />
+          <End Type="ExamModel.Question" Role="Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SkillDetail">
+              <PropertyRef Name="SkillDetailId" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="SkillDetailId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuestionVote_Question">
+          <End Type="ExamModel.Question" Role="Question" Multiplicity="1" />
+          <End Type="ExamModel.QuestionVote" Role="QuestionVote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="QuestionId" />
+            </Principal>
+            <Dependent Role="QuestionVote">
+              <PropertyRef Name="QuestionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserAttempt_Question">
+          <End Type="ExamModel.Question" Role="Question" Multiplicity="1" />
+          <End Type="ExamModel.UserAttempt" Role="UserAttempt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="QuestionId" />
+            </Principal>
+            <Dependent Role="UserAttempt">
+              <PropertyRef Name="QuestionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Skill_SkillDetail">
+          <End Type="ExamModel.Skill" Role="Skill" Multiplicity="1" />
+          <End Type="ExamModel.SkillDetail" Role="SkillDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Skill">
+              <PropertyRef Name="SkillId" />
+            </Principal>
+            <Dependent Role="SkillDetail">
+              <PropertyRef Name="SkillId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="UserProfile">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="FullName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Questions" Relationship="ExamModel.FK_Question_UserProfile" FromRole="UserProfile" ToRole="Question" />
+          <NavigationProperty Name="QuestionComments" Relationship="ExamModel.FK_QuestionComment_User" FromRole="UserProfile" ToRole="QuestionComment" />
+          <NavigationProperty Name="QuestionVotes" Relationship="ExamModel.FK_Question_User" FromRole="UserProfile" ToRole="QuestionVote" />
+          <NavigationProperty Name="UserAttempts" Relationship="ExamModel.FK_UserAttempt_User" FromRole="UserProfile" ToRole="UserAttempt" />
+        </EntityType>
+        <Association Name="FK_Question_UserProfile">
+          <End Type="ExamModel.UserProfile" Role="UserProfile" Multiplicity="0..1" />
+          <End Type="ExamModel.Question" Role="Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuestionComment_User">
+          <End Type="ExamModel.UserProfile" Role="UserProfile" Multiplicity="0..1" />
+          <End Type="ExamModel.QuestionComment" Role="QuestionComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="QuestionComment">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Question_User">
+          <End Type="ExamModel.UserProfile" Role="UserProfile" Multiplicity="0..1" />
+          <End Type="ExamModel.QuestionVote" Role="QuestionVote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="QuestionVote">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserAttempt_User">
+          <End Type="ExamModel.UserProfile" Role="UserProfile" Multiplicity="1" />
+          <End Type="ExamModel.UserAttempt" Role="UserAttempt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="UserAttempt">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="ExamModelStoreContainer" CdmEntityContainer="ExamEntities">
-          <EntitySetMapping Name="Certificates">
-            <EntityTypeMapping TypeName="ExamModel.Certificate">
-              <MappingFragment StoreEntitySet="Certificate">
-                <ScalarProperty Name="CertificateId" ColumnName="CertificateId" />
-                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
-                <ScalarProperty Name="CertificateCode" ColumnName="CertificateCode" />
-                <ScalarProperty Name="CertificateName" ColumnName="CertificateName" />
-                <ScalarProperty Name="Technology" ColumnName="Technology" />
-                <ScalarProperty Name="PublishDate" ColumnName="PublishDate" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Questions">
-            <EntityTypeMapping TypeName="ExamModel.Question">
-              <MappingFragment StoreEntitySet="Question">
-                <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
-                <ScalarProperty Name="CertificateId" ColumnName="CertificateId" />
-                <ScalarProperty Name="SkillId" ColumnName="SkillId" />
-                <ScalarProperty Name="SkillDetailId" ColumnName="SkillDetailId" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="FileName" ColumnName="FileName" />
-                <ScalarProperty Name="OriginalFileName" ColumnName="OriginalFileName" />
-                <ScalarProperty Name="IsMultiChoice" ColumnName="IsMultiChoice" />
-                <ScalarProperty Name="CorrectAnswerCount" ColumnName="CorrectAnswerCount" />
-                <ScalarProperty Name="AllowShuffleChoices" ColumnName="AllowShuffleChoices" />
-                <ScalarProperty Name="CheckNumberOfSelected" ColumnName="CheckNumberOfSelected" />
-                <ScalarProperty Name="Explanation" ColumnName="Explanation" />
-                <ScalarProperty Name="QuestionLevelId" ColumnName="QuestionLevelId" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="QuestionLevels">
-            <EntityTypeMapping TypeName="ExamModel.QuestionLevel">
-              <MappingFragment StoreEntitySet="QuestionLevel">
-                <ScalarProperty Name="QuestionLevelId" ColumnName="QuestionLevelId" />
-                <ScalarProperty Name="QuestionLevelName" ColumnName="QuestionLevelName" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Skills">
-            <EntityTypeMapping TypeName="ExamModel.Skill">
-              <MappingFragment StoreEntitySet="Skill">
-                <ScalarProperty Name="SkillId" ColumnName="SkillId" />
-                <ScalarProperty Name="SkillName" ColumnName="SkillName" />
-                <ScalarProperty Name="CertificateId" ColumnName="CertificateId" />
-                <ScalarProperty Name="SkillOrder" ColumnName="SkillOrder" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SkillDetails">
-            <EntityTypeMapping TypeName="ExamModel.SkillDetail">
-              <MappingFragment StoreEntitySet="SkillDetail">
-                <ScalarProperty Name="SkillDetailId" ColumnName="SkillDetailId" />
-                <ScalarProperty Name="SkillId" ColumnName="SkillId" />
-                <ScalarProperty Name="SkillDetailDescription" ColumnName="SkillDetailDescription" />
-                <ScalarProperty Name="SkillDetailOrder" ColumnName="SkillDetailOrder" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="UserProfiles">
-            <EntityTypeMapping TypeName="ExamModel.UserProfile">
-              <MappingFragment StoreEntitySet="UserProfile">
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Answers">
             <EntityTypeMapping TypeName="ExamModel.Answer">
               <MappingFragment StoreEntitySet="Answer">
@@ -549,6 +766,125 @@
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
                 <ScalarProperty Name="AnswerId" ColumnName="AnswerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Certificates">
+            <EntityTypeMapping TypeName="ExamModel.Certificate">
+              <MappingFragment StoreEntitySet="Certificate">
+                <ScalarProperty Name="PublishDate" ColumnName="PublishDate" />
+                <ScalarProperty Name="Technology" ColumnName="Technology" />
+                <ScalarProperty Name="CertificateName" ColumnName="CertificateName" />
+                <ScalarProperty Name="CertificateCode" ColumnName="CertificateCode" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="CertificateId" ColumnName="CertificateId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Questions">
+            <EntityTypeMapping TypeName="ExamModel.Question">
+              <MappingFragment StoreEntitySet="Question">
+                <ScalarProperty Name="CinfirmDate" ColumnName="CinfirmDate" />
+                <ScalarProperty Name="ConfirmedBy" ColumnName="ConfirmedBy" />
+                <ScalarProperty Name="Confirmed" ColumnName="Confirmed" />
+                <ScalarProperty Name="Vote" ColumnName="Vote" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="QuestionLevelId" ColumnName="QuestionLevelId" />
+                <ScalarProperty Name="Explanation" ColumnName="Explanation" />
+                <ScalarProperty Name="CheckNumberOfSelected" ColumnName="CheckNumberOfSelected" />
+                <ScalarProperty Name="AllowShuffleChoices" ColumnName="AllowShuffleChoices" />
+                <ScalarProperty Name="CorrectAnswerCount" ColumnName="CorrectAnswerCount" />
+                <ScalarProperty Name="IsMultiChoice" ColumnName="IsMultiChoice" />
+                <ScalarProperty Name="OriginalFileName" ColumnName="OriginalFileName" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="SkillDetailId" ColumnName="SkillDetailId" />
+                <ScalarProperty Name="SkillId" ColumnName="SkillId" />
+                <ScalarProperty Name="CertificateId" ColumnName="CertificateId" />
+                <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuestionComments">
+            <EntityTypeMapping TypeName="ExamModel.QuestionComment">
+              <MappingFragment StoreEntitySet="QuestionComment">
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="ConfirmDate" ColumnName="ConfirmDate" />
+                <ScalarProperty Name="ConfirmedBy" ColumnName="ConfirmedBy" />
+                <ScalarProperty Name="Confirmed" ColumnName="Confirmed" />
+                <ScalarProperty Name="ParrentCommentId" ColumnName="ParrentCommentId" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="CommentDate" ColumnName="CommentDate" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
+                <ScalarProperty Name="QuestionCommentId" ColumnName="QuestionCommentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuestionLevels">
+            <EntityTypeMapping TypeName="ExamModel.QuestionLevel">
+              <MappingFragment StoreEntitySet="QuestionLevel">
+                <ScalarProperty Name="QuestionLevelName" ColumnName="QuestionLevelName" />
+                <ScalarProperty Name="QuestionLevelId" ColumnName="QuestionLevelId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuestionVotes">
+            <EntityTypeMapping TypeName="ExamModel.QuestionVote">
+              <MappingFragment StoreEntitySet="QuestionVote">
+                <ScalarProperty Name="VoteDate" ColumnName="VoteDate" />
+                <ScalarProperty Name="Vote" ColumnName="Vote" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
+                <ScalarProperty Name="QuestionVoteId" ColumnName="QuestionVoteId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Skills">
+            <EntityTypeMapping TypeName="ExamModel.Skill">
+              <MappingFragment StoreEntitySet="Skill">
+                <ScalarProperty Name="SkillOrder" ColumnName="SkillOrder" />
+                <ScalarProperty Name="CertificateId" ColumnName="CertificateId" />
+                <ScalarProperty Name="SkillName" ColumnName="SkillName" />
+                <ScalarProperty Name="SkillId" ColumnName="SkillId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SkillDetails">
+            <EntityTypeMapping TypeName="ExamModel.SkillDetail">
+              <MappingFragment StoreEntitySet="SkillDetail">
+                <ScalarProperty Name="SkillDetailOrder" ColumnName="SkillDetailOrder" />
+                <ScalarProperty Name="SkillDetailDescription" ColumnName="SkillDetailDescription" />
+                <ScalarProperty Name="SkillId" ColumnName="SkillId" />
+                <ScalarProperty Name="SkillDetailId" ColumnName="SkillDetailId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserAttempts">
+            <EntityTypeMapping TypeName="ExamModel.UserAttempt">
+              <MappingFragment StoreEntitySet="UserAttempt">
+                <ScalarProperty Name="Answers" ColumnName="Answers" />
+                <ScalarProperty Name="GotItRight" ColumnName="GotItRight" />
+                <ScalarProperty Name="TimeSpent" ColumnName="TimeSpent" />
+                <ScalarProperty Name="AttemptDate" ColumnName="AttemptDate" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
+                <ScalarProperty Name="AttemptId" ColumnName="AttemptId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserProfiles">
+            <EntityTypeMapping TypeName="ExamModel.UserProfile">
+              <MappingFragment StoreEntitySet="UserProfile">
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

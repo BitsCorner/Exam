@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Exam.Database", "Exam.Database\Exam.Database.sqlproj", "{A6A99189-1896-4210-813A-388552C1AE81}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exam.Contracts", "Exam.Entities\Exam.Contracts.csproj", "{2250EAF0-BBAD-40BA-BE09-85239A4439FB}"

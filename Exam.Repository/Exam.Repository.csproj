@@ -78,7 +78,13 @@
     <Compile Include="Question.cs">
       <DependentUpon>ExamModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="QuestionComment.cs">
+      <DependentUpon>ExamModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="QuestionLevel.cs">
+      <DependentUpon>ExamModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="QuestionVote.cs">
       <DependentUpon>ExamModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Repository.cs" />
@@ -86,6 +92,9 @@
       <DependentUpon>ExamModel.tt</DependentUpon>
     </Compile>
     <Compile Include="SkillDetail.cs">
+      <DependentUpon>ExamModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserAttempt.cs">
       <DependentUpon>ExamModel.tt</DependentUpon>
     </Compile>
     <Compile Include="UserProfile.cs">

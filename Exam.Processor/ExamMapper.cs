@@ -118,7 +118,7 @@ namespace Exam.Business
             return result.AsEnumerable(); 
         }
 
-        private Contracts.QuestionsResponse Map(Question question)
+        internal Contracts.QuestionsResponse Map(Question question)
         {
             if (question == null)
                 return null;
@@ -136,7 +136,7 @@ namespace Exam.Business
             };
         }
 
-        private IEnumerable<Contracts.AnswerResponse> Map(ICollection<Answer> answers)
+        internal IEnumerable<Contracts.AnswerResponse> Map(ICollection<Answer> answers)
         {
             if (answers == null)
                 return null;
@@ -148,6 +148,66 @@ namespace Exam.Business
                              IsCorrectAnswer = answer.IsCorrectAnswer
                          };
             return result.AsEnumerable();
+        }
+
+        internal UserProfile Map(Contracts.UserRequest user)
+        {
+            if (user == null)
+                return null;
+
+            return new UserProfile
+            {
+                UserId = user.UserId,
+                Email = user.Email,
+                FullName = user.FullName,
+                CreatedDate = DateTime.UtcNow
+            };
+        }
+
+        internal QuestionVote Map(Contracts.QuestionVoteRequest questionVote)
+        {
+            if (questionVote == null)
+                return null;
+
+            return new QuestionVote
+            {
+                UserId = questionVote.UserId,
+                QuestionId = questionVote.QuestionId,
+                Vote = questionVote.Vote,
+                VoteDate = DateTime.UtcNow
+            };
+        }
+        internal UserAttempt Map(Contracts.UserAttemptRequest userAttempt)
+        {
+            if (userAttempt == null)
+                return null;
+
+            return new UserAttempt
+            {
+                UserId = userAttempt.UserId,
+                QuestionId = userAttempt.QuestionId,
+                AttemptDate = DateTime.UtcNow,
+                GotItRight = userAttempt.GotItRight,
+                Answers = string.Join(",", userAttempt.Answers),
+                TimeSpent = userAttempt.TimeSpent,
+            };
+        }
+        internal QuestionComment Map(Contracts.QuestionCommentRequest questionComment)
+        {
+            if (questionComment == null)
+                return null;
+
+            return new QuestionComment
+            {
+                UserId = questionComment.UserId,
+                Comment = questionComment.Comment,
+                CommentDate = DateTime.UtcNow,
+                Confirmed= false,
+                ParrentCommentId = questionComment.ParentCommentId,
+                QuestionId = questionComment.QuestionId,
+                Email = questionComment.Email,
+                FullName = questionComment.FullName
+            };
         }
     }
 }

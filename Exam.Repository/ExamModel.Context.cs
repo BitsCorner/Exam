@@ -25,12 +25,15 @@ namespace Exam.Repository
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Answer> Answers { get; set; }
         public virtual DbSet<Certificate> Certificates { get; set; }
         public virtual DbSet<Question> Questions { get; set; }
+        public virtual DbSet<QuestionComment> QuestionComments { get; set; }
         public virtual DbSet<QuestionLevel> QuestionLevels { get; set; }
+        public virtual DbSet<QuestionVote> QuestionVotes { get; set; }
         public virtual DbSet<Skill> Skills { get; set; }
         public virtual DbSet<SkillDetail> SkillDetails { get; set; }
+        public virtual DbSet<UserAttempt> UserAttempts { get; set; }
         public virtual DbSet<UserProfile> UserProfiles { get; set; }
-        public virtual DbSet<Answer> Answers { get; set; }
     }
 }

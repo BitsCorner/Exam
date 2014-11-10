@@ -17,6 +17,7 @@ namespace Exam.Repository
         public Certificate()
         {
             this.Questions = new HashSet<Question>();
+            this.QuestionComments = new HashSet<QuestionComment>();
             this.Skills = new HashSet<Skill>();
         }
     
@@ -28,6 +29,7 @@ namespace Exam.Repository
         public System.DateTime PublishDate { get; set; }
     
         public virtual ICollection<Question> Questions { get; set; }
+        public virtual ICollection<QuestionComment> QuestionComments { get; set; }
         public virtual ICollection<Skill> Skills { get; set; }
     }
 }

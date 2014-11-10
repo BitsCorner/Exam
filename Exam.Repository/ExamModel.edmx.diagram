@@ -5,21 +5,30 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="d801e4dff7254d5dac893967aff0925a" Name="Diagram1">
-        <EntityTypeShape EntityType="ExamModel.Certificate" Width="1.5" PointX="0.75" PointY="4.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="ExamModel.Question" Width="1.5" PointX="7.5" PointY="6" IsExpanded="true" />
-        <EntityTypeShape EntityType="ExamModel.QuestionLevel" Width="1.5" PointX="5.25" PointY="6.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ExamModel.Skill" Width="1.5" PointX="3" PointY="10.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ExamModel.SkillDetail" Width="1.5" PointX="5.25" PointY="10.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ExamModel.UserProfile" Width="1.5" PointX="5.25" PointY="13.875" IsExpanded="true" />
-        <AssociationConnector Association="ExamModel.FK_Question_Certificate" ManuallyRouted="false" />
-        <AssociationConnector Association="ExamModel.FK_Skill_Certificate" ManuallyRouted="false" />
-        <AssociationConnector Association="ExamModel.FK_Question_QuestionLevel" ManuallyRouted="false" />
-        <AssociationConnector Association="ExamModel.FK_Question_Skill" ManuallyRouted="false" />
-        <AssociationConnector Association="ExamModel.FK_Question_SkillDetail" ManuallyRouted="false" />
-        <AssociationConnector Association="ExamModel.FK_Question_UserProfile" ManuallyRouted="false" />
-        <AssociationConnector Association="ExamModel.FK_Skill_SkillDetail" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="ExamModel.Answer" Width="1.5" PointX="9.75" PointY="7.625" />
+        <EntityTypeShape EntityType="ExamModel.Answer" Width="1.5" PointX="5.25" PointY="13.5" />
+        <EntityTypeShape EntityType="ExamModel.Certificate" Width="1.5" PointX="0.75" PointY="15.875" />
+        <EntityTypeShape EntityType="ExamModel.Question" Width="1.5" PointX="3" PointY="4.625" />
+        <EntityTypeShape EntityType="ExamModel.QuestionComment" Width="1.5" PointX="6" PointY="6.375" />
+        <EntityTypeShape EntityType="ExamModel.QuestionLevel" Width="1.5" PointX="0.75" PointY="13.5" />
+        <EntityTypeShape EntityType="ExamModel.QuestionVote" Width="1.5" PointX="5.25" PointY="2.875" />
+        <EntityTypeShape EntityType="ExamModel.Skill" Width="1.5" PointX="0.75" PointY="2.5" />
+        <EntityTypeShape EntityType="ExamModel.SkillDetail" Width="1.5" PointX="0.75" PointY="10.5" />
+        <EntityTypeShape EntityType="ExamModel.UserAttempt" Width="1.5" PointX="8.25" PointY="6.625" />
         <AssociationConnector Association="ExamModel.FK_Answer_Question" />
+        <AssociationConnector Association="ExamModel.FK_Question_Certificate" />
+        <AssociationConnector Association="ExamModel.FK_QuestionComment_Question" />
+        <AssociationConnector Association="ExamModel.FK_Skill_Certificate" />
+        <AssociationConnector Association="ExamModel.FK_Question_QuestionLevel" />
+        <AssociationConnector Association="ExamModel.FK_Question_Skill" />
+        <AssociationConnector Association="ExamModel.FK_Question_SkillDetail" />
+        <AssociationConnector Association="ExamModel.FK_QuestionVote_Question" />
+        <AssociationConnector Association="ExamModel.FK_UserAttempt_Question" />
+        <AssociationConnector Association="ExamModel.FK_Skill_SkillDetail" />
+        <EntityTypeShape EntityType="ExamModel.UserProfile" Width="1.5" PointX="0.75" PointY="5.875" />
+        <AssociationConnector Association="ExamModel.FK_Question_UserProfile" />
+        <AssociationConnector Association="ExamModel.FK_QuestionComment_User" />
+        <AssociationConnector Association="ExamModel.FK_Question_User" />
+        <AssociationConnector Association="ExamModel.FK_UserAttempt_User" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -17,6 +17,8 @@ namespace Exam.Repository
         public Question()
         {
             this.Answers = new HashSet<Answer>();
+            this.QuestionVotes = new HashSet<QuestionVote>();
+            this.UserAttempts = new HashSet<UserAttempt>();
         }
     
         public long QuestionId { get; set; }
@@ -37,12 +39,18 @@ namespace Exam.Repository
         public string CreatedBy { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
         public string ModifiedBy { get; set; }
+        public Nullable<int> Vote { get; set; }
+        public Nullable<bool> Confirmed { get; set; }
+        public string ConfirmedBy { get; set; }
+        public Nullable<System.DateTime> CinfirmDate { get; set; }
     
+        public virtual ICollection<Answer> Answers { get; set; }
         public virtual Certificate Certificate { get; set; }
         public virtual QuestionLevel QuestionLevel { get; set; }
         public virtual Skill Skill { get; set; }
         public virtual SkillDetail SkillDetail { get; set; }
+        public virtual ICollection<QuestionVote> QuestionVotes { get; set; }
+        public virtual ICollection<UserAttempt> UserAttempts { get; set; }
         public virtual UserProfile UserProfile { get; set; }
-        public virtual ICollection<Answer> Answers { get; set; }
     }
 }

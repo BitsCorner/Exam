@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Exam.Contracts.Requests;
+using Exam.Contracts;
 
 namespace Exam.Contracts
 {

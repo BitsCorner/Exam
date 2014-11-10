@@ -17,14 +17,19 @@ namespace Exam.Repository
         public UserProfile()
         {
             this.Questions = new HashSet<Question>();
+            this.QuestionComments = new HashSet<QuestionComment>();
+            this.QuestionVotes = new HashSet<QuestionVote>();
+            this.UserAttempts = new HashSet<UserAttempt>();
         }
     
         public string UserId { get; set; }
         public string Email { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public string FullName { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
     
         public virtual ICollection<Question> Questions { get; set; }
+        public virtual ICollection<QuestionComment> QuestionComments { get; set; }
+        public virtual ICollection<QuestionVote> QuestionVotes { get; set; }
+        public virtual ICollection<UserAttempt> UserAttempts { get; set; }
     }
 }

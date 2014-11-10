@@ -146,6 +146,6 @@ END
 IF NOT EXISTS (SELECT * FROM [UserProfile] WHERE userId = 'aramkoukia@gmail.com')
 BEGIN
 	INSERT INTO [UserProfile]
-	SELECT 'aramkoukia@gmail.com', 'aramkoukia@gmail.com', 'Aram', 'Koukia', GETDATE()
+	SELECT 'aramkoukia@gmail.com', 'aramkoukia@gmail.com', 'Aram Koukia', GETDATE()
 END 
 

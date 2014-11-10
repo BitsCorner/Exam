@@ -16,5 +16,14 @@ namespace Exam.Business
         Task<QuestionsResponse> GetQuestion(long questionId);
 
         Task<int> SaveQuestion(QuestionRequest quesion);
+
+        Task<int> SaveUser(UserRequest user);
+
+        Task<int> SaveQuestionComment(QuestionCommentRequest questionComment);
+
+        Task<int> SaveQuestionVote(QuestionVoteRequest questionVote);
+
+        Task<int> SaveUserAttempt(UserAttemptRequest userAttempt);
+
     }
 }
