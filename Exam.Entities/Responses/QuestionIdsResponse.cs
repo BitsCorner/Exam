@@ -19,5 +19,6 @@ namespace Exam.Contracts
         public QuestionLevelResponse QuestionLevel { get; set; }
         public UserResponse User { get; set; }
         public virtual IEnumerable<AnswerResponse> Answers { get; set; }
+        public int Vote { get; set; }
     }
 }

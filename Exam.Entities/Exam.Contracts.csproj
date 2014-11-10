@@ -44,8 +44,8 @@
     <Compile Include="Requests\AnswerRequest.cs" />
     <Compile Include="Requests\DifficultyLevelRequest.cs" />
     <Compile Include="Requests\FileRequest.cs" />
-    <Compile Include="Requests\QuestionCommentRequest.cs" />
     <Compile Include="Requests\QuestionVoteRequest.cs" />
+    <Compile Include="Requests\QuestionCommentRequest.cs" />
     <Compile Include="Requests\QuestionRequest.cs" />
     <Compile Include="Requests\SkillDetailRequest.cs" />
     <Compile Include="Requests\UserAttemptRequest.cs" />

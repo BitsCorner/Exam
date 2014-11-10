@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Exam.Contracts;
 
 namespace Exam.Contracts
 {
-    public class QuestionVoteRequest
+    public class QuestionCommentRequest
     {
-        public Int64 QuestionId { get; set; }
+        public int QuestionId { get; set; }
         public string UserId { get; set; }
-        public int Vote { get; set; }
+        public string Email { get; set; }
+        public string FullName { get; set; }
+        public string Comment { get; set; }
+        public Int64 ParentCommentId { get; set; }
     }
 }

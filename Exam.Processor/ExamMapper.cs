@@ -119,7 +119,6 @@ namespace Exam.Business
                          };
             return result.AsEnumerable(); 
         }
-
         internal Contracts.QuestionsResponse Map(Question question)
         {
             if (question == null)
@@ -134,10 +133,11 @@ namespace Exam.Business
                 CorrectAnswerCount = question.CorrectAnswerCount,
                 Explanation = question.Explanation,
                 IsMultiChoice = question.IsMultiChoice,
+                Vote = (int)question.Vote
+              
                 //QuestionLevel = new Question question.QuestionLevel.QuestionLevelName
             };
         }
-
         internal IEnumerable<Contracts.AnswerResponse> Map(ICollection<Answer> answers)
         {
             if (answers == null)
@@ -146,12 +146,12 @@ namespace Exam.Business
             var result = from answer in answers
                          select new Contracts.AnswerResponse
                          {
+                             AnswerId = answer.AnswerId,
                              Description = answer.Description,
                              IsCorrectAnswer = answer.IsCorrectAnswer
                          };
             return result.AsEnumerable();
         }
-
         internal UserProfile Map(Contracts.UserRequest user)
         {
             if (user == null)
@@ -165,7 +165,6 @@ namespace Exam.Business
                 CreatedDate = DateTime.UtcNow
             };
         }
-
         internal QuestionVote Map(Contracts.QuestionVoteRequest questionVote)
         {
             if (questionVote == null)
@@ -190,7 +189,7 @@ namespace Exam.Business
                 QuestionId = userAttempt.QuestionId,
                 AttemptDate = DateTime.UtcNow,
                 GotItRight = userAttempt.GotItRight,
-                Answers = string.Join(",", userAttempt.Answers),
+                Answers = userAttempt.Answers != null ? string.Join(",", userAttempt.Answers) : null,
                 TimeSpent = userAttempt.TimeSpent,
             };
         }

@@ -64,6 +64,15 @@ examApp.factory('examData', function ($resource, $http, $q) {
         saveUser: function (user) {
             return $resource(baseUrl + "User", null).save(user);
         },
+
+        saveUserAttempt: function (userAttempt) {
+            return $resource(baseUrl + "Question/Attempt", null).save(userAttempt);
+        },
+
+        saveQuestionVote: function (questionVote) {
+            return $resource(baseUrl + "Question/Vote", null).save(questionVote);
+        },
+
         //storeQuestionIds: function (qIds) {
         //    questionIds = qIds;
         //},

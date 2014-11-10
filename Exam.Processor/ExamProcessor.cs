@@ -71,6 +71,12 @@ namespace Exam.Business
 
         public async Task<int> SaveQuestionVote(Contracts.QuestionVoteRequest questionVote)
         {
+            var question = await this.questionRepository.FindAsync(m => m.QuestionId == questionVote.QuestionId);
+            if (question != null)
+            { 
+                question.Vote += questionVote.Vote;
+                this.questionRepository.UpdateAsync(question);
+            }
             var mappedQuestionVote = Map(questionVote);
             return await this.questionVoteRepository.AddAsync(mappedQuestionVote);
         }

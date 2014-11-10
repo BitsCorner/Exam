@@ -88,6 +88,21 @@ examApp.controller('CertPrepController',
             $scope.$broadcast('timer-stop');
             $scope.timerRunning = false;
 
+            var userAnswers = [];
+            for (var i = 0; i < $scope.question.Answers.length; i++) {
+                if ($scope.question.Answers[i].checked) 
+                    userAnswers.push($scope.question.Answers[i].AnswerId);
+            }
+
+            var userAttempt = {
+                QuestionId: question.QuestionId,
+                UserId: $scope.userInfo.emails[0].value,
+                TimeSpent: $scope.question.TimeSpent,
+                GotItRight: gotItRight,
+                Answers: userAnswers
+            };
+            examData.saveUserAttempt(userAttempt);
+
         };
 
         $scope.closeAlert = function (index) {
@@ -116,8 +131,29 @@ examApp.controller('CertPrepController',
         });
 
         $scope.$on('timer-tick', function (event, args) {
+            $scope.question.TimeSpent = args.millis / 1000;
             $rootScope.totalTime += (args.millis / 1000);
             $scope.prepTotalTime = $rootScope.totalTime
         });
+
+        $scope.voteUp = function () {
+            var questionVote = {
+                QuestionId: $scope.question.QuestionId,
+                UserId: $scope.userInfo.emails[0].value,
+                Vote: 1,
+            };
+            examData.saveQuestionVote(questionVote);
+            $scope.question.Vote += 1;
+        };
+
+        $scope.voteDown = function () {
+            var questionVote = {
+                QuestionId: $scope.question.QuestionId,
+                UserId: $scope.userInfo.emails[0].value,
+                Vote: -1,
+            };
+            examData.saveQuestionVote(questionVote);
+            $scope.question.Vote -= 1;
+        };
 
  });
