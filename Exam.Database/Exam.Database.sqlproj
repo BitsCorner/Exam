@@ -68,6 +68,8 @@
     <Build Include="Tables\SkillDetail.sql" />
     <Build Include="Tables\UserProfile.sql" />
     <Build Include="Tables\QuestionLevel.sql" />
+    <Build Include="Tables\UserAttampt.sql" />
+    <Build Include="Tables\QuestionVote.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="Exam.Database.refactorlog" />

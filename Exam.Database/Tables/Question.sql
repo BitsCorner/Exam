@@ -18,6 +18,10 @@
     [CreatedBy] NVARCHAR(50) NULL, 
     [ModifiedDate] DATETIME NULL, 
     [ModifiedBy] NVARCHAR(50) NULL, 
+    [Vote] INT NULL, 
+    [Confirmed] BIT NULL, 
+    [ConfirmedBy] NVARCHAR(500) NULL, 
+    [CinfirmDate] DATETIME NULL, 
     CONSTRAINT [FK_Question_Certificate] FOREIGN KEY ([CertificateId]) 
 									 REFERENCES [Certificate]([CertificateId]),
     CONSTRAINT [FK_Question_Skill] FOREIGN KEY ([SkillId]) 
