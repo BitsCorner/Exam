@@ -1,10 +1,5 @@
-﻿<div class="panel panel-info ng-cloak">
-    <div class="panel-heading">
-        <label>Certificate:</label> {{certificate.CompanyName}} {{certificate.CertificateCode}} {{certificate.CertificateName}} <label>Technology:</label> {{certificate.Technology}}
-    </div>
-</div>
-
-<div class="row ng-cloak" style="margin-bottom:20px;">
+﻿
+<div class="row" style="margin-bottom:20px;">
     <div class="col-md-12" style="height:72px;">
         <div class="col-md-6">
             <a ng-disabled="prevQuestionId==0" href="#/CertPrep/{{certificate.CertificateId}}/Question/{{prevQuestionId}}" type="button" class=" btn btn-primary">
@@ -44,24 +39,12 @@
                         </small>
                     </div>
                 </div>
-                <!--<div class="col-md-4">
-                </div>-->
-                <!--<div class="col-md-4 text-right">
-
-                </div>
-                <div class="col-md-3">
-                    <small>
-                        54%	(511) <br />
-                        46%	(433)
-                    </small>
-                </div>-->
             </alert>
-
         </div>
     </div>
 </div>
 
-<div class="panel panel-info ng-cloak">
+<div class="panel panel-info">
     <div class="panel-heading">
         <div class="row">
             <div class="col-md-12">
@@ -143,6 +126,7 @@
         </div>
     </div>
 </div>
+
 <div class="panel panel-default ng-cloak" ng-if="showCorrectAnswer">
     <div class="panel-heading">
         <span class="text-info">
@@ -158,23 +142,4 @@
     </div>
 </div>
 
-<div class="panel panel-default ng-cloak" ng-if="displayComments">
-    <div class="panel-heading text-info">
-        <span class="text-info">
-            <strong>0 Comments </strong>
-        </span>
-        <button type="button" class="close" ng-click="close()">
-            <span aria-hidden="true">×</span>
-            <span class="sr-only">Close</span>
-        </button>
-    </div>
-    <div class="panel-body">
-        <div class="form-group">
-            <textarea class="form-control" name="Comment" placeholder="Join the discussion..." required="required" rows="5"></textarea>
-        </div>
-        <div class="form-group">
-            <button ng-click="saveComment()" type="submit" class="btn btn-info">Submit</button>
-        </div>
-    </div>
-</div>
-
+<div ng-include="'QuestionComments.html'" ng-controller="QuestionCommentController"></div>

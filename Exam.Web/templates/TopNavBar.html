@@ -1,0 +1,41 @@
+﻿        <!-- Static navbar -->
+<div class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#/Certificates">
+                <img alt="Brand" src="fav.ico" style="width:20px">
+                Certificate Preparation
+            </a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#/Certificates">Certificates</a></li>
+                <li><a href="#/newQuestion">Dump a question</a></li>
+                <li><a href="#/feedback">Feed back</a></li>
+                <li><a href="http://www.koukia.ca">Bits Corner Blog</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li ng-hide="!isSignedIn()">
+                    <a href="#"><small>{{userInfo.displayName}}</small></a>
+                </li>
+                <li ng-hide="!isSignedIn()">
+                    <img src="{{userInfo.image.url}}" style="width:40px;height:40px;border-radius:20px; margin-top:5px" />
+                </li>
+                <li style="padding-top:10px;">
+                    <!-- Define controller for body. In this example we use only one controller for the scope of entire body. -->
+                    <!-- Place a span that is going to act as a container for button rendering through script code. -->
+                    <span ng-hide="isSignedIn()" id="googleSignIn">
+                        <span id="signInButton">
+                        </span>
+                    </span>
+
+                    <!-- Don't forget to place the script that does the asynchronous loading of Google+ JavaScript API.
+                    Because it is loaded asynchronously, it might take some time to load.
+                    Place some loading notification, so user won't get confused.
+                    You can use ng-show and ng-hide to show or hide your notification and accomplish best user experience. -->
+                </li>
+            </ul>
+        </div>
+        <!--/.nav-collapse -->
+    </div><!--/.container-fluid -->
+</div>

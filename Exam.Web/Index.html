@@ -48,91 +48,30 @@
     </script>
     <!-- Second script needed for accessing Google API (gapi.*) . It's usage will be described in controller. -->
 
-
     <script src="app/js/app.js"></script>
+
+    <script src="app/js/services/examData.js"></script>
+    
+    <script src="app/js/controllers/SignInController.js"></script>
     <script src="app/js/controllers/CertificateController.js"></script>
     <script src="app/js/controllers/DumpQuestionController.js"></script>
-    <script src="app/js/controllers/CertPrepController.js"></script>
-    <script src="app/js/services/examData.js"></script>
-    <script src="app/js/controllers/SignInController.js"></script>
-    <script src="app/js/controllers/CertPrepStartController.js"></script>
-    <script src="app/js/httpLoader.js"></script>
+
+    <script src="app/js/controllers/AttemptController.js"></script>    
+    <script src="app/js/controllers/QuestionController.js"></script>
+    <script src="app/js/controllers/QuestionCommentController.js"></script>
 
     <link rel="shortcut icon" type="image/ico" href="fav.ico" />
 </head>
 <body ng-controller="SignInController" class=“ng-cloak”>
 
     <div class="container layoutContainer">
-
-        <!-- Static navbar -->
-        <div class="navbar navbar-default" role="navigation">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="#/Certificates">
-                        <img alt="Brand" src="fav.ico" style="width:20px">
-                        Certificate Preparation
-                    </a>
-                </div>
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li class="active"><a href="#/Certificates">Certificates</a></li>
-                        <li><a href="#/newQuestion">Dump a question</a></li>
-                        <li><a href="#/feedback">Feed back</a></li>
-                        <li><a href="http://www.koukia.ca">Bits Corner Blog</a></li>
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li ng-hide="!isSignedIn()">
-                            <a href="#"><small>{{userInfo.displayName}}</small></a>
-                        </li>
-                        <li ng-hide="!isSignedIn()">
-                            <img src="{{userInfo.image.url}}" style="width:40px;height:40px;border-radius:20px; margin-top:5px" />
-                        </li>
-                        <li style="padding-top:10px;">
-                            <!-- Define controller for body. In this example we use only one controller for the scope of entire body. -->
-                            <!-- Place a span that is going to act as a container for button rendering through script code. -->
-                            <span ng-hide="isSignedIn()" id="googleSignIn">
-                                <span id="signInButton">
-                                </span>
-                            </span>
-
-                            <!-- Don't forget to place the script that does the asynchronous loading of Google+ JavaScript API.
-                            Because it is loaded asynchronously, it might take some time to load.
-                            Place some loading notification, so user won't get confused.
-                            You can use ng-show and ng-hide to show or hide your notification and accomplish best user experience. -->
-                        </li>
-                    </ul>
-                </div>
-                <!--/.nav-collapse -->
-            </div><!--/.container-fluid -->
-        </div>
-
+        
+        <div ng-include="'./templates/TopNavBar.html'"></div>
         <ng-view></ng-view>
 
     </div>
-    <!-- /container -->
-    <div class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <p class="text-muted" style="margin-top:15px">
-                        &copy; 2014-2015 - Certificate Preparation - Powered by: <a href="Http://www.koukia.ca" target="_blank">Aram Koukia</a>
-                        <a title="Bits Corner on Facebook" href="https://www.facebook.com/10corner" target="_blank">
-                            <img src="app/img/facebook-logo.png" alt="Bits Corner (Aram Koukia) on Facebook" style="width: 32px;" />
-                        </a>
-                        <a title="Aram Koukia on Linkedin" href="http://www.linkedin.com/pub/aram-koukia/53/898/128" target="_blank">
-                            <img alt="Aram Koukia on Linkedin" src="app/img/linkedin-logo.png" style="width: 32px;" />
-                        </a>
-                        <a title="Follow Aram Koukia on Twitter" href="https://twitter.com/aramkoukia" target="_blank">
-                            <img alt="Follow Aram Koukia on Twitter" src="app/img/twitter-logo.png" style="width: 32px;" />
-                        </a>
-                        <a title="Get and follow the posts with RSS Feed here" href="http://www.koukia.ca/Blog/NewPostsRSS" target="_blank">
-                            <img alt="Get and follow the posts with RSS Feed here" src="app/img/rss-logo.png" style="width: 32px;" />
-                        </a>
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
+
+    <div ng-include="'./templates/FooterBar.html'"></div>
 
     <toaster-container></toaster-container>
     <http-loader></http-loader>

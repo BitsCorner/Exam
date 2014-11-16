@@ -1,23 +1,24 @@
 ﻿<div class="panel panel-info ng-cloak">
     <div class="panel-heading">
         <label>Certificate:</label> {{certificate.CompanyName}} {{certificate.CertificateCode}} {{certificate.CertificateName}} <label>Technology:</label> {{certificate.Technology}}
+        <button ng-show="questionsLoaded" ng-click="endAttempt()" class="btn btn-primary btn-sm" role="button">Stop Preparation</button>
     </div>
+    
 </div>
 
-<div class="panel panel-info ng-cloak">
+<div class="panel panel-info ng-cloak" ng-show="!questionsLoaded">
     <div class="panel-heading">
         <h3 class="panel-title">
-            <span class="glyphicon glyphicon-lock"></span>
+            <span class="glyphicon glyphicon-asterisk"></span>
             Setup the your preperation options
         </h3>
     </div>
     <div class="panel-body">
-
         <form role="form">
             <div class="form-group">
                 <label for="inputEmail3" class="col-sm-2 control-label">Number of questions:</label>
                 <div class="col-sm-1">
-                    <input type="text" class="form-control text-center" value="50" maxlength="2" >
+                    <input type="text" class="form-control text-center" value="50" maxlength="2">
                 </div>
             </div>
             <div class="form-group">
@@ -52,7 +53,7 @@
                 <div class="col-sm-offset-2 col-sm-10">
                     <div class="checkbox-inline">
                         <label>
-                            <input type="checkbox" > Start a timer
+                            <input type="checkbox"> Start a timer
                         </label>
                     </div>
                 </div>
@@ -65,10 +66,14 @@
             </div>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10 text-right">
-                    <a href="#/CertPrep/{{certificate.CertificateId}}/Question/{{firstQuestionId}}" class="btn btn-primary btn-sm" role="button">Start Preparation</a>
+                    <button ng-click="startAttempt()" class="btn btn-primary btn-sm" role="button">Start Preparation</button>
                 </div>
             </div>
         </form>
 
     </div>
+</div>
+
+<div ng-show ="questionsLoaded">
+    <div ng-include="'./templates/Question.html'" ng-controller="QuestionController"></div>
 </div>

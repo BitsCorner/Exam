@@ -208,6 +208,8 @@
     <Content Include="templates\Login.html" />
     <Content Include="templates\CertPrep.html" />
     <Content Include="templates\DumpQuestion.html" />
+    <Content Include="templates\QuestionComments.html" />
+    <Content Include="templates\QuestionView.html" />
     <Content Include="web.config" />
     <Content Include="packages.config" />
     <Content Include="app\fonts\fontawesome-webfont.ttf" />

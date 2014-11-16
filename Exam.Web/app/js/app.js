@@ -1,7 +1,7 @@
 'use strict';
 
 var examApp = angular.module('examApp', ['ngResource', 'ui.bootstrap', 'ngRoute', 'toaster', 'angularFileUpload', 'summernote', 'ngSanitize', 'timer'])
-    .config(function ($routeProvider, $locationProvider, $httpProvider) {
+    .config(function ($routeProvider, $locationProvider) {
         $routeProvider.when('/Certificates',
             {
                 templateUrl: 'templates/Certificates.html',
@@ -20,27 +20,16 @@ var examApp = angular.module('examApp', ['ngResource', 'ui.bootstrap', 'ngRoute'
                 templateUrl: 'templates/Login.html',
                 controller: 'SignInController'
             });
-        $routeProvider.when('/CertPrepStart/:certificateId',
+        $routeProvider.when('/Attempt/:certificateId',
             {
-                templateUrl: 'templates/CertPrepStart.html',
-                controller: 'CertPrepStartController',
+                templateUrl: 'templates/Attempt.html',
+                controller: 'AttemptController',
                 auth: function (user) {
                     return user;
                 }
             });
 
-        $routeProvider.when('/CertPrep/:certificateId/Question/:questionId',
-            {
-                templateUrl: 'templates/CertPrep.html',
-                controller: 'CertPrepController',
-                auth: function (user) {
-                    return user;
-                }
-            });
-
-        $routeProvider.otherwise({ redirectTo: 'Certificates' });
-
-        $httpProvider.interceptors.push('httpLoaderInterceptor');
+        //$routeProvider.otherwise({ redirectTo: 'Certificates' });
 
         //TODO: this doesn't work for some reason?! to be able to take # out of the Href attr from the Index.html
         //$locationProvider.html5Mode(true);
