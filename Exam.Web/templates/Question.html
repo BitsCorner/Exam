@@ -2,12 +2,12 @@
 <div class="row" style="margin-bottom:20px;">
     <div class="col-md-12" style="height:72px;">
         <div class="col-md-6">
-            <a ng-disabled="prevQuestionId==0" href="#/CertPrep/{{certificate.CertificateId}}/Question/{{prevQuestionId}}" type="button" class=" btn btn-primary">
+            <button ng-disabled="prevQuestionId==0" ng-click="prevQuestion()" type="button" class=" btn btn-primary">
                 <span class="glyphicon glyphicon-chevron-left"></span> Previous
-            </a>
-            <a ng-disabled="nextQuestionId==0" href="#/CertPrep/{{certificate.CertificateId}}/Question/{{nextQuestionId}}" type="button" class=" btn btn-primary">
+            </button>
+            <button ng-disabled="nextQuestionId==0" ng-click="nextQuestion()" type="button" class="btn btn-primary">
                 Next <span class="glyphicon glyphicon-chevron-right"></span>
-            </a>
+            </button>
             <button type="button" class="btn btn-info" ng-click="showComments(question)">
                 <span class="glyphicon glyphicon-comment"></span>&nbsp;Show comments
             </button>
@@ -142,4 +142,4 @@
     </div>
 </div>
 
-<div ng-include="'QuestionComments.html'" ng-controller="QuestionCommentController"></div>
+<div ng-include="'./templates/QuestionComments.html'" ng-controller="QuestionCommentController"></div>

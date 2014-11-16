@@ -1,69 +1,42 @@
 ﻿'use strict'
 
 examApp.controller('QuestionController',
-    function QuestionController($scope) {
+    function QuestionController($scope, examData) {
+        $scope.prevQuestion = function () {
 
-        ////TODO: this we might have, if user not bookmarked, is $resource smart enough?
-        //if (!$rootScope.questionIds) {
-        //    examData.getQuestionIds($routeParams.certificateId, questionsQuantity, orderBy)
-        //            .then(function (data) {
-        //                $scope.currentIndex = 0;
-        //                $scope.firstQuestionId = data[$scope.currentIndex].QuestionId;
-        //                $scope.questionIds = data;
+            if ($scope.currentIndex > 0)
+                $scope.currentIndex -= 1;
+            examData.getQuestion($scope.questionIds[$scope.currentIndex].QuestionId)
+                   .$promise.then(
+            //success
+            function (value) {/*Do something with value*/
+                    $scope.question = value;
+                    for (var i = 0; i < $scope.question.Answers.length; i++) {
+                        $scope.question.Answers[i].checked = false;
+                    }
+                },
+                //error
+                function (error) {/*Do something with error*/ }
+                );
 
-        //                examData.getQuestion($routeParams.questionId)
-        //                .$promise.then(
-        //                   //success
-        //                   function (value) {/*Do something with value*/
-        //                       $scope.question = value;
-        //                       for (var i = 0; i < $scope.question.Answers.length; i++) {
-        //                           $scope.question.Answers[i].checked = false;
-        //                       }
-        //                   },
-        //                   //error
-        //                   function (error) {/*Do something with error*/ }
-        //                 );
+        },
+        $scope.nextQuestion = function () {
+            if ($scope.currentIndex < $scope.questionIds.Length)
+                $scope.currentIndex += 1;
+            examData.getQuestion($scope.questionIds[$scope.currentIndex].QuestionId)
+                   .$promise.then(
+            //success
+            function (value) {/*Do something with value*/
+                $scope.question = value;
+                for (var i = 0; i < $scope.question.Answers.length; i++) {
+                    $scope.question.Answers[i].checked = false;
+                }
+            },
+                //error
+                function (error) {/*Do something with error*/ }
+                );
 
-        //                $scope.prevQuestionId = 0;
-        //                if ($rootScope.questionIds[1])
-        //                    $scope.nextQuestionId = $rootScope.questionIds[1].QuestionId;
-        //                else
-        //                    $scope.nextQuestionId = 0;
-
-        //            }, function (reason) {
-        //                errorMngrSvc.handleError(reason);
-        //            });
-        //}
-        //else {
-        //    $scope.nextQuestionId = 0;
-        //    $scope.prevQuestionId = 0;
-
-        //    $scope.question = examData.getQuestion($routeParams.questionId);
-        //    examData.getQuestion($routeParams.questionId)
-        //    .$promise.then(
-        //       //success
-        //       function (value) {/*Do something with value*/
-        //           $scope.question = value;
-        //           for (var i = 0; i < $scope.question.Answers.length; i++) {
-        //               $scope.question.Answers[i].checked = false;
-        //           }
-        //       },
-        //       //error
-        //       function (error) {/*Do something with error*/ }
-        //     );
-
-        //    for (var i = 0; i < $rootScope.questionIds.length; i++) {
-        //        if ($rootScope.questionIds[i].QuestionId == $routeParams.questionId) {
-        //            if ($rootScope.questionIds[i + 1]) {
-        //                $scope.nextQuestionId = $rootScope.questionIds[i + 1].QuestionId;
-        //            }
-        //            if ($scope.questionIds[i - 1]) {
-        //                $scope.prevQuestionId = $rootScope.questionIds[i - 1].QuestionId;
-        //            }
-        //        }
-        //    }
-
-        //}
+        },
 
         $scope.checkAnswer = function (question) {
             $scope.alerts = [];

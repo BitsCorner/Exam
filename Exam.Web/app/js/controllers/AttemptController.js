@@ -4,7 +4,7 @@ examApp.controller('AttemptController',
     function AttemptController($scope, examData, $routeParams) {
         $scope.questionsLoaded = false;
         $scope.certificate = examData.getCertificate($routeParams.certificateId);
-        $scope.currentIndex = 0;
+
 
         //TODO: Add a Cert Prep Option view so that the user can decide how to get the questions
         var questionsQuantity = 50;
@@ -13,10 +13,11 @@ examApp.controller('AttemptController',
         $scope.startAttempt = function () {
             examData.getQuestionIds($routeParams.certificateId, questionsQuantity, orderBy)
                     .then(function (data) {
+                        $scope.currentIndex = 0;
                         $scope.firstQuestionId = data[$scope.currentIndex].QuestionId;
                         $scope.questionIds = data;
                         $scope.questionsLoaded = true;
-
+                        
                         examData.getQuestion($scope.firstQuestionId)
                                 .$promise.then(
                                     //success
@@ -29,13 +30,6 @@ examApp.controller('AttemptController',
                                     //error
                                     function (error) {/*Do something with error*/ }
                                     );
-
-                                $scope.prevQuestionId = 0;
-                                if ($rootScope.questionIds[1])
-                                    $scope.nextQuestionId = $rootScope.questionIds[1].QuestionId;
-                                else
-                                    $scope.nextQuestionId = 0;
-
 
                     }, function (reason) {
                         errorMngrSvc.handleError(reason);

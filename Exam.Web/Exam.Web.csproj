@@ -149,20 +149,18 @@
     <Content Include="app\img\rss-logo.png" />
     <Content Include="app\img\twitter-logo.png" />
     <Content Include="app\js\app.js" />
+    <Content Include="app\js\controllers\QuestionController.js" />
+    <Content Include="app\js\controllers\QuestionCommentController.js" />
     <Content Include="app\js\controllers\CertificateController.js" />
-    <Content Include="app\js\controllers\CertPrepStartController.js" />
-    <Content Include="app\js\controllers\CertPrepController.js" />
+    <Content Include="app\js\controllers\AttemptController.js" />
     <Content Include="app\js\controllers\DumpQuestionController.js" />
     <Content Include="app\js\controllers\SignInController.js" />
-    <Content Include="app\js\controllers\EventListController.js" />
     <Content Include="app\js\directives.js" />
     <Content Include="app\js\filters.js" />
     <Content Include="app\js\httpLoader.js" />
     <Content Include="app\js\services\authentication.js" />
     <Content Include="app\js\services\examResource.js" />
     <Content Include="app\js\services\examData.js" />
-    <Content Include="app\js\services\eventData.js" />
-    <Content Include="app\js\services\eventResource.js" />
     <Content Include="app\lib\angular-summernote.min.js" />
     <Content Include="app\lib\angular\angular-file-upload-html5-shim.js" />
     <Content Include="app\lib\angular\angular-file-upload-html5-shim.min.js" />
@@ -184,6 +182,7 @@
     <Content Include="app\lib\ui-bootstrap-0.11.2.js" />
     <Content Include="app\lib\underscore-1.4.4.min.js" />
     <Content Include="fav.ico" />
+    <Content Include="templates\Attempt.html" />
     <Content Include="templates\Certificates.html" />
   </ItemGroup>
   <ItemGroup>
@@ -204,12 +203,13 @@
     <Content Include="app\lib\ui-bootstrap.js" />
     <Content Include="app\lib\ui-bootstrap.min.js" />
     <Content Include="Index.html" />
-    <Content Include="templates\CertPrepStart.html" />
+    <Content Include="templates\CertInfoHeader.html" />
+    <Content Include="templates\FooterBar.html" />
     <Content Include="templates\Login.html" />
-    <Content Include="templates\CertPrep.html" />
     <Content Include="templates\DumpQuestion.html" />
     <Content Include="templates\QuestionComments.html" />
-    <Content Include="templates\QuestionView.html" />
+    <Content Include="templates\Question.html" />
+    <Content Include="templates\TopNavBar.html" />
     <Content Include="web.config" />
     <Content Include="packages.config" />
     <Content Include="app\fonts\fontawesome-webfont.ttf" />
