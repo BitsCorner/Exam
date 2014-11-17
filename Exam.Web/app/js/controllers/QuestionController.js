@@ -1,11 +1,25 @@
 ﻿'use strict'
 
 examApp.controller('QuestionController',
-    function QuestionController($scope, examData) {
+    function QuestionController($rootScope, $scope, examData) {
+
+        $scope.isFirstQuestion = function () {
+            if ($scope.currentIndex == 0)
+                return true;
+            else
+                return false;
+        },
+        $scope.isLastQuestion = function () {
+            if ($scope.questionIds != null && $scope.currentIndex < $scope.questionIds.length - 1)
+                return false;
+            else
+                return true;
+        },
         $scope.prevQuestion = function () {
 
             if ($scope.currentIndex > 0)
                 $scope.currentIndex -= 1;
+
             examData.getQuestion($scope.questionIds[$scope.currentIndex].QuestionId)
                    .$promise.then(
             //success
@@ -18,11 +32,12 @@ examApp.controller('QuestionController',
                 //error
                 function (error) {/*Do something with error*/ }
                 );
-
         },
+
         $scope.nextQuestion = function () {
-            if ($scope.currentIndex < $scope.questionIds.Length)
+            if ($scope.currentIndex < $scope.questionIds.length-1)
                 $scope.currentIndex += 1;
+
             examData.getQuestion($scope.questionIds[$scope.currentIndex].QuestionId)
                    .$promise.then(
             //success
@@ -35,7 +50,6 @@ examApp.controller('QuestionController',
                 //error
                 function (error) {/*Do something with error*/ }
                 );
-
         },
 
         $scope.checkAnswer = function (question) {
@@ -82,14 +96,14 @@ examApp.controller('QuestionController',
             examData.getComments(question.QuestionId)
                                     .then(function (data) {
                                         $scope.question.Comments = data;
-                                        $scope.displayComments = true;
+                                        $scope.question.displayComments = true;
                                     });
         };
 
         $scope.timerRunning = true;
 
         $scope.startTimer = function () {
-            $scope.$broadcast('timer-start');
+            //$scope.$broadcast('timer-start');
             $scope.timerRunning = true;
         };
 
@@ -100,7 +114,7 @@ examApp.controller('QuestionController',
         $scope.voteUp = function () {
             var questionVote = {
                 QuestionId: $scope.question.QuestionId,
-                UserId: $scope.userInfo.emails[0].value,
+                UserId: $rootScope.user.emails[0].value,
                 Vote: 1,
             };
             examData.saveQuestionVote(questionVote);
@@ -110,7 +124,7 @@ examApp.controller('QuestionController',
         $scope.voteDown = function () {
             var questionVote = {
                 QuestionId: $scope.question.QuestionId,
-                UserId: $scope.userInfo.emails[0].value,
+                UserId: $rootScope.user.emails[0].value,
                 Vote: -1,
             };
             examData.saveQuestionVote(questionVote);

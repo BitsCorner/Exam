@@ -14,7 +14,7 @@
                 <li><a href="#/feedback">Feed back</a></li>
                 <li><a href="http://www.koukia.ca">Bits Corner Blog</a></li>
             </ul>
-            <ul class="nav navbar-nav navbar-right">
+            <ul class="nav navbar-nav navbar-right" ng-controller="SignInController">
                 <li ng-hide="!isSignedIn()">
                     <a href="#"><small>{{userInfo.displayName}}</small></a>
                 </li>
@@ -30,9 +30,9 @@
                     </span>
 
                     <!-- Don't forget to place the script that does the asynchronous loading of Google+ JavaScript API.
-                    Because it is loaded asynchronously, it might take some time to load.
-                    Place some loading notification, so user won't get confused.
-                    You can use ng-show and ng-hide to show or hide your notification and accomplish best user experience. -->
+            Because it is loaded asynchronously, it might take some time to load.
+            Place some loading notification, so user won't get confused.
+            You can use ng-show and ng-hide to show or hide your notification and accomplish best user experience. -->
                 </li>
             </ul>
         </div>

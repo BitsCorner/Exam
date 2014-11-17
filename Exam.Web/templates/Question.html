@@ -1,11 +1,10 @@
-﻿
-<div class="row" style="margin-bottom:20px;">
+﻿<div class="row" style="margin-bottom:20px;">
     <div class="col-md-12" style="height:72px;">
         <div class="col-md-6">
-            <button ng-disabled="prevQuestionId==0" ng-click="prevQuestion()" type="button" class=" btn btn-primary">
+            <button ng-disabled="isFirstQuestion()" ng-click="prevQuestion()" type="button" class=" btn btn-primary">
                 <span class="glyphicon glyphicon-chevron-left"></span> Previous
             </button>
-            <button ng-disabled="nextQuestionId==0" ng-click="nextQuestion()" type="button" class="btn btn-primary">
+            <button ng-disabled="isLastQuestion()" ng-click="nextQuestion()" type="button" class="btn btn-primary">
                 Next <span class="glyphicon glyphicon-chevron-right"></span>
             </button>
             <button type="button" class="btn btn-info" ng-click="showComments(question)">
@@ -56,6 +55,7 @@
                     </div>
                 </div>
                 <div class="col-md-2 text-right">
+                    <span ng-bind="tt"></span>
                     <small>
                         <strong>
                             Total attempts:<br />
@@ -72,16 +72,13 @@
                 <div class="col-md-2 text-right">
                     <small>
                         <strong>
-                            This question time:<br />
-                            Total time:
+                            This question time:
                         </strong>
                     </small>
                 </div>
                 <div class="col-md-1" style="padding-left:0">
                     <small>
                         <timer interval="1000">{{hours}}:{{mminutes}}:{{sseconds}}</timer>
-                        <br />
-                        {{prepTotalTime}}
                     </small>
                 </div>
                 <div class="col-md-1 text-right">
@@ -142,4 +139,6 @@
     </div>
 </div>
 
-<div ng-include="'./templates/QuestionComments.html'" ng-controller="QuestionCommentController"></div>
+<div ng-show="question.displayComments">
+    <div ng-include="'./templates/QuestionComments.html'" ng-controller="QuestionCommentController"></div>
+</div>

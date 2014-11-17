@@ -2,8 +2,9 @@
     <div class="panel-heading">
         <label>Certificate:</label> {{certificate.CompanyName}} {{certificate.CertificateCode}} {{certificate.CertificateName}} <label>Technology:</label> {{certificate.Technology}}
         <button ng-show="questionsLoaded" ng-click="endAttempt()" class="btn btn-primary btn-sm" role="button">Stop Preparation</button>
+        <timer interval="1000">{{hours}}:{{mminutes}}:{{sseconds}}</timer>
     </div>
-    
+   
 </div>
 
 <div class="panel panel-info ng-cloak" ng-show="!questionsLoaded">
