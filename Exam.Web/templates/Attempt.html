@@ -2,7 +2,6 @@
     <div class="panel-heading">
         <label>Certificate:</label> {{certificate.CompanyName}} {{certificate.CertificateCode}} {{certificate.CertificateName}} <label>Technology:</label> {{certificate.Technology}}
         <button ng-show="questionsLoaded" ng-click="endAttempt()" class="btn btn-primary btn-sm" role="button">Stop Preparation</button>
-        <timer interval="1000">{{hours}}:{{mminutes}}:{{sseconds}}</timer>
     </div>
    
 </div>
@@ -49,19 +48,6 @@
                         <label>
                             <input type="radio" name="prepOption"> Give me the most voted questions
                         </label>
-                    </div>
-                </div>
-                <div class="col-sm-offset-2 col-sm-10">
-                    <div class="checkbox-inline">
-                        <label>
-                            <input type="checkbox"> Start a timer
-                        </label>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">Prep minutes:</label>
-                    <div class="col-sm-1">
-                        <input type="text" class="form-control text-center" value="120" maxlength="3">
                     </div>
                 </div>
             </div>

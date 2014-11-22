@@ -178,19 +178,19 @@ namespace Exam.Business
                 VoteDate = DateTime.UtcNow
             };
         }
-        internal UserAttempt Map(Contracts.UserAttemptRequest userAttempt)
+        internal UserAttempt Map(Contracts.AttemptDetailRequest attemptDetail)
         {
-            if (userAttempt == null)
+            if (attemptDetail == null)
                 return null;
 
             return new UserAttempt
             {
-                UserId = userAttempt.UserId,
-                QuestionId = userAttempt.QuestionId,
+                AttemptId = attemptDetail.AttemptId,
+                QuestionId = attemptDetail.QuestionId,
                 AttemptDate = DateTime.UtcNow,
-                GotItRight = userAttempt.GotItRight,
-                Answers = userAttempt.Answers != null ? string.Join(",", userAttempt.Answers) : null,
-                TimeSpent = userAttempt.TimeSpent,
+                GotItRight = attemptDetail.GotItRight,
+                Answers = attemptDetail.Answers != null ? string.Join(",", attemptDetail.Answers) : null,
+                TimeSpent = attemptDetail.TimeSpent,
             };
         }
         internal QuestionComment Map(Contracts.QuestionCommentRequest questionComment)

@@ -23,7 +23,11 @@ namespace Exam.Business
 
         Task<int> SaveQuestionVote(QuestionVoteRequest questionVote);
 
-        Task<int> SaveUserAttempt(UserAttemptRequest userAttempt);
+        Task<int> SaveAttemptDetail(AttemptDetailRequest attemptDetail);
+
+        Task<int> StartAttempt(AttemptRequest attempt);
+
+        Task<int> EndAttempt(AttemptRequest attempt);
 
     }
 }

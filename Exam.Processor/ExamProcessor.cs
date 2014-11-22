@@ -81,13 +81,29 @@ namespace Exam.Business
             return await this.questionVoteRepository.AddAsync(mappedQuestionVote);
         }
 
-        public async Task<int> SaveUserAttempt(Contracts.UserAttemptRequest userAttempt)
+        public async Task<int> SaveUserAttempt(Contracts.AttemptDetailRequest attemptDetail)
         {
-            var mappedUserAttempt = Map(userAttempt);
+            var mappedUserAttempt = Map(attemptDetail);
             return await this.userAttemptRepository.AddAsync(mappedUserAttempt);
         }
 
 
-         
+
+
+
+        public Task<int> SaveAttemptDetail(Contracts.AttemptDetailRequest attemptDetail)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<int> StartAttempt(Contracts.AttemptRequest attempt)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<int> EndAttempt(Contracts.AttemptRequest attempt)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
