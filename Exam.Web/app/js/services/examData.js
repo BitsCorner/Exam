@@ -1,6 +1,6 @@
 'use strict';
 
-var baseUrl = "http://localhost/ExamSvc/api/";
+var baseUrl = "http://certapi.koukia.ca/api/";
 examApp.factory('examData', function ($resource, $http, $q) {
 
     //var questionIds;
