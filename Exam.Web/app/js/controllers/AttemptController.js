@@ -5,7 +5,6 @@ examApp.controller('AttemptController',
         $scope.questionsLoaded = false;
         $scope.certificate = examData.getCertificate($routeParams.certificateId);
 
-        $scope.tt = "sdfdf";
         //TODO: Add a Cert Prep Option view so that the user can decide how to get the questions
         var questionsQuantity = 50;
         var orderBy = 'latest';
@@ -28,10 +27,6 @@ examApp.controller('AttemptController',
                                         for (var i = 0; i < $scope.question.Answers.length; i++) {
                                             $scope.question.Answers[i].checked = false;
                                         }
-
-                                        // start the global exam timer
-                                        $scope.timerRunning = true;
-
                                     },
                                     //error
                                     function (error) {/*Do something with error*/ }
@@ -42,12 +37,4 @@ examApp.controller('AttemptController',
                     });
         };
 
-        $scope.startTimer = function () {
-            //$scope.$broadcast('timer-start');
-            $scope.timerRunning = true;
-        };
-
-        $scope.$on('timer-stopped', function (event, data) {
-            console.log('Timer Stopped - data = ', data);
-        });
  });

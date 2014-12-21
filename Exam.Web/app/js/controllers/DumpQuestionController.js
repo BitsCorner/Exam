@@ -55,8 +55,8 @@ examApp.controller('DumpQuestionController',
         };
 
         var email;
-        if ($scope.userInfo != null)
-            email = $scope.userInfo.emails[0].value;
+        if ($rootScope.user.emails[0].value != null)
+            email = $rootScope.user.emails[0].value;
             
         $scope.question = {
             CertificateId: $routeParams.certificateId,

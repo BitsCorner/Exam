@@ -1,9 +1,9 @@
 'use strict';
 
-var baseUrl = "http://certapi.koukia.ca/api/";
-examApp.factory('examData', function ($resource, $http, $q) {
+// var baseUrl = "http://certapi.koukia.ca/api/";
+var baseUrl = 'http://localhost/ExamSvc/api/';
 
-    //var questionIds;
+examApp.factory('examData', function ($resource, $http, $q) {
 
     return {
         getCertificates: function () {

@@ -60,7 +60,8 @@ namespace Exam.Business
             if (found == null)
                 return await this.userRepository.AddAsync(mappedUser);
             else
-                return await this.userRepository.UpdateAsync(mappedUser);
+                return await Task.FromResult(1);
+                //return await this.userRepository.UpdateAsync(mappedUser);
         }
 
         public async Task<int> SaveQuestionComment(Contracts.QuestionCommentRequest questionComment)

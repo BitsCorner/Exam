@@ -66,9 +66,6 @@ examApp.controller('QuestionController',
             else
                 $scope.alerts.push({ type: 'danger', msg: 'Opps! you got it wrong.' });
 
-            $scope.$broadcast('timer-stop');
-            $scope.timerRunning = false;
-
             var userAnswers = [];
             for (var i = 0; i < $scope.question.Answers.length; i++) {
                 if ($scope.question.Answers[i].checked)
@@ -77,7 +74,7 @@ examApp.controller('QuestionController',
 
             var userAttempt = {
                 QuestionId: question.QuestionId,
-                UserId: $scope.userInfo.emails[0].value,
+                UserId: $rootScope.user.emails[0].value,
                 TimeSpent: $scope.question.TimeSpent,
                 GotItRight: gotItRight,
                 Answers: userAnswers
@@ -99,17 +96,6 @@ examApp.controller('QuestionController',
                                         $scope.question.displayComments = true;
                                     });
         };
-
-        $scope.timerRunning = true;
-
-        $scope.startTimer = function () {
-            //$scope.$broadcast('timer-start');
-            $scope.timerRunning = true;
-        };
-
-        $scope.$on('timer-stopped', function (event, data) {
-            console.log('Timer Stopped - data = ', data);
-        });
 
         $scope.voteUp = function () {
             var questionVote = {
